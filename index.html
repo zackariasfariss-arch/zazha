@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAZHA — Asiatisk Restaurang & Bar · Södermalm Stockholm</title>
+  <meta name="description" content="ZAZHA Asian Bistro & Bar — asiatisk restaurang på Södermalm i Söderhallarna. Lunchmeny, middagsmeny, dryckesmeny och after work. Bistro och bar i Stockholm.">
+  <meta name="keywords" content="restaurang södermalm, asiatisk restaurang stockholm, bistro södermalm, bar söderhallarna, lunch södermalm, after work södermalm, asiatisk bistro, ZAZHA">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "ZAZHA Asian Bistro & Bar",
+    "description": "Asiatisk bistro och bar på Södermalm i Söderhallarna. Bar-first med asiatisk mat, naturviner och after work.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Medborgarplatsen 3",
+      "addressLocality": "Stockholm",
+      "addressRegion": "Södermalm",
+      "postalCode": "118 26",
+      "addressCountry": "SE"
+    },
+    "servesCuisine": "Asian",
+    "priceRange": "$$",
+    "url": "https://zazha.se",
+    "sameAs": ["https://instagram.com/zazha.sthlm"]
+  }
+  </script>
+  <style>
+    /* ============================================================
+       FONTS
+    ============================================================ */
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Hanken+Grotesk:wght@300;400&display=swap');
+
+    /* ============================================================
+       TOKENS
+    ============================================================ */
+    :root {
+      --cream:      #F5F0E8;
+      --charcoal:   #2C2A22;
+      --olive:      #3A4E28;
+      --terracotta: #B85C38;
+      --sage:       #6B7D4A;
+      --sand:       #C4A882;
+
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'Hanken Grotesk', system-ui, sans-serif;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      font-weight: 300;
+      color: var(--charcoal);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { text-decoration: none; color: inherit; }
+
+    /* ============================================================
+       NAVIGATION
+       Transparent over hero → cream bg when scrolled
+    ============================================================ */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 72px;
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    #nav.scrolled {
+      background: var(--cream);
+      box-shadow: 0 1px 0 rgba(44,42,34,0.10);
+    }
+
+    /* Logo — cream badge on hero, merges into nav bg on scroll */
+    .nav-logo img {
+      height: 40px;
+      width: auto;
+      display: block;
+      border-radius: 2px;
+    }
+
+    /* Desktop links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 12px;
+      letter-spacing: 0.10em;
+      color: var(--charcoal);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--terracotta); }
+
+    /* Boka bord — always terracotta */
+    .nav-cta {
+      background: var(--terracotta) !important;
+      color: var(--cream) !important;
+      padding: 10px 22px;
+      font-size: 11px !important;
+      letter-spacing: 0.16em !important;
+      text-transform: uppercase;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: #a34e2f !important; opacity: 1 !important; }
+
+    /* ---- Dropdown curtain (Mat & Dryck) ---- */
+    .has-dropdown { position: relative; }
+
+    .nav-arrow {
+      display: inline-block;
+      font-size: 9px;
+      margin-left: 3px;
+      opacity: 0.55;
+      transition: transform 0.22s ease;
+      vertical-align: middle;
+    }
+    .has-dropdown:hover .nav-arrow { transform: rotate(180deg); }
+
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 16px);
+      left: 50%;
+      transform: translateX(-50%) translateY(-10px);
+      background: var(--cream);
+      border-top: 2px solid var(--terracotta);
+      padding: 6px 0 14px;
+      min-width: 175px;
+      box-shadow: 0 16px 44px rgba(44,42,34,0.13);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+      z-index: 201;
+    }
+    .has-dropdown:hover .dropdown,
+    .has-dropdown:focus-within .dropdown {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateX(-50%) translateY(0);
+    }
+    .dropdown a {
+      display: block;
+      padding: 9px 22px;
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      color: var(--charcoal);
+      transition: color 0.15s, padding-left 0.18s;
+    }
+    .dropdown a:hover { color: var(--terracotta); padding-left: 30px; }
+
+    /* Hamburger (mobile only) */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 6px;
+      cursor: pointer;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--charcoal);
+      transition: background 0.3s;
+    }
+
+    /* ============================================================
+       MOBILE MENU OVERLAY
+       Olive background, large Cormorant links, centered
+    ============================================================ */
+    #mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 199;
+      background: var(--olive);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 44px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    #mobile-menu.open { opacity: 1; pointer-events: all; }
+
+    #mobile-menu a {
+      font-family: var(--serif);
+      font-size: 36px;
+      color: var(--cream);
+      letter-spacing: 0.08em;
+      transition: opacity 0.2s;
+    }
+    #mobile-menu a:hover { opacity: 0.6; }
+
+    #menu-close {
+      position: absolute;
+      top: 28px; right: 40px;
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sand);
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* ============================================================
+       HERO
+       Cream bg, centered logo — tiger always fully visible
+    ============================================================ */
+    #hero {
+      min-height: 100vh;
+      background: #F1E9DC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 40px 80px;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-mascot {
+      width: min(460px, 80vw);
+      height: auto;
+      display: block;
+    }
+
+    .hero-sub {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 13px;
+      color: var(--charcoal);
+      letter-spacing: 0.14em;
+      margin-top: 22px;
+      opacity: 0.55;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      margin-top: 32px;
+      padding: 16px 44px;
+      background: var(--terracotta);
+      color: var(--cream);
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 0.25s;
+    }
+    .hero-btn:hover { background: var(--olive); }
+
+    /* ============================================================
+       CONCEPT
+       Cream bg, two-col: pull-quote + body text
+    ============================================================ */
+    #concept {
+      background: #F8EFE6;
+      padding: 120px 80px;
+    }
+
+    .concept-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 300px;
+      gap: 80px;
+      align-items: center;
+    }
+    .concept-mascot {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      display: block;
+    }
+
+    .concept-quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 1.25;
+      color: var(--charcoal);
+      font-weight: 400;
+    }
+
+    .concept-body {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--charcoal);
+    }
+
+    .concept-body p + p { margin-top: 1.4em; }
+
+    /* ============================================================
+       ÖL · VIN · SKÅL
+       Olive bg, three columns with photo slots, tiger watermarks
+    ============================================================ */
+    #ovs {
+      background: #F4EBE2;
+      padding: 120px 80px;
+    }
+
+    .ovs-cols {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 52px;
+      text-align: center;
+      align-items: end; /* bottom-align so VIN text aligns with ÖL/SKÅL text */
+    }
+
+    .ovs-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .ovs-mascot {
+      height: 260px;
+      width: auto;
+      max-width: 260px;
+      object-fit: contain;
+      margin-bottom: 32px;
+      display: block;
+    }
+
+
+    .ovs-rule {
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--olive);
+      opacity: 0.35;
+      margin: 0 auto 22px;
+    }
+
+    .ovs-word {
+      font-family: var(--serif);
+      font-size: clamp(48px, 7vw, 96px);
+      color: var(--charcoal);
+      letter-spacing: 0.12em;
+      line-height: 1;
+    }
+
+    .ovs-desc {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 13px;
+      color: var(--charcoal);
+      opacity: 0.55;
+      margin-top: 10px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ============================================================
+       LOKAL — venue photo grid
+    ============================================================ */
+    #lokal {
+      background: var(--cream);
+      padding: 120px 80px;
+      text-align: center;
+    }
+
+    .lokal-heading {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(32px, 5vw, 60px);
+      letter-spacing: 0.18em;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+    }
+
+    .lokal-sub {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      color: var(--charcoal);
+      opacity: 0.50;
+      margin-bottom: 56px;
+    }
+
+    .lokal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .lokal-tile {
+      aspect-ratio: 4 / 3;
+      background: transparent;
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+    .lokal-tile:hover { transform: scale(1.02); }
+
+    .lokal-tile img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .lokal-tile.empty img { display: none; }
+    .lokal-tile:not(.empty) .lokal-placeholder { display: none; }
+
+    .lokal-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px;
+      opacity: 0;
+      transition: opacity 0.22s ease;
+    }
+    .lokal-tile.empty:hover .lokal-placeholder { opacity: 1; }
+    .lokal-placeholder-icon { font-size: 20px; opacity: 0.55; }
+    .lokal-placeholder-label {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: rgba(44,42,34,0.55);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* ============================================================
+       BILDUPPLADDNING — lokal rutnät
+    ============================================================ */
+    .lokal-tile { cursor: pointer; }
+
+    /* Overlay "byt bild" när bild är inladdad */
+    .lokal-tile:not(.empty)::after {
+      content: '↑  byt bild';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 9px;
+      text-align: center;
+      background: rgba(44,42,34,0.50);
+      color: rgba(245,240,232,0.92);
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 0.22s ease;
+      pointer-events: none;
+    }
+    .lokal-tile:not(.empty):hover::after { opacity: 1; }
+    .lokal-tile.empty:hover .lokal-placeholder { background: rgba(44,42,34,0.04); border: 1.5px dashed rgba(44,42,34,0.18); }
+
+    /* ============================================================
+       EVENTS heading in instagram section
+    ============================================================ */
+    .events-mascot {
+      width: min(280px, 55vw);
+      height: auto;
+      display: block;
+      margin: 0 auto 52px;
+    }
+
+    .events-heading {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(36px, 5vw, 60px);
+      letter-spacing: 0.12em;
+      color: var(--charcoal);
+      margin-bottom: 20px;
+    }
+    .events-text {
+      max-width: 580px;
+      margin: 0 auto 52px;
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--charcoal);
+      opacity: 0.70;
+    }
+    .events-contact-btn {
+      display: inline-block;
+      margin-bottom: 52px;
+      padding: 14px 40px;
+      border: 1.5px solid var(--charcoal);
+      color: var(--charcoal);
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: background 0.22s ease, color 0.22s ease;
+    }
+    .events-contact-btn:hover {
+      background: var(--charcoal);
+      color: #F3E7DE;
+    }
+
+    .insta-divider {
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--terracotta);
+      margin: 0 auto 48px;
+    }
+
+    .concept-meny-btn {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 13px 36px;
+      border: 1.5px solid var(--charcoal);
+      color: var(--charcoal);
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.22s ease, color 0.22s ease;
+    }
+    .concept-meny-btn:hover { background: var(--charcoal); color: var(--cream); }
+    .concept-meny-btn:active { background: var(--charcoal); color: var(--cream); }
+
+    /* ============================================================
+       HITTA OSS
+       Charcoal bg, two-col: info + map placeholder
+    ============================================================ */
+    #hitta-oss {
+      background: var(--charcoal);
+      padding: 120px 80px;
+      color: var(--cream);
+    }
+
+    .hitta-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .hitta-name {
+      font-family: var(--serif);
+      font-size: 28px;
+      letter-spacing: 0.14em;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+
+    .hitta-address {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--sand);
+    }
+
+    .hitta-divider {
+      display: block;
+      width: 36px;
+      height: 1px;
+      background: var(--terracotta);
+      margin: 24px 0;
+    }
+
+    .hitta-hours {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 2;
+      color: var(--cream);
+    }
+
+    .hitta-contact {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 13px;
+      line-height: 1.9;
+      color: var(--sand);
+    }
+    .hitta-contact a { color: var(--sand); }
+    .hitta-contact a:hover { color: var(--cream); }
+
+    .hitta-map {
+      overflow: hidden;
+      height: 340px;
+    }
+
+    /* ============================================================
+       INSTAGRAM
+       Cream bg, handle + 5-tile grid
+    ============================================================ */
+    #instagram {
+      background: #F3E7DE;
+      padding: 120px 80px;
+      text-align: center;
+    }
+
+    .insta-eyebrow {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      opacity: 0.45;
+      margin-bottom: 14px;
+    }
+
+    .insta-handle {
+      display: block;
+      font-family: var(--serif);
+      font-size: 28px;
+      color: var(--terracotta);
+      letter-spacing: 0.05em;
+      margin-bottom: 56px;
+      transition: opacity 0.2s;
+    }
+    .insta-handle:hover { opacity: 0.7; }
+
+    .insta-grid {
+      max-width: 880px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+
+    .insta-tile {
+      aspect-ratio: 1 / 1;
+      background: transparent;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.32s ease;
+    }
+    .insta-tile:hover { transform: scale(1.03); }
+
+    .insta-caption {
+      margin-top: 28px;
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      opacity: 0.40;
+    }
+
+    /* ============================================================
+       FOOTER
+       Charcoal bg, centered wordmark
+    ============================================================ */
+    footer {
+      background: var(--charcoal);
+      padding: 100px 40px 80px;
+      text-align: center;
+    }
+
+    .footer-wordmark {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 28px;
+      letter-spacing: 0.22em;
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+
+    .footer-loc {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 12px;
+      letter-spacing: 0.10em;
+      color: var(--charcoal);
+      margin-bottom: 20px;
+    }
+
+    .footer-social a {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      color: var(--sand);
+      transition: color 0.2s;
+    }
+    .footer-social a:hover { color: var(--cream); }
+
+    .footer-copy {
+      margin-top: 36px;
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--cream);
+      opacity: 0.28;
+    }
+
+    /* Visually hidden but accessible to screen readers + search engines */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* ============================================================
+       RESPONSIVE — mobile-first, collapse at 900px
+    ============================================================ */
+    @media (max-width: 900px) {
+      .nav-links     { display: none; }
+      .nav-hamburger { display: flex; }
+      #nav           { padding: 0 28px; }
+
+      #concept, #meny, #hitta-oss, #instagram, #lokal { padding: 80px 28px; }
+      #ovs { padding: 80px 28px; }
+      .lokal-grid { grid-template-columns: repeat(2, 1fr); }
+      .lokal-tile:nth-child(n + 5) { display: none; }
+
+      .concept-inner { grid-template-columns: 1fr; gap: 48px; }
+      .concept-mascot { display: none; }
+      .concept-quote { font-size: clamp(28px, 7vw, 40px); }
+
+      .ovs-cols { grid-template-columns: 1fr; gap: 52px; }
+
+      .hitta-inner { grid-template-columns: 1fr; gap: 52px; }
+      .hitta-map { height: 220px; }
+
+      .insta-grid { grid-template-columns: repeat(3, 1fr); max-width: 480px; }
+      .insta-tile:nth-child(n + 4) { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-title   { font-size: 52px; }
+      .hero-content { padding: 0 24px 60px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title { font-size: 48px; }
+      .hero-sub   { font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav id="nav" role="navigation" aria-label="Huvudmeny">
+    <ul class="nav-links">
+      <li><a href="#concept">Om oss</a></li>
+      <li><a href="meny.html">Meny</a></li>
+      <li><a href="#instagram">Events</a></li>
+      <li><a href="#hitta-oss">Kontakt</a></li>
+      <li><a href="#boka" class="nav-cta">Boka bord</a></li>
+    </ul>
+
+    <button class="nav-hamburger" id="hamburger" aria-label="Öppna meny" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ============================================================
+       MOBILE MENU OVERLAY
+  ============================================================ -->
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Meny">
+    <button id="menu-close" aria-label="Stäng meny">stäng ✕</button>
+    <a href="#concept">Om oss</a>
+    <a href="meny.html">Meny</a>
+    <a href="#instagram">Events</a>
+    <a href="#hitta-oss">Kontakt</a>
+    <a href="#boka">Boka bord</a>
+  </div>
+
+  <!-- ============================================================
+       HERO
+       Full-bleed bar scene illustration with gradient + wordmark overlay
+  ============================================================ -->
+  <section id="hero" aria-label="Välkommen till ZAZHA">
+    <div class="hero-content">
+      <img src="images/logo.png" alt="ZAZHA — Asian Bistro &amp; Bar" class="hero-mascot">
+      <p class="hero-sub" data-edit-id="hero-sub">söderhallarna · södermalm · stockholm</p>
+      <a href="#boka" class="hero-btn" data-edit-id="hero-btn">Boka bord</a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONCEPT — öl, vin och skål
+  ============================================================ -->
+  <section id="concept">
+    <div class="concept-inner">
+      <blockquote class="concept-quote" data-edit-id="concept-quote">
+        öl, vin och skål —<br>
+        på alla sätt<br>det kan betyda.
+      </blockquote>
+      <div>
+        <div class="concept-body" data-edit-id="concept-body">
+          <p>ZAZHA är en asiatisk bistro och bar på Södermalm. vi är
+          bar-first — öl och vin är grunden, maten är det som stannar
+          kvar.</p>
+          <p>skål för glaset du lyfter. skål för skålen du äter ur.
+          välkommen hit.</p>
+        </div>
+        <a href="meny.html" class="concept-meny-btn">Meny</a>
+      </div>
+      <img src="images/tiger-peek.png" class="concept-mascot" alt="">
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ÖL · VIN · SKÅL
+  ============================================================ -->
+  <section id="ovs" aria-label="Öl, vin och skål">
+    <div class="ovs-cols">
+
+      <!-- ÖL -->
+      <div class="ovs-col">
+        <img src="images/tiger-skal.png" class="ovs-mascot" alt="">
+        <span class="ovs-rule" aria-hidden="true"></span>
+        <div class="ovs-word" data-edit-id="ovs-ol">ÖL</div>
+        <div class="ovs-desc" data-edit-id="ovs-ol-desc">det enkla nöjet.</div>
+      </div>
+
+      <!-- VIN -->
+      <div class="ovs-col">
+        <img src="images/tiger-meny.png" class="ovs-mascot" alt="">
+        <span class="ovs-rule" aria-hidden="true"></span>
+        <div class="ovs-word" data-edit-id="ovs-vin">VIN</div>
+        <div class="ovs-desc" data-edit-id="ovs-vin-desc">det valda njutandet.</div>
+      </div>
+
+      <!-- SKÅL -->
+      <div class="ovs-col">
+        <img src="images/tiger-bowl-new.png" class="ovs-mascot" alt="">
+        <span class="ovs-rule" aria-hidden="true"></span>
+        <div class="ovs-word" data-edit-id="ovs-skal">SKÅL</div>
+        <div class="ovs-desc" data-edit-id="ovs-skal-desc">glaset och skålen. båda.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       LOKAL — venue photos
+  ============================================================ -->
+  <section id="lokal" aria-label="Lokalen">
+    <h2 class="lokal-heading" data-edit-id="lokal-heading">ZAZHA IN ACTION</h2>
+    <p class="lokal-sub" data-edit-id="lokal-sub">ett hörn av södermalm</p>
+    <div class="lokal-grid">
+      <!-- Ersätt src med din bild, t.ex. src="images/lokal-1.jpg" -->
+      <div class="lokal-tile empty" id="lokal-1">
+        <img src="images/lokal-1.jpg" alt=""
+             onerror="this.closest('.lokal-tile').classList.add('empty')">
+        <div class="lokal-placeholder">
+          <span class="lokal-placeholder-icon">＋</span>
+          <span class="lokal-placeholder-label">images/lokal-1.jpg</span>
+        </div>
+      </div>
+      <div class="lokal-tile empty" id="lokal-2">
+        <img src="images/lokal-2.jpg" alt=""
+             onerror="this.closest('.lokal-tile').classList.add('empty')">
+        <div class="lokal-placeholder">
+          <span class="lokal-placeholder-icon">＋</span>
+          <span class="lokal-placeholder-label">images/lokal-2.jpg</span>
+        </div>
+      </div>
+      <div class="lokal-tile empty" id="lokal-3">
+        <img src="images/lokal-3.jpg" alt=""
+             onerror="this.closest('.lokal-tile').classList.add('empty')">
+        <div class="lokal-placeholder">
+          <span class="lokal-placeholder-icon">＋</span>
+          <span class="lokal-placeholder-label">images/lokal-3.jpg</span>
+        </div>
+      </div>
+      <div class="lokal-tile empty" id="lokal-4">
+        <img src="images/lokal-4.jpg" alt=""
+             onerror="this.closest('.lokal-tile').classList.add('empty')">
+        <div class="lokal-placeholder">
+          <span class="lokal-placeholder-icon">＋</span>
+          <span class="lokal-placeholder-label">images/lokal-4.jpg</span>
+        </div>
+      </div>
+      <div class="lokal-tile empty" id="lokal-5">
+        <img src="images/lokal-5.jpg" alt=""
+             onerror="this.closest('.lokal-tile').classList.add('empty')">
+        <div class="lokal-placeholder">
+          <span class="lokal-placeholder-icon">＋</span>
+          <span class="lokal-placeholder-label">images/lokal-5.jpg</span>
+        </div>
+      </div>
+      <div class="lokal-tile empty" id="lokal-6">
+        <img src="images/lokal-6.jpg" alt=""
+             onerror="this.closest('.lokal-tile').classList.add('empty')">
+        <div class="lokal-placeholder">
+          <span class="lokal-placeholder-icon">＋</span>
+          <span class="lokal-placeholder-label">images/lokal-6.jpg</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       INSTAGRAM
+  ============================================================ -->
+  <section id="instagram">
+    <img src="images/tiger-toast.png" class="events-mascot" alt="">
+    <h2 class="events-heading" data-edit-id="events-heading">Events</h2>
+    <div class="events-text" data-edit-id="events-text">
+      Inga kommande events just nu — följ oss på Instagram för senaste nytt.
+    </div>
+
+    <a href="#hitta-oss" class="events-contact-btn">Kontakta oss</a>
+
+    <span class="insta-divider" aria-hidden="true"></span>
+
+    <p class="insta-eyebrow" data-edit-id="insta-eye">följ oss</p>
+    <a href="https://instagram.com/zazha.sthlm" target="_blank" rel="noopener"
+       class="insta-handle" data-edit-id="insta-handle">@zazha.sthlm</a>
+    <div class="insta-grid" aria-label="Instagram-flöde">
+      <div class="insta-tile"></div>
+      <div class="insta-tile"></div>
+      <div class="insta-tile"></div>
+      <div class="insta-tile"></div>
+      <div class="insta-tile"></div>
+    </div>
+    <p class="insta-caption" data-edit-id="insta-cap">öppna instagram</p>
+  </section>
+
+  <!-- ============================================================
+       HITTA OSS
+  ============================================================ -->
+  <section id="hitta-oss">
+    <div class="hitta-inner">
+      <div>
+        <div class="hitta-name">ZAZHA</div>
+        <div class="hitta-address">
+          Söderhallarna<br>
+          Södermalm, Stockholm
+        </div>
+        <span class="hitta-divider" aria-hidden="true"></span>
+        <div class="hitta-hours">
+          Mån–fre: 11–23<br>
+          Lördag: 12–02<br>
+          Söndag: 12–22<br>
+          Happy Hour: dagligen 17–19
+        </div>
+        <span class="hitta-divider" aria-hidden="true"></span>
+        <!-- Update with real contact details -->
+        <div class="hitta-contact">
+          <a href="mailto:info@zazha.se">info@zazha.se</a><br>
+          08-XXX XX XX
+        </div>
+      </div>
+
+      <div class="hitta-map" aria-label="Karta — Medborgarplatsen 3">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2035.92!2d18.0710!3d59.3134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f77b5d14e1de7%3A0xb31f0cf4e31cf3eb!2sMedborgarplatsen%203%2C%20118%2026%20Stockholm!5e0!3m2!1ssv!2sse!4v1700000000000"
+          width="100%"
+          height="340"
+          style="border:0; display:block; filter: grayscale(30%) contrast(1.05);"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Karta — Medborgarplatsen 3, Stockholm">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer>
+    <div class="footer-wordmark">ZAZHA</div>
+    <p class="footer-loc" data-edit-id="footer-loc">söderhallarna · södermalm · stockholm</p>
+    <div class="footer-social" data-edit-id="footer-social">
+      <a href="https://instagram.com/zazha.sthlm" target="_blank" rel="noopener">@zazha.sthlm</a>
+    </div>
+    <p class="footer-copy" data-edit-id="footer-copy">© 2025 ZAZHA Asian Bistro &amp; Bar</p>
+    <p style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;">
+      ZAZHA är en restaurang på Södermalm och asiatisk restaurang i Stockholm. Vi är en bistro på Södermalm och en bar i Söderhallarna. Vi serverar lunch på Södermalm och erbjuder after work på Södermalm varje dag.
+    </p>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT — nav, hamburger menu, live text editing
+  ============================================================ -->
+  <script>
+    // --- Scroll-aware nav ---
+    const nav  = document.getElementById('nav');
+    const hero = document.getElementById('hero');
+    function updateNav() {
+      nav.classList.toggle('scrolled', window.scrollY > hero.offsetHeight - 80);
+    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+
+    // --- Hamburger / mobile overlay ---
+    const hamburger  = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuClose  = document.getElementById('menu-close');
+    function openMenu()  {
+      mobileMenu.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    hamburger.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+    // Återställ sparade textändringar från localStorage (skrivskyddade)
+    (function () {
+      const STORE = 'zazha_';
+      document.querySelectorAll('[data-edit-id]').forEach(el => {
+        const saved = localStorage.getItem(STORE + el.dataset.editId);
+        if (saved !== null) el.innerHTML = saved;
+      });
+    })();
+
+    // --- Bilduppladdning — lokal rutnät ---
+    (function () {
+      const IMG_STORE = 'zazha_photo_';
+
+      function compressImg(file, maxW, quality) {
+        return new Promise(resolve => {
+          const reader = new FileReader();
+          reader.onload = e => {
+            const img = new Image();
+            img.onload = () => {
+              const isPng = file.type === 'image/png';
+              const canvas = document.createElement('canvas');
+              let w = img.width, h = img.height;
+              const cap = isPng ? 1400 : maxW;
+              if (w > cap) { h = Math.round(h * cap / w); w = cap; }
+              canvas.width = w; canvas.height = h;
+              const ctx = canvas.getContext('2d');
+              ctx.drawImage(img, 0, 0, w, h);
+              if (isPng) {
+                // Strip cream/light background → transparent
+                const id = ctx.getImageData(0, 0, w, h);
+                const d = id.data;
+                const pts = [[2,2],[w-3,2],[2,h-3],[w-3,h-3]];
+                let sR=0,sG=0,sB=0;
+                for (const [x,y] of pts) { const i=(y*w+x)*4; sR+=d[i];sG+=d[i+1];sB+=d[i+2]; }
+                const bgR=sR/4,bgG=sG/4,bgB=sB/4;
+                for (let i=0;i<d.length;i+=4) {
+                  const dist=Math.sqrt((d[i]-bgR)**2+(d[i+1]-bgG)**2+(d[i+2]-bgB)**2);
+                  if (dist<22) d[i+3]=0;
+                  else if (dist<75) d[i+3]=Math.round((dist-22)/53*255);
+                }
+                ctx.putImageData(id,0,0);
+                resolve(canvas.toDataURL('image/png'));
+              } else {
+                resolve(canvas.toDataURL('image/jpeg', quality));
+              }
+            };
+            img.src = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+
+      document.querySelectorAll('.lokal-tile').forEach(tile => {
+        const key = IMG_STORE + tile.id;
+
+        // Återställ sparad bild vid sidladdning
+        const saved = localStorage.getItem(key);
+        if (saved) {
+          const img = tile.querySelector('img');
+          img.src = saved;
+          tile.classList.remove('empty');
+        }
+
+        tile.addEventListener('click', async e => {
+          // Shift+klick = ta bort bild
+          if (e.shiftKey) {
+            tile.classList.add('empty');
+            localStorage.removeItem(key);
+            tile.querySelector('img').removeAttribute('src');
+            return;
+          }
+          // Vanligt klick = välj fil
+          const input = document.createElement('input');
+          input.type = 'file';
+          input.accept = 'image/*';
+          input.onchange = async ev => {
+            const file = ev.target.files[0];
+            if (!file) return;
+            const data = await compressImg(file, 2400, 0.93);
+            const img = tile.querySelector('img');
+            img.src = data;
+            tile.classList.remove('empty');
+            localStorage.setItem(key, data);
+          };
+          input.click();
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
+

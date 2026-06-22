@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meny — ZAZHA Asian Bistro &amp; Bar</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Hanken+Grotesk:wght@300;400&display=swap');
+
+    :root {
+      --cream:      #F5F0E8;
+      --charcoal:   #2C2A22;
+      --olive:      #3A4E28;
+      --terracotta: #B85C38;
+      --sage:       #6B7D4A;
+      --sand:       #C4A882;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'Hanken Grotesk', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); font-weight: 300; color: var(--charcoal); background: var(--cream); -webkit-font-smoothing: antialiased; }
+    img  { display: block; max-width: 100%; }
+    a    { text-decoration: none; color: inherit; }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 72px;
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+    #nav.scrolled {
+      background: var(--cream);
+      box-shadow: 0 1px 0 rgba(44,42,34,0.10);
+    }
+
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a { font-family: var(--sans); font-weight: 300; font-size: 12px; letter-spacing: 0.10em; color: var(--charcoal); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--terracotta); }
+
+    .nav-cta { background: var(--terracotta) !important; color: var(--cream) !important; padding: 10px 22px; font-size: 11px !important; letter-spacing: 0.16em !important; text-transform: uppercase; transition: background 0.2s !important; }
+    .nav-cta:hover { background: var(--olive) !important; opacity: 1 !important; }
+
+    .has-dropdown { position: relative; }
+    .nav-arrow { display: inline-block; font-size: 9px; margin-left: 3px; opacity: 0.55; transition: transform 0.22s ease; vertical-align: middle; }
+    .has-dropdown:hover .nav-arrow { transform: rotate(180deg); }
+    .dropdown { position: absolute; top: calc(100% + 16px); left: 50%; transform: translateX(-50%) translateY(-10px); background: var(--cream); border-top: 2px solid var(--terracotta); padding: 6px 0 14px; min-width: 175px; box-shadow: 0 16px 44px rgba(44,42,34,0.13); opacity: 0; pointer-events: none; transition: opacity 0.22s ease, transform 0.22s ease; z-index: 201; }
+    .has-dropdown:hover .dropdown, .has-dropdown:focus-within .dropdown { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
+    .dropdown a { display: block; padding: 9px 22px; font-family: var(--sans); font-weight: 300; font-size: 12px; letter-spacing: 0.08em; color: var(--charcoal); transition: color 0.15s, padding-left 0.18s; }
+    .dropdown a:hover { color: var(--terracotta); padding-left: 30px; }
+
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 6px; cursor: pointer; }
+    .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--charcoal); transition: background 0.3s; }
+
+    /* ============================================================
+       MOBILE MENU
+    ============================================================ */
+    #mobile-menu { position: fixed; inset: 0; z-index: 199; background: var(--olive); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 44px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    #mobile-menu.open { opacity: 1; pointer-events: all; }
+    #mobile-menu a { font-family: var(--serif); font-size: 36px; color: var(--cream); letter-spacing: 0.08em; transition: opacity 0.2s; }
+    #mobile-menu a:hover { opacity: 0.6; }
+    #menu-close { position: absolute; top: 28px; right: 40px; font-family: var(--sans); font-weight: 300; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sand); background: none; border: none; cursor: pointer; }
+
+    /* ============================================================
+       PAGE HEADER
+    ============================================================ */
+    #meny-header {
+      background: var(--olive);
+      padding: 160px 80px 100px;
+      text-align: center;
+    }
+    .meny-page-title {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(60px, 10vw, 130px);
+      letter-spacing: 0.25em;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+    .meny-page-sub {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--sand);
+      opacity: 0.70;
+    }
+
+    /* ============================================================
+       MENU SECTIONS
+       Alternating two-column layout
+    ============================================================ */
+    .meny-section {
+      padding: 100px 80px;
+      background: var(--cream);
+    }
+    .meny-section:nth-of-type(even) {
+      background: #EDE8DF;
+    }
+
+    .meny-section-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .meny-section.meny-reverse .meny-section-inner {
+      direction: rtl;
+    }
+    .meny-section.meny-reverse .meny-section-inner > * {
+      direction: ltr;
+    }
+
+    /* Image placeholder */
+    .meny-section-img {
+      aspect-ratio: 4 / 3;
+      background: transparent;
+      position: relative;
+      overflow: hidden;
+    }
+    .meny-section-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .meny-section-img.empty img { display: none; }
+    .meny-section-img:not(.empty) .meny-img-placeholder { display: none; }
+
+    .meny-img-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.22s ease;
+    }
+    .meny-section-img.empty:hover .meny-img-placeholder { opacity: 1; border: 1.5px dashed rgba(44,42,34,0.18); }
+    .meny-img-placeholder span:first-child { font-size: 22px; opacity: 0.22; }
+    .meny-img-placeholder span:last-child { font-family: var(--sans); font-size: 10px; letter-spacing: 0.12em; color: rgba(44,42,34,0.40); line-height: 1.5; }
+
+    /* Bilduppladdning */
+    .meny-section-img { cursor: pointer; }
+    .meny-section-img:not(.empty)::after {
+      content: '↑  byt bild';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 9px;
+      text-align: center;
+      background: rgba(44,42,34,0.50);
+      color: rgba(245,240,232,0.92);
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 0.22s ease;
+      pointer-events: none;
+    }
+    .meny-section-img:not(.empty):hover::after { opacity: 1; }
+    .meny-section-img.empty:hover .meny-img-placeholder { background: rgba(44,42,34,0.03); }
+
+    /* Text column */
+    .meny-section-eyebrow {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 12px;
+      opacity: 0.80;
+    }
+    .meny-section-heading {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(32px, 4vw, 54px);
+      letter-spacing: 0.06em;
+      color: var(--charcoal);
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+    .meny-section-body {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--charcoal);
+      opacity: 0.72;
+      margin-bottom: 28px;
+    }
+    /* Edit the href on this link to point to your menu PDF or page */
+    .meny-section-link {
+      display: inline-block;
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      border-bottom: 1px solid rgba(184,92,56,0.35);
+      padding-bottom: 3px;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s ease;
+    }
+    .meny-section-link:hover { border-color: var(--terracotta); color: var(--charcoal); transform: translateX(4px); }
+
+    /* Happy Hour — centered, olive bg */
+    #happy-hour {
+      background: var(--olive);
+      padding: 100px 80px;
+      text-align: center;
+    }
+    .happy-inner { max-width: 560px; margin: 0 auto; }
+    #happy-hour .meny-section-eyebrow { color: var(--sand); }
+    #happy-hour .meny-section-heading { color: var(--cream); }
+    #happy-hour .meny-section-body { color: var(--sand); opacity: 0.88; }
+    #happy-hour .meny-section-link { color: var(--sand); border-color: rgba(196,168,130,0.4); }
+    #happy-hour .meny-section-link:hover { color: var(--cream); border-color: var(--sand); }
+
+    /* ============================================================
+       LIVE EDITING
+    ============================================================ */
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer { background: var(--charcoal); padding: 100px 40px 80px; text-align: center; }
+    .footer-wordmark { font-family: var(--serif); font-weight: 400; font-size: 28px; letter-spacing: 0.22em; color: var(--cream); margin-bottom: 12px; }
+    .footer-loc { font-family: var(--sans); font-weight: 300; font-size: 12px; letter-spacing: 0.10em; color: var(--sage); margin-bottom: 20px; }
+    .footer-social a { font-family: var(--sans); font-weight: 300; font-size: 12px; letter-spacing: 0.08em; color: var(--sand); transition: color 0.2s; }
+    .footer-social a:hover { color: var(--cream); }
+    .footer-copy { margin-top: 36px; font-family: var(--sans); font-weight: 300; font-size: 11px; color: var(--cream); opacity: 0.28; }
+
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      #nav { padding: 0 28px; }
+      #meny-header { padding: 120px 28px 80px; }
+      .meny-section { padding: 72px 28px; }
+      #happy-hour { padding: 72px 28px; }
+      .meny-section-inner { grid-template-columns: 1fr; gap: 40px; }
+      .meny-section.meny-reverse .meny-section-inner { direction: ltr; }
+    }
+    @media (max-width: 480px) {
+      .meny-page-title { font-size: 52px; }
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- NAVIGATION -->
+  <nav id="nav" role="navigation" aria-label="Huvudmeny">
+    <ul class="nav-links">
+      <li><a href="index.html#concept">Om oss</a></li>
+      <li class="has-dropdown">
+        <a href="meny.html">Meny <span class="nav-arrow">▾</span></a>
+        <div class="dropdown">
+          <a href="#lunchmeny">Lunchmeny</a>
+          <a href="#middagsmeny">Middagsmeny</a>
+          <a href="#dryckesmeny">Dryckesmeny</a>
+          <a href="#happy-hour">After Work</a>
+          <a href="#catering">Catering</a>
+        </div>
+      </li>
+      <li><a href="index.html#instagram">Events</a></li>
+      <li><a href="index.html#hitta-oss">Kontakt</a></li>
+      <li><a href="index.html#boka" class="nav-cta">Boka bord</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Öppna meny" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Meny">
+    <button id="menu-close" aria-label="Stäng meny">stäng ✕</button>
+    <a href="index.html#concept">Om oss</a>
+    <a href="meny.html">Meny</a>
+    <a href="index.html#instagram">Events</a>
+    <a href="index.html#hitta-oss">Kontakt</a>
+    <a href="index.html#boka">Boka bord</a>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <section id="meny-header">
+    <h1 class="meny-page-title" data-edit-id="header-title">MENY</h1>
+    <p class="meny-page-sub" data-edit-id="header-sub">mat &amp; dryck · söderhallarna · södermalm</p>
+  </section>
+
+  <!-- LUNCHMENY -->
+  <section id="lunchmeny" class="meny-section">
+    <div class="meny-section-inner">
+      <div class="meny-section-img" id="img-lunch">
+        <!-- Ersätt src med din bild: src="images/lunch.jpg" -->
+        <img src="images/lunch.jpg" alt="Lunchmeny"
+             onerror="this.closest('.meny-section-img').classList.add('empty')">
+        <div class="meny-img-placeholder">
+          <span>＋</span>
+          <span>Lägg till bild<br>images/lunch.jpg</span>
+        </div>
+      </div>
+      <div class="meny-section-text">
+        <p class="meny-section-eyebrow" data-edit-id="lunch-eyebrow">dagligen 11–15</p>
+        <h2 class="meny-section-heading" data-edit-id="lunch-heading">Lunchmeny</h2>
+        <div class="meny-section-body" data-edit-id="lunch-body">
+          Välj bland asiatiskt inspirerade rätter som förändras med säsongen. Alla luncher serveras med sallad och smör.
+        </div>
+        <!-- Byt href till länk/PDF för din meny -->
+        <a href="#" class="meny-section-link" data-edit-id="lunch-link">Se lunchmenyn →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MIDDAGSMENY -->
+  <section id="middagsmeny" class="meny-section meny-reverse">
+    <div class="meny-section-inner">
+      <div class="meny-section-img" id="img-middag">
+        <!-- Ersätt src: src="images/middag.jpg" -->
+        <img src="images/middag.jpg" alt="Middagsmeny"
+             onerror="this.closest('.meny-section-img').classList.add('empty')">
+        <div class="meny-img-placeholder">
+          <span>＋</span>
+          <span>Lägg till bild<br>images/middag.jpg</span>
+        </div>
+      </div>
+      <div class="meny-section-text">
+        <p class="meny-section-eyebrow" data-edit-id="middag-eyebrow">from 17:00</p>
+        <h2 class="meny-section-heading" data-edit-id="middag-heading">Middagsmeny</h2>
+        <div class="meny-section-body" data-edit-id="middag-body">
+          Delningsrätter och signature bowls. Designat för sällskap — men perfekt solo med ett glas vin.
+        </div>
+        <a href="#" class="meny-section-link" data-edit-id="middag-link">Se middagsmenyn →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DRYCKESMENY -->
+  <section id="dryckesmeny" class="meny-section">
+    <div class="meny-section-inner">
+      <div class="meny-section-img" id="img-dryck">
+        <!-- Ersätt src: src="images/dryck.jpg" -->
+        <img src="images/dryck.jpg" alt="Dryckesmeny"
+             onerror="this.closest('.meny-section-img').classList.add('empty')">
+        <div class="meny-img-placeholder">
+          <span>＋</span>
+          <span>Lägg till bild<br>images/dryck.jpg</span>
+        </div>
+      </div>
+      <div class="meny-section-text">
+        <p class="meny-section-eyebrow" data-edit-id="dryck-eyebrow">öl · vin · cocktails</p>
+        <h2 class="meny-section-heading" data-edit-id="dryck-heading">Dryckesmeny</h2>
+        <div class="meny-section-body" data-edit-id="dryck-body">
+          Noggrant utvalda asiatiska öl, naturviner och husets cocktails. Vi tar drycken lika seriöst som maten.
+        </div>
+        <a href="#" class="meny-section-link" data-edit-id="dryck-link">Se dryckesmenyn →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AFTER WORK -->
+  <section id="happy-hour">
+    <div class="happy-inner">
+      <p class="meny-section-eyebrow" data-edit-id="happy-eyebrow">dagligen 17–19</p>
+      <h2 class="meny-section-heading" data-edit-id="happy-heading">After Work</h2>
+      <div class="meny-section-body" data-edit-id="happy-body">
+        Halva priset på utvalda öl och vin. Varje dag mellan fem och sju. Kom som du är.
+      </div>
+    </div>
+  </section>
+
+  <!-- CATERING -->
+  <section id="catering" class="meny-section meny-reverse">
+    <div class="meny-section-inner">
+      <div class="meny-section-img" id="img-catering">
+        <!-- Ersätt src: src="images/catering.jpg" -->
+        <img src="images/catering.jpg" alt="Catering"
+             onerror="this.closest('.meny-section-img').classList.add('empty')">
+        <div class="meny-img-placeholder">
+          <span>＋</span>
+          <span>Lägg till bild<br>images/catering.jpg</span>
+        </div>
+      </div>
+      <div class="meny-section-text">
+        <p class="meny-section-eyebrow" data-edit-id="catering-eyebrow">för event &amp; möten</p>
+        <h2 class="meny-section-heading" data-edit-id="catering-heading">Catering</h2>
+        <div class="meny-section-body" data-edit-id="catering-body">
+          Vi tar med oss ZAZHA till dig. Perfekt för konferenser, privata middagar och fester. Kontakta oss för offert och bokning.
+        </div>
+        <!-- Byt href till mailto eller bokningssida -->
+        <a href="mailto:info@zazha.se" class="meny-section-link" data-edit-id="catering-link">Kontakta oss →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-wordmark" data-edit-id="footer-wm">ZAZHA</div>
+    <p class="footer-loc" data-edit-id="footer-loc">söderhallarna · södermalm · stockholm</p>
+    <div class="footer-social" data-edit-id="footer-social">
+      <a href="https://instagram.com/zazha.sthlm" target="_blank" rel="noopener">@zazha.sthlm</a>
+    </div>
+    <p class="footer-copy" data-edit-id="footer-copy">© 2025 ZAZHA Asian Bistro &amp; Bar</p>
+  </footer>
+
+  <script>
+    // Scroll-aware nav
+    const nav = document.getElementById('nav');
+    function updateNav() {
+      nav.classList.toggle('scrolled', window.scrollY > 80);
+    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+
+    // Hamburger / mobile overlay
+    const hamburger  = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuClose  = document.getElementById('menu-close');
+    hamburger.addEventListener('click', () => { mobileMenu.classList.add('open'); hamburger.setAttribute('aria-expanded', 'true'); document.body.style.overflow = 'hidden'; });
+    menuClose.addEventListener('click',  () => { mobileMenu.classList.remove('open'); hamburger.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; } });
+
+    // Mark images as empty when they fail to load
+    document.querySelectorAll('.meny-section-img img').forEach(img => {
+      if (!img.complete || img.naturalWidth === 0) {
+        img.closest('.meny-section-img').classList.add('empty');
+      }
+      img.addEventListener('error', () => img.closest('.meny-section-img').classList.add('empty'));
+    });
+
+    // Återställ sparade textändringar från localStorage (skrivskyddade)
+    (function () {
+      const STORE = 'zazha_meny_';
+      document.querySelectorAll('[data-edit-id]').forEach(el => {
+        const saved = localStorage.getItem(STORE + el.dataset.editId);
+        if (saved !== null) el.innerHTML = saved;
+      });
+    })();
+
+    // --- Bilduppladdning — menysektioner ---
+    (function () {
+      const IMG_STORE = 'zazha_meny_photo_';
+
+      function compressImg(file, maxW, quality) {
+        return new Promise(resolve => {
+          const reader = new FileReader();
+          reader.onload = e => {
+            const img = new Image();
+            img.onload = () => {
+              const isPng = file.type === 'image/png';
+              const canvas = document.createElement('canvas');
+              let w = img.width, h = img.height;
+              const cap = isPng ? 1400 : maxW;
+              if (w > cap) { h = Math.round(h * cap / w); w = cap; }
+              canvas.width = w; canvas.height = h;
+              const ctx = canvas.getContext('2d');
+              ctx.drawImage(img, 0, 0, w, h);
+              if (isPng) {
+                const id = ctx.getImageData(0, 0, w, h);
+                const d = id.data;
+                const pts = [[2,2],[w-3,2],[2,h-3],[w-3,h-3]];
+                let sR=0,sG=0,sB=0;
+                for (const [x,y] of pts) { const i=(y*w+x)*4; sR+=d[i];sG+=d[i+1];sB+=d[i+2]; }
+                const bgR=sR/4,bgG=sG/4,bgB=sB/4;
+                for (let i=0;i<d.length;i+=4) {
+                  const dist=Math.sqrt((d[i]-bgR)**2+(d[i+1]-bgG)**2+(d[i+2]-bgB)**2);
+                  if (dist<22) d[i+3]=0;
+                  else if (dist<75) d[i+3]=Math.round((dist-22)/53*255);
+                }
+                ctx.putImageData(id,0,0);
+                resolve(canvas.toDataURL('image/png'));
+              } else {
+                resolve(canvas.toDataURL('image/jpeg', quality));
+              }
+            };
+            img.src = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+
+      document.querySelectorAll('.meny-section-img').forEach(slot => {
+        const key = IMG_STORE + slot.id;
+
+        // Återställ sparad bild vid sidladdning
+        const saved = localStorage.getItem(key);
+        if (saved) {
+          const img = slot.querySelector('img');
+          img.src = saved;
+          slot.classList.remove('empty');
+        }
+
+        slot.addEventListener('click', async e => {
+          // Shift+klick = ta bort bild
+          if (e.shiftKey) {
+            slot.classList.add('empty');
+            localStorage.removeItem(key);
+            slot.querySelector('img').removeAttribute('src');
+            return;
+          }
+          // Vanligt klick = välj fil
+          const input = document.createElement('input');
+          input.type = 'file';
+          input.accept = 'image/*';
+          input.onchange = async ev => {
+            const file = ev.target.files[0];
+            if (!file) return;
+            const data = await compressImg(file, 2400, 0.93);
+            const img = slot.querySelector('img');
+            img.src = data;
+            slot.classList.remove('empty');
+            localStorage.setItem(key, data);
+          };
+          input.click();
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
+
