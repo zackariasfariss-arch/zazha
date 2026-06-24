@@ -1,6 +1,7 @@
 # Dev server / screenshots (verktyg, ej sajten)
 temporary screenshots/
 Nya bilder/
+screenshot-*.mjs
 
 # Claude Code
 CLAUDE.md
@@ -8,3 +9,5 @@ CLAUDE.md
 # OS
 .DS_Store
 Thumbs.db
+
+.vercel
