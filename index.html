@@ -389,11 +389,22 @@
     }
 
     /* ============================================================
-       LOKAL — venue photo grid
+       LOKAL — hero image + text
     ============================================================ */
     #lokal {
       background: var(--cream);
       padding: 120px 80px;
+    }
+
+    .lokal-eyebrow {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      opacity: 0.80;
+      margin-bottom: 14px;
       text-align: center;
     }
 
@@ -403,91 +414,68 @@
       font-size: clamp(32px, 5vw, 60px);
       letter-spacing: 0.18em;
       color: var(--charcoal);
-      margin-bottom: 10px;
+      margin-bottom: 60px;
+      text-align: center;
     }
 
-    .lokal-sub {
-      font-family: var(--sans);
-      font-weight: 300;
-      font-size: 13px;
-      letter-spacing: 0.14em;
-      color: var(--charcoal);
-      opacity: 0.50;
-      margin-bottom: 56px;
-    }
-
-    .lokal-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      max-width: 1000px;
+    .lokal-hero {
+      max-width: 1200px;
       margin: 0 auto;
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 0;
+      align-items: stretch;
     }
 
-    .lokal-tile {
-      aspect-ratio: 4 / 3;
-      background: transparent;
-      overflow: hidden;
+    .lokal-hero-img {
       position: relative;
-      transition: transform 0.3s ease;
+      overflow: hidden;
     }
-    .lokal-tile:hover { transform: scale(1.02); }
 
-    .lokal-tile img {
-      width: 100%; height: 100%;
+    .lokal-hero-img img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       display: block;
+      min-height: 520px;
     }
-    .lokal-tile.empty img { display: none; }
-    .lokal-tile:not(.empty) .lokal-placeholder { display: none; }
 
-    .lokal-placeholder {
-      position: absolute;
-      inset: 0;
+    .lokal-hero-text {
+      background: var(--charcoal);
+      padding: 64px 52px;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 16px;
-      opacity: 0;
-      transition: opacity 0.22s ease;
-    }
-    .lokal-tile.empty:hover .lokal-placeholder { opacity: 1; }
-    .lokal-placeholder-icon { font-size: 20px; opacity: 0.55; }
-    .lokal-placeholder-label {
-      font-family: var(--sans);
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      color: rgba(44,42,34,0.55);
-      text-align: center;
-      line-height: 1.5;
     }
 
-    /* ============================================================
-       BILDUPPLADDNING — lokal rutnät
-    ============================================================ */
-    .lokal-tile { cursor: pointer; }
-
-    /* Overlay "byt bild" när bild är inladdad */
-    .lokal-tile:not(.empty)::after {
-      content: '↑  byt bild';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 9px;
-      text-align: center;
-      background: rgba(44,42,34,0.50);
-      color: rgba(245,240,232,0.92);
+    .lokal-hero-label {
       font-family: var(--sans);
+      font-weight: 300;
       font-size: 10px;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      opacity: 0;
-      transition: opacity 0.22s ease;
-      pointer-events: none;
+      color: var(--sand);
+      opacity: 0.60;
+      margin-bottom: 20px;
     }
-    .lokal-tile:not(.empty):hover::after { opacity: 1; }
-    .lokal-tile.empty:hover .lokal-placeholder { background: rgba(44,42,34,0.04); border: 1.5px dashed rgba(44,42,34,0.18); }
+
+    .lokal-hero-quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1.35;
+      color: var(--cream);
+      margin-bottom: 28px;
+    }
+
+    .lokal-hero-body {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--sand);
+      opacity: 0.80;
+    }
 
     /* ============================================================
        EVENTS heading in instagram section
@@ -751,8 +739,9 @@
 
       #concept, #meny, #hitta-oss, #instagram, #lokal { padding: 80px 28px; }
       #ovs { padding: 80px 28px; }
-      .lokal-grid { grid-template-columns: repeat(2, 1fr); }
-      .lokal-tile:nth-child(n + 5) { display: none; }
+      .lokal-hero { grid-template-columns: 1fr; }
+      .lokal-hero-img img { min-height: 300px; }
+      .lokal-hero-text { padding: 44px 32px; }
 
       .concept-inner { grid-template-columns: 1fr; gap: 48px; }
       .concept-mascot { display: none; }
@@ -878,60 +867,19 @@
   </section>
 
   <!-- ============================================================
-       LOKAL — venue photos
+       LOKAL — hero image + text
   ============================================================ -->
   <section id="lokal" aria-label="Lokalen">
+    <p class="lokal-eyebrow">söderhallarna · södermalm</p>
     <h2 class="lokal-heading" data-edit-id="lokal-heading">ZAZHA IN ACTION</h2>
-    <p class="lokal-sub" data-edit-id="lokal-sub">ett hörn av södermalm</p>
-    <div class="lokal-grid">
-      <!-- Ersätt src med din bild, t.ex. src="images/lokal-1.jpg" -->
-      <div class="lokal-tile empty" id="lokal-1">
-        <img src="images/lokal-1.jpg" alt=""
-             onerror="this.closest('.lokal-tile').classList.add('empty')">
-        <div class="lokal-placeholder">
-          <span class="lokal-placeholder-icon">＋</span>
-          <span class="lokal-placeholder-label">images/lokal-1.jpg</span>
-        </div>
+    <div class="lokal-hero">
+      <div class="lokal-hero-img">
+        <img src="images/lokal-hero.png" alt="ZAZHA — uteservering vid kvällstid">
       </div>
-      <div class="lokal-tile empty" id="lokal-2">
-        <img src="images/lokal-2.jpg" alt=""
-             onerror="this.closest('.lokal-tile').classList.add('empty')">
-        <div class="lokal-placeholder">
-          <span class="lokal-placeholder-icon">＋</span>
-          <span class="lokal-placeholder-label">images/lokal-2.jpg</span>
-        </div>
-      </div>
-      <div class="lokal-tile empty" id="lokal-3">
-        <img src="images/lokal-3.jpg" alt=""
-             onerror="this.closest('.lokal-tile').classList.add('empty')">
-        <div class="lokal-placeholder">
-          <span class="lokal-placeholder-icon">＋</span>
-          <span class="lokal-placeholder-label">images/lokal-3.jpg</span>
-        </div>
-      </div>
-      <div class="lokal-tile empty" id="lokal-4">
-        <img src="images/lokal-4.jpg" alt=""
-             onerror="this.closest('.lokal-tile').classList.add('empty')">
-        <div class="lokal-placeholder">
-          <span class="lokal-placeholder-icon">＋</span>
-          <span class="lokal-placeholder-label">images/lokal-4.jpg</span>
-        </div>
-      </div>
-      <div class="lokal-tile empty" id="lokal-5">
-        <img src="images/lokal-5.jpg" alt=""
-             onerror="this.closest('.lokal-tile').classList.add('empty')">
-        <div class="lokal-placeholder">
-          <span class="lokal-placeholder-icon">＋</span>
-          <span class="lokal-placeholder-label">images/lokal-5.jpg</span>
-        </div>
-      </div>
-      <div class="lokal-tile empty" id="lokal-6">
-        <img src="images/lokal-6.jpg" alt=""
-             onerror="this.closest('.lokal-tile').classList.add('empty')">
-        <div class="lokal-placeholder">
-          <span class="lokal-placeholder-icon">＋</span>
-          <span class="lokal-placeholder-label">images/lokal-6.jpg</span>
-        </div>
+      <div class="lokal-hero-text">
+        <p class="lokal-hero-label">platsen</p>
+        <p class="lokal-hero-quote" data-edit-id="lokal-quote">ett hörn av södermalm som lever lite längre på kvällen.</p>
+        <p class="lokal-hero-body" data-edit-id="lokal-body">Vi sitter i Söderhallarna — mitt i Södermalm. Bar-first, alltid. Kom för ett glas, stanna för maten. Eller tvärtom.</p>
       </div>
     </div>
   </section>
@@ -1051,93 +999,276 @@
     mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 
-    // Återställ sparade textändringar från localStorage (skrivskyddade)
+    // ── VISUELL EDITOR ────────────────────────────────────────────
     (function () {
-      const STORE = 'zazha_';
-      document.querySelectorAll('[data-edit-id]').forEach(el => {
-        const saved = localStorage.getItem(STORE + el.dataset.editId);
-        if (saved !== null) el.innerHTML = saved;
-      });
-    })();
+      const S = 'za_';
+      const VARS = [
+        ['--cream',      'Cream (ljus bakgrund)'],
+        ['--charcoal',   'Charcoal (mörk text)'],
+        ['--olive',      'Olive (grön)'],
+        ['--terracotta', 'Terracotta (rödbrun)'],
+        ['--sand',       'Sand (ljusbrun)'],
+      ];
 
-    // --- Bilduppladdning — lokal rutnät ---
-    (function () {
-      const IMG_STORE = 'zazha_photo_';
+      const load = k => JSON.parse(localStorage.getItem(S+k)||'{}');
+      const persist = (k,v) => localStorage.setItem(S+k, JSON.stringify(v));
+      let TEXT = load('t'), STYL = load('s'), CVARS = load('v');
 
-      function compressImg(file, maxW, quality) {
-        return new Promise(resolve => {
-          const reader = new FileReader();
-          reader.onload = e => {
-            const img = new Image();
-            img.onload = () => {
-              const isPng = file.type === 'image/png';
-              const canvas = document.createElement('canvas');
-              let w = img.width, h = img.height;
-              const cap = isPng ? 1400 : maxW;
-              if (w > cap) { h = Math.round(h * cap / w); w = cap; }
-              canvas.width = w; canvas.height = h;
-              const ctx = canvas.getContext('2d');
-              ctx.drawImage(img, 0, 0, w, h);
-              if (isPng) {
-                // Strip cream/light background → transparent
-                const id = ctx.getImageData(0, 0, w, h);
-                const d = id.data;
-                const pts = [[2,2],[w-3,2],[2,h-3],[w-3,h-3]];
-                let sR=0,sG=0,sB=0;
-                for (const [x,y] of pts) { const i=(y*w+x)*4; sR+=d[i];sG+=d[i+1];sB+=d[i+2]; }
-                const bgR=sR/4,bgG=sG/4,bgB=sB/4;
-                for (let i=0;i<d.length;i+=4) {
-                  const dist=Math.sqrt((d[i]-bgR)**2+(d[i+1]-bgG)**2+(d[i+2]-bgB)**2);
-                  if (dist<22) d[i+3]=0;
-                  else if (dist<75) d[i+3]=Math.round((dist-22)/53*255);
-                }
-                ctx.putImageData(id,0,0);
-                resolve(canvas.toDataURL('image/png'));
-              } else {
-                resolve(canvas.toDataURL('image/jpeg', quality));
-              }
-            };
-            img.src = e.target.result;
-          };
-          reader.readAsDataURL(file);
+      // Migrera gamla zazha_* nycklar → nytt format
+      (function migrate() {
+        let migrated = false;
+        document.querySelectorAll('[data-edit-id]').forEach(el => {
+          const oldVal = localStorage.getItem('zazha_' + el.dataset.editId);
+          if (oldVal !== null && TEXT[el.dataset.editId] === undefined) {
+            TEXT[el.dataset.editId] = oldVal;
+            migrated = true;
+          }
         });
+        if (migrated) persist('t', TEXT);
+      })();
+
+      function ekey(el) {
+        if (el.dataset.editId) return el.dataset.editId;
+        if (el.id) return '#'+el.id;
+        const p=[]; let n=el;
+        while(n&&n!==document.body){
+          const idx=[...n.parentNode.children].indexOf(n);
+          p.unshift(n.tagName+idx); n=n.parentNode;
+        }
+        return p.join('>');
       }
 
-      document.querySelectorAll('.lokal-tile').forEach(tile => {
-        const key = IMG_STORE + tile.id;
+      // Restore CSS vars
+      Object.entries(CVARS).forEach(([k,v])=>document.documentElement.style.setProperty(k,v));
 
-        // Återställ sparad bild vid sidladdning
-        const saved = localStorage.getItem(key);
-        if (saved) {
-          const img = tile.querySelector('img');
-          img.src = saved;
-          tile.classList.remove('empty');
+      // Restore saved text + styles
+      function applyEl(el) {
+        const k=ekey(el);
+        if(TEXT[k]!==undefined) el.innerHTML=TEXT[k];
+        if(STYL[k]) Object.assign(el.style, STYL[k]);
+      }
+      document.querySelectorAll('[data-edit-id], img').forEach(applyEl);
+
+      function mk(tag,props={}) {
+        const e=document.createElement(tag);
+        Object.entries(props).forEach(([k,v])=>{ if(k==='style') e.style.cssText=v; else e[k]=v; });
+        return e;
+      }
+      const g = id => document.getElementById(id);
+
+      // ── Toolbar ────────────────────────────────────────────────
+      const bar = mk('div',{id:'zt-bar',style:`
+        position:fixed;top:0;left:0;right:0;height:52px;z-index:10000;
+        background:#181714;color:#F5F0E8;display:none;align-items:center;
+        gap:12px;padding:0 20px;
+        font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:11px;
+        letter-spacing:.10em;box-shadow:0 2px 20px rgba(0,0,0,.55)`,
+        innerHTML:`
+        <span style="opacity:.3;letter-spacing:.2em;font-size:9px;margin-right:4px">REDIGERA</span>
+        <span style="opacity:.55;margin-right:2px">Text</span>
+        ${['#F5F0E8','#2C2A22','#3A4E28','#B85C38','#6B7D4A','#C4A882'].map(c=>`
+          <button data-tc="${c}" title="${c}" style="width:20px;height:20px;background:${c};border:1.5px solid rgba(255,255,255,.18);border-radius:3px;cursor:pointer;padding:0;flex-shrink:0"></button>`).join('')}
+        <span style="opacity:.2;margin:0 4px">|</span>
+        <span style="opacity:.55;margin-right:2px">Bakgrund</span>
+        ${['#F5F0E8','#2C2A22','#3A4E28','#B85C38','#6B7D4A','#C4A882','transparent'].map(c=>`
+          <button data-bc="${c}" title="${c}" style="width:20px;height:20px;background:${c==='transparent'?'none':c};border:1.5px solid rgba(255,255,255,.18);border-radius:3px;cursor:pointer;padding:0;flex-shrink:0;${c==='transparent'?'background:repeating-linear-gradient(45deg,#555 0,#555 3px,#333 3px,#333 6px)':''}" ${c==='transparent'?'title="Ingen bakgrund"':''}></button>`).join('')}
+        <div style="display:flex;align-items:center;gap:4px">
+          <span style="opacity:.55">Storlek</span>
+          <button id="zt-sm" style="background:#2a2927;color:#fff;border:1px solid #444;width:24px;height:24px;cursor:pointer;font-size:15px;line-height:1;border-radius:2px">−</button>
+          <span id="zt-fz" style="min-width:40px;text-align:center;opacity:.7">—</span>
+          <button id="zt-lg" style="background:#2a2927;color:#fff;border:1px solid #444;width:24px;height:24px;cursor:pointer;font-size:15px;line-height:1;border-radius:2px">+</button>
+        </div>
+        <div id="zt-ic" style="display:none;align-items:center;gap:5px">
+          <span style="opacity:.55">Bildhöjd</span>
+          <input id="zt-ih" type="range" min="100" max="900" value="520" style="width:100px;cursor:pointer">
+          <span id="zt-ihv" style="opacity:.7;min-width:44px">520px</span>
+        </div>
+        <div style="flex:1"></div>
+        <button id="zt-vbtn" style="background:#3A4E28;color:#F5F0E8;border:none;padding:8px 15px;cursor:pointer;font-family:inherit;font-size:10px;letter-spacing:.12em;border-radius:2px">🎨 Varumärkesfärger</button>
+        <button id="zt-rst" style="background:#B85C38;color:#F5F0E8;border:none;padding:8px 15px;cursor:pointer;font-family:inherit;font-size:10px;letter-spacing:.12em;border-radius:2px">↩ Återställ allt</button>
+        <button id="zt-x" style="border:1px solid rgba(255,255,255,.2);background:none;color:#F5F0E8;padding:8px 15px;cursor:pointer;font-family:inherit;font-size:10px;letter-spacing:.12em;border-radius:2px">Klar ✕</button>`
+      });
+      document.body.appendChild(bar);
+
+      // ── Färgpanel ──────────────────────────────────────────────
+      const cpanel = mk('div',{id:'zt-cp',style:`
+        position:fixed;top:52px;right:0;width:240px;z-index:9999;
+        background:#181714;color:#F5F0E8;padding:22px;display:none;
+        font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:11px;
+        box-shadow:-4px 0 28px rgba(0,0,0,.45);border-top:1px solid #2a2927`,
+        innerHTML:`
+        <p style="opacity:.35;letter-spacing:.18em;font-size:9px;margin-bottom:20px">VARUMÄRKESFÄRGER</p>
+        ${VARS.map(([v,l])=>`
+          <label style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:10px">
+            <span style="opacity:.7;flex:1">${l}</span>
+            <input type="color" data-cv="${v}" value="${getVar(v)}"
+              style="width:34px;height:26px;border:none;cursor:pointer;padding:0;background:none;border-radius:2px">
+          </label>`).join('')}
+        <button id="zt-cvr" style="width:100%;margin-top:6px;background:#2a2927;color:#F5F0E8;border:1px solid #444;padding:7px;cursor:pointer;font-size:10px;letter-spacing:.10em;border-radius:2px">Återställ originalfärger</button>`
+      });
+      document.body.appendChild(cpanel);
+
+      // ── Startknapp ─────────────────────────────────────────────
+      const togBtn = mk('button',{id:'zt-tog',innerHTML:'✏&thinsp; Redigera sidan',style:`
+        position:fixed;bottom:24px;right:24px;z-index:10000;
+        background:#2C2A22;color:#F5F0E8;border:none;cursor:pointer;
+        font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:11px;
+        letter-spacing:.14em;text-transform:uppercase;
+        padding:13px 22px;box-shadow:0 4px 24px rgba(44,42,34,.4);transition:background .2s`
+      });
+      document.body.appendChild(togBtn);
+
+      // Hover-highlight i redigeringsläget
+      const hst = document.createElement('style');
+      hst.textContent = `
+        body.zt-on *:not(#zt-bar):not(#zt-bar *):not(#zt-cp):not(#zt-cp *):not(#zt-tog):hover{outline:1px dashed rgba(184,92,56,.5)!important;outline-offset:2px;cursor:pointer!important}
+        body.zt-on #nav{top:52px}
+        body.zt-on #mobile-menu{top:104px}
+      `;
+      document.head.appendChild(hst);
+
+      // ── State ──────────────────────────────────────────────────
+      let on=false, sel=null, cpOn=false;
+
+      function setOn(v) {
+        on=v;
+        bar.style.display=v?'flex':'none';
+        togBtn.style.display=v?'none':'';
+        document.body.classList.toggle('zt-on',v);
+        if(!v){desel();cpanel.style.display='none';cpOn=false;}
+      }
+      togBtn.addEventListener('click',()=>setOn(true));
+      g('zt-x').addEventListener('click',()=>setOn(false));
+
+      // ── Välj element ───────────────────────────────────────────
+      function doSel(el) {
+        if(sel&&sel!==el) desel();
+        sel=el;
+        applyEl(el);
+        el.style.outline='2px solid #B85C38';
+        el.style.outlineOffset='3px';
+        const img=el.tagName==='IMG';
+        const cs=getComputedStyle(el);
+        g('zt-fz').textContent=img?'—':Math.round(parseFloat(cs.fontSize))+'px';
+        g('zt-ic').style.display=img?'flex':'none';
+        if(img){
+          const h=parseInt(el.style.minHeight)||520;
+          g('zt-ih').value=Math.min(900,Math.max(100,h));
+          g('zt-ihv').textContent=g('zt-ih').value+'px';
+        } else {
+          el.contentEditable='true';
+          el.focus();
         }
+      }
 
-        tile.addEventListener('click', async e => {
-          // Shift+klick = ta bort bild
-          if (e.shiftKey) {
-            tile.classList.add('empty');
-            localStorage.removeItem(key);
-            tile.querySelector('img').removeAttribute('src');
-            return;
-          }
-          // Vanligt klick = välj fil
-          const input = document.createElement('input');
-          input.type = 'file';
-          input.accept = 'image/*';
-          input.onchange = async ev => {
-            const file = ev.target.files[0];
-            if (!file) return;
-            const data = await compressImg(file, 2400, 0.93);
-            const img = tile.querySelector('img');
-            img.src = data;
-            tile.classList.remove('empty');
-            localStorage.setItem(key, data);
-          };
-          input.click();
+      function desel() {
+        if(!sel) return;
+        sel.style.outline='';
+        sel.style.outlineOffset='';
+        if(sel.contentEditable==='true'){sel.contentEditable='false';saveTxt(sel);}
+        sel=null;
+        g('zt-fz').textContent='—';
+        g('zt-ic').style.display='none';
+      }
+
+      // ── Toolbarkontroller ──────────────────────────────────────
+      bar.querySelectorAll('[data-tc]').forEach(btn=>{
+        btn.addEventListener('click',e=>{
+          e.stopPropagation();
+          if(sel&&sel.tagName!=='IMG'){sel.style.color=btn.dataset.tc;saveStyl(sel);}
         });
       });
+      bar.querySelectorAll('[data-bc]').forEach(btn=>{
+        btn.addEventListener('click',e=>{
+          e.stopPropagation();
+          if(sel){sel.style.backgroundColor=btn.dataset.bc==='transparent'?'':btn.dataset.bc;saveStyl(sel);}
+        });
+      });
+      g('zt-sm').addEventListener('click',()=>adjFz(-2));
+      g('zt-lg').addEventListener('click',()=>adjFz(+2));
+      g('zt-ih').addEventListener('input',e=>{
+        if(sel?.tagName==='IMG'){
+          sel.style.minHeight=e.target.value+'px';
+          g('zt-ihv').textContent=e.target.value+'px';
+          saveStyl(sel);
+        }
+      });
+
+      function adjFz(d) {
+        if(!sel||sel.tagName==='IMG') return;
+        const n=Math.max(8,Math.round(parseFloat(getComputedStyle(sel).fontSize)+d));
+        sel.style.fontSize=n+'px';
+        g('zt-fz').textContent=n+'px';
+        saveStyl(sel);
+      }
+
+      // ── Färgpanel ──────────────────────────────────────────────
+      g('zt-vbtn').addEventListener('click',()=>{cpOn=!cpOn;cpanel.style.display=cpOn?'block':'none';});
+      cpanel.querySelectorAll('[data-cv]').forEach(inp=>{
+        inp.addEventListener('input',e=>{
+          document.documentElement.style.setProperty(e.target.dataset.cv,e.target.value);
+          CVARS[e.target.dataset.cv]=e.target.value;
+          persist('v',CVARS);
+        });
+      });
+      g('zt-cvr').addEventListener('click',()=>{
+        localStorage.removeItem(S+'v'); CVARS={};
+        VARS.forEach(([v])=>document.documentElement.style.removeProperty(v));
+        cpanel.querySelectorAll('[data-cv]').forEach(inp=>{inp.value=getVar(inp.dataset.cv);});
+      });
+
+      // ── Återställ allt ─────────────────────────────────────────
+      g('zt-rst').addEventListener('click',()=>{
+        if(!confirm('Återställa ALLA ändringar till originalet?')) return;
+        ['t','s','v'].forEach(k=>localStorage.removeItem(S+k));
+        location.reload();
+      });
+
+      // ── Klick för att välja ────────────────────────────────────
+      document.addEventListener('click',e=>{
+        if(!on) return;
+        if(e.target.closest('#zt-bar,#zt-cp,#zt-tog')) return;
+        e.preventDefault(); e.stopPropagation();
+        const t=e.target;
+        if(sel&&(sel===t||(sel.contentEditable==='true'&&sel.contains(t)))) return;
+        desel(); doSel(t);
+      },true);
+
+      // Förhindra länknavigation i redigeringsläge
+      document.addEventListener('click',e=>{
+        if(!on) return;
+        const a=e.target.closest('a');
+        if(a&&!a.closest('#zt-bar,#zt-cp')) e.preventDefault();
+      });
+
+      // Auto-spara text
+      document.addEventListener('input',e=>{
+        if(on&&sel&&sel.contentEditable==='true') saveTxt(sel);
+      });
+
+      // Tangentbord
+      document.addEventListener('keydown',e=>{
+        if(e.key==='Escape'&&on) desel();
+        if(e.key==='Enter'&&sel?.contentEditable==='true'){e.preventDefault();document.execCommand('insertLineBreak');}
+      });
+
+      // ── Spara-hjälpare ─────────────────────────────────────────
+      function saveTxt(el){TEXT[ekey(el)]=el.innerHTML;persist('t',TEXT);}
+      function saveStyl(el){
+        STYL[ekey(el)]={color:el.style.color,backgroundColor:el.style.backgroundColor,fontSize:el.style.fontSize,minHeight:el.style.minHeight};
+        persist('s',STYL);
+      }
+
+      // ── Verktygsfunktioner ─────────────────────────────────────
+      function getVar(v){
+        return(document.documentElement.style.getPropertyValue(v)||getComputedStyle(document.documentElement).getPropertyValue(v)).trim()||'#ffffff';
+      }
+      function toHex(c){
+        if(!c||c.includes('rgba(0, 0, 0, 0)')||c==='transparent') return '#ffffff';
+        if(c.startsWith('#')) return c;
+        const m=c.match(/\d+/g);
+        return m?'#'+m.slice(0,3).map(n=>(+n).toString(16).padStart(2,'0')).join(''):'#ffffff';
+      }
     })();
   </script>
 </body>
