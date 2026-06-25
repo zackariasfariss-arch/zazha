@@ -1,5 +1,5 @@
 import { createServer } from 'http';
-import { readFile } from 'fs/promises';
+import { readFile, writeFile } from 'fs/promises';
 import { extname, join } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -23,6 +23,20 @@ const MIME = {
 };
 
 createServer(async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  // POST /export-changes  — spara ändringar från editorn
+  if (req.method === 'POST' && req.url === '/export-changes') {
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', async () => {
+      await writeFile(join(__dirname, 'editor-changes.json'), body, 'utf8');
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end('{"ok":true}');
+    });
+    return;
+  }
+
   let urlPath = decodeURIComponent(req.url.split('?')[0]);
   if (urlPath === '/') urlPath = '/index.html';
 

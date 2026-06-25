@@ -2,6 +2,12 @@
 temporary screenshots/
 Nya bilder/
 screenshot-*.mjs
+apply-changes.mjs
+make-og.mjs
+process-header.mjs
+read-localstorage.mjs
+editor-changes.json
+localStorage-dump.json
 
 # Claude Code
 CLAUDE.md
