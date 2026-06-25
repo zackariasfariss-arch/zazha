@@ -1017,7 +1017,8 @@ ni bestämmer anledningen - vi fixar resten.</div>
     mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 
-    // ── VISUELL EDITOR ────────────────────────────────────────────
+    // ── VISUELL EDITOR (endast localhost) ─────────────────────────
+    if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') return;
     (function () {
       const S = 'za_';
       const VARS = [
