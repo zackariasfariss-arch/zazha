@@ -1248,7 +1248,7 @@ ni bestämmer anledningen - vi fixar resten.</div>
         btn.textContent = '⏳ Sparar...';
         btn.disabled = true;
         try {
-          const payload = { text: TEXT, styles: STYL, vars: CVARS };
+          const payload = { text: TEXT, styles: STYL, vars: CVARS, blocks: BLOCKS };
           const res = await fetch('/export-changes', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -1316,6 +1316,129 @@ ni bestämmer anledningen - vi fixar resten.</div>
         const m=c.match(/\d+/g);
         return m?'#'+m.slice(0,3).map(n=>(+n).toString(16).padStart(2,'0')).join(''):'#ffffff';
       }
+      // ── LÄGG TILL BLOCK ─────────────────────────────────────────
+      const bst = document.createElement('style');
+      bst.textContent = `
+        .zt-zone{display:none;text-align:center;padding:6px 0}
+        body.zt-on .zt-zone{display:block}
+        .zt-add-btn{background:none;color:rgba(184,92,56,.6);border:1px dashed rgba(184,92,56,.35);padding:5px 22px;cursor:pointer;font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:9px;letter-spacing:.18em;border-radius:2px;transition:all .2s}
+        .zt-add-btn:hover{background:rgba(184,92,56,.1);color:#B85C38;border-color:#B85C38}
+        .zt-picker{display:flex;gap:8px;justify-content:center;padding:8px}
+        .zt-picker button{background:#2C2A22;color:#F5F0E8;border:none;padding:7px 18px;cursor:pointer;font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:9px;letter-spacing:.14em;border-radius:2px}
+        .zt-picker .zt-px{background:none;border:1px solid rgba(255,255,255,.25);color:#aaa}
+        [data-zt-block]{position:relative}
+        body.zt-on [data-zt-block]{outline:1px dashed rgba(184,92,56,.35);outline-offset:2px}
+        .zt-del{position:absolute;top:8px;right:8px;background:#B85C38;color:white;border:none;padding:5px 12px;cursor:pointer;font-size:9px;letter-spacing:.12em;border-radius:2px;display:none;font-family:'Hanken Grotesk',system-ui,sans-serif;z-index:100}
+        body.zt-on [data-zt-block]:hover .zt-del{display:block}
+      `;
+      document.head.appendChild(bst);
+
+      let BLOCKS = JSON.parse(localStorage.getItem(S+'b')||'[]');
+      const saveBlks = () => localStorage.setItem(S+'b', JSON.stringify(BLOCKS));
+
+      function mkBlockWrap(id, html) {
+        const w = document.createElement('div');
+        w.dataset.ztBlock = id;
+        w.style.cssText = 'position:relative;width:100%;';
+        if (html) w.innerHTML = html;
+        const del = document.createElement('button');
+        del.className = 'zt-del';
+        del.textContent = '🗑 Ta bort block';
+        del.addEventListener('click', ev => {
+          ev.stopPropagation();
+          if (!confirm('Ta bort blocket?')) return;
+          BLOCKS = BLOCKS.filter(x=>x.id!==id); saveBlks(); w.remove();
+        });
+        w.appendChild(del);
+        return w;
+      }
+
+      function saveBlockContent(w, id) {
+        const clone = w.cloneNode(true);
+        clone.querySelector('.zt-del')?.remove();
+        const b = BLOCKS.find(x=>x.id===id);
+        if (b) { b.html = clone.innerHTML; saveBlks(); }
+      }
+
+      // Sätt upp add-zoner efter varje section
+      document.querySelectorAll('section').forEach(sec => {
+        const z = document.createElement('div');
+        z.className = 'zt-zone';
+        const ab = document.createElement('button');
+        ab.className = 'zt-add-btn';
+        ab.textContent = '+ LÄGG TILL BLOCK HÄR';
+        z.appendChild(ab);
+        sec.insertAdjacentElement('afterend', z);
+
+        ab.addEventListener('click', ev => {
+          ev.stopPropagation();
+          const existing = z.querySelector('.zt-picker');
+          if (existing) { existing.remove(); return; }
+          const pk = document.createElement('div');
+          pk.className = 'zt-picker';
+          pk.innerHTML = `<button class="zt-pt">📝 Textblock</button><button class="zt-pi">🖼 Bildblock</button><button class="zt-px">✕ Avbryt</button>`;
+          z.appendChild(pk);
+          pk.querySelector('.zt-pt').onclick = ev2 => { ev2.stopPropagation(); doAddBlock('text', sec, z); };
+          pk.querySelector('.zt-pi').onclick = ev2 => { ev2.stopPropagation(); doAddBlock('image', sec, z); };
+          pk.querySelector('.zt-px').onclick = ev2 => { ev2.stopPropagation(); pk.remove(); };
+        });
+      });
+
+      // Återställ sparade block före respektive zone
+      BLOCKS.forEach(b => {
+        const sec = b.after ? document.querySelector(b.after) : null;
+        const nxt = sec?.nextElementSibling;
+        const zone = nxt?.classList.contains('zt-zone') ? nxt : null;
+        const w = mkBlockWrap(b.id, b.html);
+        if (zone) zone.insertAdjacentElement('beforebegin', w);
+        else if (sec) sec.insertAdjacentElement('afterend', w);
+        else document.querySelector('footer')?.insertAdjacentElement('beforebegin', w);
+      });
+
+      function doAddBlock(type, sec, zone) {
+        zone.querySelector('.zt-picker')?.remove();
+        const id = 'zb'+Date.now();
+        const after = sec.id ? '#'+sec.id : null;
+        const w = mkBlockWrap(id, '');
+        w.style.cssText += 'background:var(--cream);padding:48px 5%;';
+
+        if (type === 'text') {
+          const p = document.createElement('p');
+          p.style.cssText = 'max-width:700px;margin:0 auto;font-size:18px;line-height:1.7;color:var(--charcoal);min-height:60px;outline:none;font-family:var(--sans)';
+          p.textContent = 'Skriv din text här...';
+          p.contentEditable = 'true';
+          w.insertBefore(p, w.querySelector('.zt-del'));
+          BLOCKS.push({id, after, html:''}); saveBlks();
+          zone.insertAdjacentElement('beforebegin', w);
+          p.addEventListener('input', () => saveBlockContent(w, id));
+          setTimeout(()=>p.focus(), 50);
+
+        } else {
+          const setup = document.createElement('div');
+          setup.style.cssText = 'max-width:560px;margin:0 auto;text-align:center;padding:32px;border:1px dashed var(--sand);';
+          setup.innerHTML = `
+            <p style="margin-bottom:12px;font-size:11px;letter-spacing:.1em;opacity:.6;font-family:var(--sans)">SÖKVÄG TILL BILDEN</p>
+            <input type="text" placeholder="images/min-bild.png" style="width:100%;padding:10px;border:1px solid var(--sand);background:transparent;font-size:13px;margin-bottom:10px;box-sizing:border-box;font-family:var(--sans)">
+            <button style="background:var(--terracotta);color:var(--cream);border:none;padding:10px 28px;cursor:pointer;font-size:10px;letter-spacing:.14em;font-family:var(--sans)">LÄGG TILL BILD</button>`;
+          w.insertBefore(setup, w.querySelector('.zt-del'));
+          BLOCKS.push({id, after, html:''}); saveBlks();
+          zone.insertAdjacentElement('beforebegin', w);
+
+          const inp = setup.querySelector('input');
+          setup.querySelector('button').onclick = ev => {
+            ev.stopPropagation();
+            const src = inp.value.trim(); if (!src) return;
+            setup.remove();
+            const img = document.createElement('img');
+            img.src = src;
+            img.style.cssText = 'width:100%;display:block;max-height:700px;object-fit:cover;';
+            w.insertBefore(img, w.querySelector('.zt-del'));
+            saveBlockContent(w, id);
+          };
+          setTimeout(()=>inp.focus(), 50);
+        }
+      }
+
     })(); // end editor IIFE
   </script>
 </body>
