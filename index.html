@@ -1018,8 +1018,7 @@ ni bestämmer anledningen - vi fixar resten.</div>
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 
     // ── VISUELL EDITOR (endast localhost) ─────────────────────────
-    if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') return;
-    (function () {
+    if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') (function () {
       const S = 'za_';
       const VARS = [
         ['--cream',      'Cream (ljus bakgrund)'],
@@ -1064,7 +1063,10 @@ ni bestämmer anledningen - vi fixar resten.</div>
       function applyEl(el) {
         const k=ekey(el);
         if(TEXT[k]!==undefined) el.innerHTML=TEXT[k];
-        if(STYL[k]) Object.assign(el.style, STYL[k]);
+        if(STYL[k]) {
+          if(STYL[k].src && el.tagName==='IMG') el.src=STYL[k].src;
+          Object.assign(el.style, STYL[k]);
+        }
       }
       document.querySelectorAll('[data-edit-id], img').forEach(applyEl);
 
@@ -1102,6 +1104,8 @@ ni bestämmer anledningen - vi fixar resten.</div>
           <input id="zt-ih" type="range" min="100" max="900" value="520" style="width:100px;cursor:pointer">
           <span id="zt-ihv" style="opacity:.7;min-width:44px">520px</span>
         </div>
+        <button id="zt-img-btn" style="display:none;background:#1a2535;color:#8ab4f8;border:1px solid #2d4a6b;padding:8px 14px;cursor:pointer;font-family:inherit;font-size:10px;letter-spacing:.12em;border-radius:2px">📷 Byt bild</button>
+        <input id="zt-img-file" type="file" accept="image/*" style="display:none">
         <div style="flex:1"></div>
         <button id="zt-vbtn" style="background:#3A4E28;color:#F5F0E8;border:none;padding:8px 15px;cursor:pointer;font-family:inherit;font-size:10px;letter-spacing:.12em;border-radius:2px">🎨 Varumärkesfärger</button>
         <button id="zt-pub" style="background:#F5F0E8;color:#2C2A22;border:none;padding:8px 18px;cursor:pointer;font-family:inherit;font-size:10px;letter-spacing:.12em;font-weight:600;border-radius:2px">↑ Publicera ändringar</button>
@@ -1171,6 +1175,7 @@ ni bestämmer anledningen - vi fixar resten.</div>
         const cs=getComputedStyle(el);
         g('zt-fz').textContent=img?'—':Math.round(parseFloat(cs.fontSize))+'px';
         g('zt-ic').style.display=img?'flex':'none';
+        g('zt-img-btn').style.display=img?'':'none';
         if(img){
           const h=parseInt(el.style.minHeight)||520;
           g('zt-ih').value=Math.min(900,Math.max(100,h));
@@ -1311,7 +1316,7 @@ ni bestämmer anledningen - vi fixar resten.</div>
         const m=c.match(/\d+/g);
         return m?'#'+m.slice(0,3).map(n=>(+n).toString(16).padStart(2,'0')).join(''):'#ffffff';
       }
-    })();
+    })(); // end editor IIFE
   </script>
 </body>
 </html>
