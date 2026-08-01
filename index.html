@@ -1274,7 +1274,7 @@ ni bestämmer anledningen - vi fixar resten.</div>
       // ── Klick för att välja ────────────────────────────────────
       document.addEventListener('click',e=>{
         if(!on) return;
-        if(e.target.closest('#zt-bar,#zt-cp,#zt-tog')) return;
+        if(e.target.closest('#zt-bar,#zt-cp,#zt-tog,.zt-zone,.zt-picker,.zt-del')) return;
         e.preventDefault(); e.stopPropagation();
         const t=e.target;
         if(sel&&(sel===t||(sel.contentEditable==='true'&&sel.contains(t)))) return;
