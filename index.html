@@ -538,6 +538,7 @@
       min-height: 580px;
     }
 
+    .guinness-img video,
     .guinness-img img {
       width: 100%;
       height: 100%;
@@ -766,32 +767,13 @@
     }
     .insta-handle:hover { opacity: 0.7; }
 
-    .insta-grid {
-      max-width: 880px;
+    .behold-wrap {
+      max-width: 960px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 8px;
     }
 
-    .insta-tile {
-      aspect-ratio: 1 / 1;
-      background: transparent;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.32s ease;
-    }
-    .insta-tile:hover { transform: scale(1.03); }
-
-    .insta-caption {
-      margin-top: 28px;
-      font-family: var(--sans);
-      font-weight: 300;
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--charcoal);
-      opacity: 0.40;
+    behold-widget {
+      display: block;
     }
 
     /* ============================================================
@@ -954,7 +936,10 @@
   <section id="guinness" aria-label="Guinness">
     <div class="guinness-inner">
       <div class="guinness-img">
-        <img src="images/guinness-grand.png" alt="Neonupplyst gränd — ZAZHA Guinness">
+        <video autoplay muted loop playsinline>
+          <source src="images/guinness-video.mp4" type="video/mp4">
+          <img src="images/guinness-grand.png" alt="Neonupplyst gränd — ZAZHA Guinness">
+        </video>
       </div>
       <div class="guinness-text">
         <p class="guinness-eyebrow">det vi tror på</p>
@@ -1039,14 +1024,9 @@ ni bestämmer anledningen - vi fixar resten.</div>
     <p class="insta-eyebrow" data-edit-id="insta-eye">följ oss</p>
     <a href="https://instagram.com/zazha.sthlm" target="_blank" rel="noopener"
        class="insta-handle" data-edit-id="insta-handle">@zazha.sthlm</a>
-    <div class="insta-grid" aria-label="Instagram-flöde">
-      <div class="insta-tile"></div>
-      <div class="insta-tile"></div>
-      <div class="insta-tile"></div>
-      <div class="insta-tile"></div>
-      <div class="insta-tile"></div>
+    <div class="behold-wrap">
+      <behold-widget feed-id="wLe0KOHFoqsnT6yjAQ3L"></behold-widget>
     </div>
-    <p class="insta-caption" data-edit-id="insta-cap">öppna instagram</p>
   </section>
 
   <!-- ============================================================
@@ -1549,6 +1529,15 @@ ni bestämmer anledningen - vi fixar resten.</div>
       }
 
     */ // end removed editor
+  </script>
+
+  <!-- Behold Instagram feed -->
+  <script>
+    (() => {
+      if(window.__bhldScript)return;window.__bhldScript=true;
+      const d=document,s=d.createElement("script");s.type="module";
+      s.src="https://w.behold.so/widget.js";setTimeout(()=>{d.head.append(s);},0);
+    })();
   </script>
 </body>
 </html>
