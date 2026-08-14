@@ -538,6 +538,26 @@
       min-height: 580px;
     }
 
+    .guinness-sound-btn {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      z-index: 10;
+      background: rgba(0,0,0,0.55);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 17px;
+      transition: background 0.2s;
+      backdrop-filter: blur(6px);
+    }
+    .guinness-sound-btn:hover { background: rgba(0,0,0,0.75); }
+
     .guinness-img video,
     .guinness-img img {
       width: 100%;
@@ -936,10 +956,11 @@
   <section id="guinness" aria-label="Guinness">
     <div class="guinness-inner">
       <div class="guinness-img">
-        <video autoplay muted loop playsinline preload="auto">
+        <video id="guinness-vid" autoplay muted loop playsinline preload="auto">
           <source src="images/guinness-video.mp4" type="video/mp4">
           <img src="images/guinness-grand.png" alt="Neonupplyst gränd — ZAZHA Guinness">
         </video>
+        <button class="guinness-sound-btn" id="guinness-sound" aria-label="Ljud på/av" title="Ljud på/av">🔇</button>
       </div>
       <div class="guinness-text">
         <p class="guinness-eyebrow">det vi tror på</p>
@@ -1534,26 +1555,16 @@ ni bestämmer anledningen - vi fixar resten.</div>
     */ // end removed editor
   </script>
 
-  <!-- Guinness-video: ljud när man skrollar in i sektionen -->
+  <!-- Guinness-video: ljud-knapp -->
   <script>
     (function() {
-      var vid = document.querySelector('#guinness video');
-      if (!vid) return;
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) {
-          if (e.isIntersecting) {
-            vid.muted = false;
-            vid.play().catch(function() {
-              vid.muted = true;
-              vid.play();
-            });
-          } else {
-            vid.muted = true;
-            vid.play().catch(function() {});
-          }
-        });
-      }, { threshold: 0.4 });
-      observer.observe(document.getElementById('guinness'));
+      var vid = document.getElementById('guinness-vid');
+      var btn = document.getElementById('guinness-sound');
+      if (!vid || !btn) return;
+      btn.addEventListener('click', function() {
+        vid.muted = !vid.muted;
+        btn.textContent = vid.muted ? '🔇' : '🔊';
+      });
     })();
   </script>
 
