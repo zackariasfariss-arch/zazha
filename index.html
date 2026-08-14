@@ -975,45 +975,15 @@
   <!-- ============================================================
        ÖL · VIN · SKÅL
   ============================================================ -->
-  <section id="ovs" aria-label="Öl, vin och skål">
-    <div class="ovs-cols">
-
-      <!-- ÖL -->
-      <div class="ovs-col">
-        <img src="images/tiger-skal.png" class="ovs-mascot" alt="">
-        <span class="ovs-rule" aria-hidden="true"></span>
-        <div class="ovs-word" data-edit-id="ovs-ol">ÖL</div>
-        <div class="ovs-desc" data-edit-id="ovs-ol-desc">det enkla nöjet.</div>
-      </div>
-
-      <!-- VIN -->
-      <div class="ovs-col">
-        <img src="images/tiger-meny.png" class="ovs-mascot" alt="">
-        <span class="ovs-rule" aria-hidden="true"></span>
-        <div class="ovs-word" data-edit-id="ovs-vin">VIN</div>
-        <div class="ovs-desc" data-edit-id="ovs-vin-desc">det valda njutandet.</div>
-      </div>
-
-      <!-- SKÅL -->
-      <div class="ovs-col">
-        <img src="images/tiger-bowl-new.png" class="ovs-mascot" alt="">
-        <span class="ovs-rule" aria-hidden="true"></span>
-        <div class="ovs-word" data-edit-id="ovs-skal">SKÅL</div>
-        <div class="ovs-desc" data-edit-id="ovs-skal-desc">glaset och skålen. båda.</div>
-      </div>
-
-    </div>
-  </section>
-
   <!-- ============================================================
        INSTAGRAM
   ============================================================ -->
   <section id="instagram">
     <img src="images/tiger-toast.png" class="events-mascot" alt="">
     <h2 class="events-heading" data-edit-id="events-heading">EVENTS</h2>
-    <div class="events-text" data-edit-id="events-text">På ZAZHA skapar vi inte bara events - vi skapar minnen. 
-Oavsett om det är företagsfest, födelsedagsmiddag eller 
-något helt eget, är ZAZHA på Södermalm scenen för det. 
+    <div class="events-text" data-edit-id="events-text">På ZAZHA skapar vi inte bara events - vi skapar minnen.
+Oavsett om det är företagsfest, födelsedagsmiddag eller
+något helt eget, är ZAZHA på Södermalm scenen för det.
 
 ni bestämmer anledningen - vi fixar resten.</div>
 
@@ -1066,6 +1036,39 @@ ni bestämmer anledningen - vi fixar resten.</div>
           title="Karta — Medborgarplatsen 3, Stockholm">
         </iframe>
       </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ÖL VIN SKÅL
+  ============================================================ -->
+  <section id="ovs" aria-label="Öl, vin och skål">
+    <div class="ovs-cols">
+
+      <!-- ÖL -->
+      <div class="ovs-col">
+        <img src="images/tiger-skal.png" class="ovs-mascot" alt="">
+        <span class="ovs-rule" aria-hidden="true"></span>
+        <div class="ovs-word" data-edit-id="ovs-ol">ÖL</div>
+        <div class="ovs-desc" data-edit-id="ovs-ol-desc">det enkla nöjet.</div>
+      </div>
+
+      <!-- VIN -->
+      <div class="ovs-col">
+        <img src="images/tiger-meny.png" class="ovs-mascot" alt="">
+        <span class="ovs-rule" aria-hidden="true"></span>
+        <div class="ovs-word" data-edit-id="ovs-vin">VIN</div>
+        <div class="ovs-desc" data-edit-id="ovs-vin-desc">det valda njutandet.</div>
+      </div>
+
+      <!-- SKÅL -->
+      <div class="ovs-col">
+        <img src="images/tiger-bowl-new.png" class="ovs-mascot" alt="">
+        <span class="ovs-rule" aria-hidden="true"></span>
+        <div class="ovs-word" data-edit-id="ovs-skal">SKÅL</div>
+        <div class="ovs-desc" data-edit-id="ovs-skal-desc">glaset och skålen. båda.</div>
+      </div>
+
     </div>
   </section>
 
@@ -1529,6 +1532,25 @@ ni bestämmer anledningen - vi fixar resten.</div>
       }
 
     */ // end removed editor
+  </script>
+
+  <!-- Guinness-video: ljud när man skrollar in i sektionen -->
+  <script>
+    (function() {
+      var vid = document.querySelector('#guinness video');
+      if (!vid) return;
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            vid.muted = false;
+            vid.play();
+          } else {
+            vid.muted = true;
+          }
+        });
+      }, { threshold: 0.5 });
+      observer.observe(document.getElementById('guinness'));
+    })();
   </script>
 
   <!-- Behold Instagram feed -->
