@@ -1543,11 +1543,16 @@ ni bestämmer anledningen - vi fixar resten.</div>
         entries.forEach(function(e) {
           if (e.isIntersecting) {
             vid.muted = false;
+            vid.play().catch(function() {
+              vid.muted = true;
+              vid.play();
+            });
           } else {
             vid.muted = true;
+            vid.play().catch(function() {});
           }
         });
-      }, { threshold: 0.5 });
+      }, { threshold: 0.4 });
       observer.observe(document.getElementById('guinness'));
     })();
   </script>
