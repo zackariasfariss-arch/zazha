@@ -936,7 +936,7 @@
   <section id="guinness" aria-label="Guinness">
     <div class="guinness-inner">
       <div class="guinness-img">
-        <video autoplay muted loop playsinline>
+        <video autoplay muted loop playsinline preload="auto">
           <source src="images/guinness-video.mp4" type="video/mp4">
           <img src="images/guinness-grand.png" alt="Neonupplyst gränd — ZAZHA Guinness">
         </video>
@@ -1543,7 +1543,6 @@ ni bestämmer anledningen - vi fixar resten.</div>
         entries.forEach(function(e) {
           if (e.isIntersecting) {
             vid.muted = false;
-            vid.play();
           } else {
             vid.muted = true;
           }
