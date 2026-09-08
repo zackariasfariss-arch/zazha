@@ -469,12 +469,19 @@
     mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }));
     document.addEventListener('keydown', e => { if (e.key === 'Escape') { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; } });
 
-    // Mark images as empty when they fail to load
+    // Mark images as empty only once we actually know they failed to load —
+    // checking img.complete synchronously on page load is a race: on a real
+    // connection the image is almost never done loading yet, so it got
+    // marked "empty" immediately and nothing ever undid that.
     document.querySelectorAll('.meny-section-img img').forEach(img => {
-      if (!img.complete || img.naturalWidth === 0) {
-        img.closest('.meny-section-img').classList.add('empty');
+      const slot = img.closest('.meny-section-img');
+      const markEmpty  = () => slot.classList.add('empty');
+      const markLoaded = () => slot.classList.remove('empty');
+      if (img.complete) {
+        img.naturalWidth === 0 ? markEmpty() : markLoaded();
       }
-      img.addEventListener('error', () => img.closest('.meny-section-img').classList.add('empty'));
+      img.addEventListener('load', markLoaded);
+      img.addEventListener('error', markEmpty);
     });
   </script>
 
