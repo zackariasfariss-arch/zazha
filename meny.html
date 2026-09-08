@@ -87,9 +87,22 @@
        PAGE HEADER
     ============================================================ */
     #meny-header {
-      background: var(--olive);
+      position: relative;
+      background: var(--olive) url('images/meny-header-pattern.png') repeat;
+      background-size: auto 130px;
       padding: 160px 80px 100px;
       text-align: center;
+      overflow: hidden;
+    }
+    #meny-header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(23, 31, 15, 0.78);
+    }
+    #meny-header > * {
+      position: relative;
+      z-index: 1;
     }
     .meny-page-title {
       font-family: var(--serif);
@@ -266,7 +279,7 @@
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
       #nav { padding: 0 28px; }
-      #meny-header { padding: 120px 28px 80px; }
+      #meny-header { padding: 120px 28px 80px; background-size: auto 70px; }
       .meny-section { padding: 72px 28px; }
       #happy-hour { padding: 72px 28px; }
       .meny-section-inner { grid-template-columns: 1fr; gap: 40px; }
