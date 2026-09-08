@@ -677,11 +677,27 @@
     /* ============================================================
        EVENTS heading in instagram section
     ============================================================ */
+    .events-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+      text-align: left;
+    }
+
+    .events-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
     .events-mascot {
       width: min(280px, 55vw);
       height: auto;
       display: block;
-      margin: 0 auto 52px;
+      margin: 0 0 40px;
       mix-blend-mode: multiply;
     }
 
@@ -694,8 +710,8 @@
       margin-bottom: 20px;
     }
     .events-text {
-      max-width: 580px;
-      margin: 0 auto 52px;
+      max-width: 480px;
+      margin: 0 0 40px;
       font-family: var(--sans);
       font-weight: 300;
       font-size: 15px;
@@ -705,7 +721,7 @@
     }
     .events-contact-btn {
       display: inline-block;
-      margin-bottom: 52px;
+      margin-bottom: 0;
       padding: 14px 40px;
       border: 1.5px solid var(--charcoal);
       color: var(--charcoal);
@@ -926,6 +942,10 @@
       .concept-mascot { display: none; }
       .concept-quote { font-size: clamp(28px, 7vw, 40px); }
 
+      .events-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+      .events-mascot { margin: 0 auto 32px; }
+      .events-text { margin: 0 auto 32px; }
+
       .ovs-cols { grid-template-columns: 1fr; gap: 52px; }
 
       .hitta-inner { grid-template-columns: 1fr; gap: 52px; }
@@ -1071,15 +1091,22 @@
 
     <span class="insta-divider" aria-hidden="true"></span>
 
-    <img src="images/tiger-toast.png" class="events-mascot" alt="">
-    <h2 class="events-heading" data-edit-id="events-heading">EVENTS</h2>
-    <div class="events-text" data-edit-id="events-text">På ZAZHA skapar vi inte bara events - vi skapar minnen.
+    <div class="events-inner">
+      <div class="events-photo">
+        <img src="images/event.jpg" alt="Gäster på ZAZHA">
+      </div>
+      <div class="events-content">
+        <img src="images/tiger-toast.png" class="events-mascot" alt="">
+        <h2 class="events-heading" data-edit-id="events-heading">EVENTS</h2>
+        <div class="events-text" data-edit-id="events-text">På ZAZHA skapar vi inte bara events - vi skapar minnen.
 Oavsett om det är företagsfest, födelsedagsmiddag eller
 något helt eget, är ZAZHA på Södermalm scenen för det.
 
 ni bestämmer anledningen - vi fixar resten.</div>
 
-    <a href="#hitta-oss" class="events-contact-btn">Kontakta oss</a>
+        <a href="#hitta-oss" class="events-contact-btn">Kontakta oss</a>
+      </div>
+    </div>
   </section>
 
   <!-- ============================================================
