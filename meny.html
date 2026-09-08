@@ -149,12 +149,13 @@
       direction: ltr;
     }
 
-    /* Image placeholder */
+    /* Bildruta — stående format, matchar riktiga foton */
     .meny-section-img {
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 3 / 4;
       background: transparent;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.35);
     }
     .meny-section-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .meny-section-img.empty img { display: none; }
@@ -173,13 +174,13 @@
       opacity: 0;
       transition: opacity 0.22s ease;
     }
-    .meny-section-img.empty:hover .meny-img-placeholder { opacity: 1; border: 1.5px dashed rgba(44,42,34,0.18); }
     .meny-img-placeholder span:first-child { font-size: 22px; opacity: 0.22; }
-    .meny-img-placeholder span:last-child { font-family: var(--sans); font-size: 10px; letter-spacing: 0.12em; color: rgba(44,42,34,0.40); line-height: 1.5; }
+    .meny-img-placeholder span:last-child { font-family: var(--sans); font-size: 10px; letter-spacing: 0.12em; color: rgba(245,240,232,0.55); line-height: 1.5; }
 
-    /* Bilduppladdning */
-    .meny-section-img { cursor: pointer; }
-    .meny-section-img:not(.empty)::after {
+    /* Bilduppladdning — bara i redigeringsläge (lokalt) */
+    body.zt-on .meny-section-img { cursor: pointer; }
+    body.zt-on .meny-section-img.empty:hover .meny-img-placeholder { opacity: 1; border: 1.5px dashed rgba(245,240,232,0.25); }
+    body.zt-on .meny-section-img:not(.empty)::after {
       content: '↑  byt bild';
       position: absolute;
       bottom: 0; left: 0; right: 0;
@@ -195,8 +196,7 @@
       transition: opacity 0.22s ease;
       pointer-events: none;
     }
-    .meny-section-img:not(.empty):hover::after { opacity: 1; }
-    .meny-section-img.empty:hover .meny-img-placeholder { background: rgba(44,42,34,0.03); }
+    body.zt-on .meny-section-img:not(.empty):hover::after { opacity: 1; }
 
     /* Text column */
     .meny-section-eyebrow {
@@ -217,6 +217,16 @@
       color: var(--cream);
       margin-bottom: 20px;
       line-height: 1.1;
+    }
+    .meny-heading-sub {
+      display: block;
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: clamp(12px, 1.4vw, 15px);
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-top: 8px;
     }
     .meny-section-body {
       font-family: var(--sans);
@@ -258,7 +268,7 @@
        FOOTER
     ============================================================ */
     footer { background: rgba(44, 42, 34, 0.78); padding: 100px 40px 80px; text-align: center; }
-    .footer-wordmark { font-family: var(--serif); font-weight: 400; font-size: 28px; letter-spacing: 0.22em; color: var(--cream); margin-bottom: 12px; }
+    .footer-wordmark { font-family: var(--serif); font-weight: 400; font-size: 36px; letter-spacing: 0.22em; color: var(--cream); margin-bottom: 12px; }
     .footer-loc { font-family: var(--sans); font-weight: 300; font-size: 12px; letter-spacing: 0.10em; color: var(--sage); margin-bottom: 20px; }
     .footer-social a { font-family: var(--sans); font-weight: 300; font-size: 12px; letter-spacing: 0.08em; color: var(--sand); transition: color 0.2s; }
     .footer-social a:hover { color: var(--cream); }
@@ -323,7 +333,7 @@
   <!-- PAGE HEADER -->
   <section id="meny-header">
     <h1 class="meny-page-title" data-edit-id="header-title">MENY</h1>
-    <p class="meny-page-sub" data-edit-id="header-sub">asiatisk mat &amp; dryck · söderhallarna · södermalm</p>
+    <p class="meny-page-sub" data-edit-id="header-sub">ZAZHA · asiatisk restaurang &amp; bar · medborgarplatsen, södermalm</p>
   </section>
 
   <!-- LUNCHMENY -->
@@ -340,9 +350,9 @@
       </div>
       <div class="meny-section-text">
         <p class="meny-section-eyebrow" data-edit-id="lunch-eyebrow">dagligen 11–15</p>
-        <h2 class="meny-section-heading" data-edit-id="lunch-heading">Lunchmeny · Ramen &amp; Poke Bowls</h2>
+        <h2 class="meny-section-heading" data-edit-id="lunch-heading">Lunch<span class="meny-heading-sub">Ramen &amp; Bowls</span></h2>
         <div class="meny-section-body" data-edit-id="lunch-body">
-          Ramen- och poke-inspirerade skålar, asiatisk gatumat och andra asiatiskt inspirerade rätter som förändras med säsongen — en av de bästa lunchmenyerna på Södermalm. Alla luncher serveras med sallad och smör.
+          Asiatisk mat på Södermalm — ramen, poké och comfort food, allt serverat i skål. Välj ris eller nudlar. Till det smårätter som funkar lika bra till en öl som till maten. Samma meny hela dagen, från lunch till sent.<br><br>Alltid till bra priser.
         </div>
         <!-- Byt href till länk/PDF för din meny -->
         <a href="#" class="meny-section-link" data-edit-id="lunch-link">Se lunchmenyn →</a>
@@ -363,10 +373,10 @@
         </div>
       </div>
       <div class="meny-section-text">
-        <p class="meny-section-eyebrow" data-edit-id="middag-eyebrow">from 17:00</p>
-        <h2 class="meny-section-heading" data-edit-id="middag-heading">Middagsmeny · Delningsrätter &amp; Dumplings</h2>
+        <p class="meny-section-eyebrow" data-edit-id="middag-eyebrow">från 17:00</p>
+        <h2 class="meny-section-heading" data-edit-id="middag-heading">Middag<span class="meny-heading-sub">Ramen · Bowls &amp; Sides</span></h2>
         <div class="meny-section-body" data-edit-id="middag-body">
-          Delningsrätter, dumplings och signature bowls med ramen- och poke-influenser. Designat för sällskap — men perfekt solo med ett glas vin.
+          Signature bowls med ramen- och pokéinfluenser, plus smårätter som funkar lika bra till en öl som till maten. Köket är öppet till sent — beställ en skål vid baren klockan elva om du vill.
         </div>
         <a href="#" class="meny-section-link" data-edit-id="middag-link">Se middagsmenyn →</a>
       </div>
@@ -387,9 +397,9 @@
       </div>
       <div class="meny-section-text">
         <p class="meny-section-eyebrow" data-edit-id="dryck-eyebrow">öl · vin · cocktails</p>
-        <h2 class="meny-section-heading" data-edit-id="dryck-heading">Dryckesmeny</h2>
+        <h2 class="meny-section-heading" data-edit-id="dryck-heading">Dryck</h2>
         <div class="meny-section-body" data-edit-id="dryck-body">
-          Noggrant utvalda asiatiska öl, naturviner och husets cocktails. Vi tar drycken lika seriöst som maten.
+          Bar på Södermalm med öl på tapp, vin och husets roligaste cocktails. Och Sveriges billigaste Guinness — inte som erbjudande, utan som pris.
         </div>
         <a href="#" class="meny-section-link" data-edit-id="dryck-link">Se dryckesmenyn →</a>
       </div>
@@ -399,10 +409,10 @@
   <!-- AFTER WORK -->
   <section id="happy-hour">
     <div class="happy-inner">
-      <p class="meny-section-eyebrow" data-edit-id="happy-eyebrow">dagligen 17–19</p>
+      <p class="meny-section-eyebrow" data-edit-id="happy-eyebrow">varje dag</p>
       <h2 class="meny-section-heading" data-edit-id="happy-heading">After Work</h2>
       <div class="meny-section-body" data-edit-id="happy-body">
-        Halva priset på utvalda öl och vin. Varje dag mellan fem och sju. Kom som du är.
+        Riktigt bra priser på all vår dryck. Varje dag mellan fem och sju. Missa inte det.
       </div>
     </div>
   </section>
