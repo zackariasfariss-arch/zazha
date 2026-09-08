@@ -25,12 +25,34 @@ const MIME = {
 createServer(async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
 
+  // POST /upload-image — spara uppladdad bild till images/
+  if (req.method === 'POST' && req.url === '/upload-image') {
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', async () => {
+      try {
+        const { filename, data } = JSON.parse(body);
+        const base64 = data.replace(/^data:image\/[^;]+;base64,/, '');
+        const buf = Buffer.from(base64, 'base64');
+        await writeFile(join(__dirname, 'images', filename), buf);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ ok: true, path: '/images/' + filename }));
+      } catch (e) {
+        res.writeHead(500);
+        res.end(JSON.stringify({ error: String(e) }));
+      }
+    });
+    return;
+  }
+
   // POST /export-changes  — spara ändringar från editorn
   if (req.method === 'POST' && req.url === '/export-changes') {
     let body = '';
     req.on('data', chunk => { body += chunk; });
     req.on('end', async () => {
-      await writeFile(join(__dirname, 'editor-changes.json'), body, 'utf8');
+      const page = JSON.parse(body).page;
+      const filename = page ? `editor-changes-${page}.json` : 'editor-changes.json';
+      await writeFile(join(__dirname, filename), body, 'utf8');
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end('{"ok":true}');
     });

@@ -3,10 +3,12 @@ temporary screenshots/
 Nya bilder/
 screenshot-*.mjs
 apply-changes.mjs
+apply-changes-meny.mjs
 make-og.mjs
 process-header.mjs
 read-localstorage.mjs
 editor-changes.json
+editor-changes-*.json
 localStorage-dump.json
 
 # Claude Code

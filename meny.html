@@ -466,94 +466,241 @@
       }
       img.addEventListener('error', () => img.closest('.meny-section-img').classList.add('empty'));
     });
+  </script>
 
-    // Återställ sparade textändringar från localStorage (skrivskyddade)
-    (function () {
-      const STORE = 'zazha_meny_';
-      document.querySelectorAll('[data-edit-id]').forEach(el => {
-        const saved = localStorage.getItem(STORE + el.dataset.editId);
-        if (saved !== null) el.innerHTML = saved;
-      });
-    })();
+  <!-- ============================================================
+       INNEHÅLLSREDIGERARE
+       Endast aktiv lokalt (kräver `node serve.mjs`) — syns aldrig på
+       riktiga sajten. Klicka "Redigera sidan", klicka text för att
+       skriva/ändra storlek/fetstil, klicka bildrutor för att ladda
+       upp riktiga bilder. "Publicera ändringar" sparar till
+       editor-changes-meny.json — kör sedan apply-changes-meny.mjs
+       för att baka in det permanent i meny.html.
+  ============================================================ -->
+  <script>
+  (function () {
+    const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+    if (!isLocal) return;
 
-    // --- Bilduppladdning — menysektioner ---
-    (function () {
-      const IMG_STORE = 'zazha_meny_photo_';
+    const LS_TEXT  = 'zazha_meny_edit_text';
+    const LS_STYLE = 'zazha_meny_edit_style';
+    const LS_IMG   = 'zazha_meny_edit_img';
 
-      function compressImg(file, maxW, quality) {
-        return new Promise(resolve => {
+    const TEXT  = JSON.parse(localStorage.getItem(LS_TEXT)  || '{}');
+    const STYL  = JSON.parse(localStorage.getItem(LS_STYLE) || '{}');
+    const IMGS  = JSON.parse(localStorage.getItem(LS_IMG)   || '{}');
+    const persist = (key, obj) => localStorage.setItem(key, JSON.stringify(obj));
+
+    // Återställ sparad text/stil
+    document.querySelectorAll('[data-edit-id]').forEach(el => {
+      const id = el.dataset.editId;
+      if (TEXT[id] !== undefined) el.innerHTML = TEXT[id];
+      if (STYL[id]) {
+        if (STYL[id].fontSize)   el.style.fontSize   = STYL[id].fontSize;
+        if (STYL[id].fontWeight) el.style.fontWeight = STYL[id].fontWeight;
+      }
+    });
+
+    // Återställ sparade bilder (riktiga filer, sökväg sparad lokalt)
+    document.querySelectorAll('.meny-section-img').forEach(slot => {
+      if (IMGS[slot.id]) {
+        const img = slot.querySelector('img');
+        img.src = IMGS[slot.id];
+        slot.classList.remove('empty');
+      }
+    });
+
+    // ── Verktygsfält ──
+    const bar = document.createElement('div');
+    bar.id = 'zt-bar';
+    bar.style.cssText = 'position:fixed;top:0;left:0;right:0;height:52px;z-index:10000;background:#181714;color:#F5F0E8;display:none;align-items:center;gap:14px;padding:0 20px;font-family:"Hanken Grotesk",system-ui,sans-serif;font-size:11px;letter-spacing:.08em;box-shadow:0 2px 20px rgba(0,0,0,.5)';
+    bar.innerHTML = `
+      <span style="opacity:.35;letter-spacing:.18em;font-size:9px">REDIGERA</span>
+      <div style="display:flex;align-items:center;gap:4px">
+        <span style="opacity:.55">Storlek</span>
+        <button id="zt-sm" style="background:#2a2927;color:#fff;border:1px solid #444;width:24px;height:24px;cursor:pointer;font-size:15px;border-radius:2px">−</button>
+        <span id="zt-fz" style="min-width:40px;text-align:center;opacity:.7">—</span>
+        <button id="zt-lg" style="background:#2a2927;color:#fff;border:1px solid #444;width:24px;height:24px;cursor:pointer;font-size:15px;border-radius:2px">+</button>
+      </div>
+      <button id="zt-bold" style="background:#2a2927;color:#fff;border:1px solid #444;width:30px;height:24px;cursor:pointer;font-weight:700;border-radius:2px">B</button>
+      <span style="opacity:.4">Skift+klick på bild = ta bort</span>
+      <div style="flex:1"></div>
+      <button id="zt-pub" style="background:#F5F0E8;color:#2C2A22;border:none;padding:8px 18px;cursor:pointer;font-weight:600;letter-spacing:.1em;border-radius:2px">↑ Publicera ändringar</button>
+      <button id="zt-rst" style="background:#B85C38;color:#F5F0E8;border:none;padding:8px 15px;cursor:pointer;letter-spacing:.1em;border-radius:2px">↩ Återställ allt</button>
+      <button id="zt-x" style="border:1px solid rgba(255,255,255,.2);background:none;color:#F5F0E8;padding:8px 15px;cursor:pointer;letter-spacing:.1em;border-radius:2px">Klar ✕</button>`;
+    document.body.appendChild(bar);
+
+    const togBtn = document.createElement('button');
+    togBtn.id = 'zt-tog';
+    togBtn.innerHTML = '✏&thinsp; Redigera sidan';
+    togBtn.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:10000;background:#2C2A22;color:#F5F0E8;border:none;cursor:pointer;font-family:"Hanken Grotesk",system-ui,sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:13px 22px;box-shadow:0 4px 24px rgba(0,0,0,.4)';
+    document.body.appendChild(togBtn);
+
+    const hoverStyle = document.createElement('style');
+    hoverStyle.textContent = `
+      body.zt-on [data-edit-id]:hover, body.zt-on .meny-section-img:hover { outline:1px dashed rgba(184,92,56,.6)!important; outline-offset:2px; cursor:pointer!important; }
+      body.zt-on #nav { top:52px; }
+    `;
+    document.head.appendChild(hoverStyle);
+
+    let on = false, sel = null;
+
+    function setOn(v) {
+      on = v;
+      bar.style.display = v ? 'flex' : 'none';
+      togBtn.style.display = v ? 'none' : '';
+      document.body.classList.toggle('zt-on', v);
+      if (!v) desel();
+    }
+    togBtn.addEventListener('click', () => setOn(true));
+    document.getElementById('zt-x').addEventListener('click', () => setOn(false));
+
+    function desel() {
+      if (!sel) return;
+      sel.style.outline = '';
+      if (sel.contentEditable === 'true') { sel.contentEditable = 'false'; saveTxt(sel); }
+      sel = null;
+      document.getElementById('zt-fz').textContent = '—';
+    }
+
+    function selectEl(el) {
+      if (sel && sel !== el) desel();
+      sel = el;
+      el.style.outline = '2px solid #B85C38';
+      el.style.outlineOffset = '3px';
+      el.contentEditable = 'true';
+      el.focus();
+      document.getElementById('zt-fz').textContent = Math.round(parseFloat(getComputedStyle(el).fontSize)) + 'px';
+    }
+
+    document.getElementById('zt-sm').addEventListener('click', () => adjFz(-2));
+    document.getElementById('zt-lg').addEventListener('click', () => adjFz(2));
+    document.getElementById('zt-bold').addEventListener('click', () => {
+      if (!sel) return;
+      const isBold = parseInt(getComputedStyle(sel).fontWeight) >= 600;
+      sel.style.fontWeight = isBold ? '400' : '700';
+      saveStyl(sel);
+    });
+
+    function adjFz(d) {
+      if (!sel) return;
+      const n = Math.max(8, Math.round(parseFloat(getComputedStyle(sel).fontSize) + d));
+      sel.style.fontSize = n + 'px';
+      document.getElementById('zt-fz').textContent = n + 'px';
+      saveStyl(sel);
+    }
+
+    function saveTxt(el) {
+      const id = el.dataset.editId;
+      if (!id) return;
+      TEXT[id] = el.innerHTML;
+      persist(LS_TEXT, TEXT);
+    }
+    function saveStyl(el) {
+      const id = el.dataset.editId;
+      if (!id) return;
+      STYL[id] = { fontSize: el.style.fontSize, fontWeight: el.style.fontWeight };
+      persist(LS_STYLE, STYL);
+    }
+
+    document.addEventListener('click', e => {
+      if (!on) return;
+      if (e.target.closest('#zt-bar,#zt-tog,.meny-section-img')) return;
+      const editable = e.target.closest('[data-edit-id]');
+      if (!editable) return;
+      e.preventDefault(); e.stopPropagation();
+      if (sel === editable) return;
+      selectEl(editable);
+    }, true);
+
+    // Förhindra länknavigation i redigeringsläge
+    document.addEventListener('click', e => {
+      if (!on) return;
+      const a = e.target.closest('a');
+      if (a && !a.closest('#zt-bar')) e.preventDefault();
+    });
+
+    document.addEventListener('input', e => {
+      if (on && sel && sel.contentEditable === 'true') saveTxt(sel);
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && on) desel();
+    });
+
+    // ── Publicera ──
+    document.getElementById('zt-pub').addEventListener('click', async () => {
+      const btn = document.getElementById('zt-pub');
+      btn.textContent = '⏳ Sparar...';
+      btn.disabled = true;
+      try {
+        const res = await fetch('/export-changes', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ page: 'meny', text: TEXT, styles: STYL })
+        });
+        if (!res.ok) throw new Error();
+        btn.textContent = '✓ Sparat!';
+        setTimeout(() => { btn.textContent = '↑ Publicera ändringar'; btn.disabled = false; }, 2500);
+      } catch {
+        btn.textContent = '✗ Fel — kör node serve.mjs?';
+        setTimeout(() => { btn.textContent = '↑ Publicera ändringar'; btn.disabled = false; }, 3000);
+      }
+    });
+
+    document.getElementById('zt-rst').addEventListener('click', () => {
+      if (!confirm('Återställa ALLA ändringar (text, storlek, bilder) till originalet?')) return;
+      localStorage.removeItem(LS_TEXT);
+      localStorage.removeItem(LS_STYLE);
+      localStorage.removeItem(LS_IMG);
+      location.reload();
+    });
+
+    // ── Bilduppladdning — riktiga filer via servern ──
+    document.querySelectorAll('.meny-section-img').forEach(slot => {
+      slot.addEventListener('click', e => {
+        if (!on) return;
+        e.preventDefault(); e.stopPropagation();
+        if (e.shiftKey) {
+          slot.classList.add('empty');
+          delete IMGS[slot.id];
+          persist(LS_IMG, IMGS);
+          slot.querySelector('img').removeAttribute('src');
+          return;
+        }
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.onchange = () => {
+          const file = input.files[0];
+          if (!file) return;
           const reader = new FileReader();
-          reader.onload = e => {
-            const img = new Image();
-            img.onload = () => {
-              const isPng = file.type === 'image/png';
-              const canvas = document.createElement('canvas');
-              let w = img.width, h = img.height;
-              const cap = isPng ? 1400 : maxW;
-              if (w > cap) { h = Math.round(h * cap / w); w = cap; }
-              canvas.width = w; canvas.height = h;
-              const ctx = canvas.getContext('2d');
-              ctx.drawImage(img, 0, 0, w, h);
-              if (isPng) {
-                const id = ctx.getImageData(0, 0, w, h);
-                const d = id.data;
-                const pts = [[2,2],[w-3,2],[2,h-3],[w-3,h-3]];
-                let sR=0,sG=0,sB=0;
-                for (const [x,y] of pts) { const i=(y*w+x)*4; sR+=d[i];sG+=d[i+1];sB+=d[i+2]; }
-                const bgR=sR/4,bgG=sG/4,bgB=sB/4;
-                for (let i=0;i<d.length;i+=4) {
-                  const dist=Math.sqrt((d[i]-bgR)**2+(d[i+1]-bgG)**2+(d[i+2]-bgB)**2);
-                  if (dist<22) d[i+3]=0;
-                  else if (dist<75) d[i+3]=Math.round((dist-22)/53*255);
-                }
-                ctx.putImageData(id,0,0);
-                resolve(canvas.toDataURL('image/png'));
-              } else {
-                resolve(canvas.toDataURL('image/jpeg', quality));
-              }
-            };
-            img.src = e.target.result;
+          reader.onload = async () => {
+            const ext = (file.name.match(/\.\w+$/) || ['.jpg'])[0].toLowerCase();
+            const filename = slot.id.replace('img-', '') + ext;
+            try {
+              const res = await fetch('/upload-image', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ filename, data: reader.result })
+              });
+              const json = await res.json();
+              if (!json.ok) throw new Error();
+              const img = slot.querySelector('img');
+              img.src = json.path + '?v=' + Date.now();
+              slot.classList.remove('empty');
+              IMGS[slot.id] = json.path;
+              persist(LS_IMG, IMGS);
+            } catch {
+              alert('Kunde inte ladda upp bilden — kör du node serve.mjs?');
+            }
           };
           reader.readAsDataURL(file);
-        });
-      }
-
-      document.querySelectorAll('.meny-section-img').forEach(slot => {
-        const key = IMG_STORE + slot.id;
-
-        // Återställ sparad bild vid sidladdning
-        const saved = localStorage.getItem(key);
-        if (saved) {
-          const img = slot.querySelector('img');
-          img.src = saved;
-          slot.classList.remove('empty');
-        }
-
-        slot.addEventListener('click', async e => {
-          // Shift+klick = ta bort bild
-          if (e.shiftKey) {
-            slot.classList.add('empty');
-            localStorage.removeItem(key);
-            slot.querySelector('img').removeAttribute('src');
-            return;
-          }
-          // Vanligt klick = välj fil
-          const input = document.createElement('input');
-          input.type = 'file';
-          input.accept = 'image/*';
-          input.onchange = async ev => {
-            const file = ev.target.files[0];
-            if (!file) return;
-            const data = await compressImg(file, 2400, 0.93);
-            const img = slot.querySelector('img');
-            img.src = data;
-            slot.classList.remove('empty');
-            localStorage.setItem(key, data);
-          };
-          input.click();
-        });
+        };
+        input.click();
       });
-    })();
+    });
+  })();
   </script>
 </body>
 </html>
