@@ -33,6 +33,7 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    #lunchmeny, #middagsmeny, #dryckesmeny { scroll-margin-top: 88px; }
     body { font-family: var(--sans); font-weight: 300; color: var(--charcoal); background: var(--cream) url('images/meny-wallpaper.jpg') repeat; background-size: 900px auto; -webkit-font-smoothing: antialiased; }
     img  { display: block; max-width: 100%; }
     a    { text-decoration: none; color: inherit; }
@@ -87,20 +88,97 @@
        PAGE HEADER
     ============================================================ */
     #meny-header {
-      position: relative;
-      padding: 160px 80px 100px;
+      padding: 140px 80px 0;
       text-align: center;
+    }
+
+    .meny-intro-wrap {
+      display: inline-block;
+      background: rgba(245, 240, 232, 0.88);
+      padding: 36px 40px 44px;
+      border-radius: 4px;
+    }
+
+    .meny-intro {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      color: var(--charcoal);
+      opacity: 0.65;
+      margin-bottom: 24px;
+    }
+
+    .meny-categories {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .meny-cat-card {
+      width: 150px;
+      background: var(--charcoal);
+      border-radius: 4px;
+      overflow: hidden;
+      text-decoration: none;
+      transition: transform 0.22s ease;
+      display: block;
+    }
+    .meny-cat-card:hover { transform: translateY(-4px); }
+
+    .meny-cat-card img {
+      width: 100%;
+      height: 130px;
+      object-fit: contain;
+      background: var(--cream);
+      display: block;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .meny-cat-card span {
+      display: block;
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-align: center;
+      padding: 14px 8px;
+    }
+
+    .meny-banner {
+      position: relative;
+      height: 460px;
+      margin-top: 70px;
       overflow: hidden;
     }
-    #meny-header::before {
+    .meny-banner-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 25%;
+    }
+    .meny-banner::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(23, 31, 15, 0.82);
+      background: rgba(20, 16, 10, 0.55);
     }
-    #meny-header > * {
+    .meny-banner-overlay {
       position: relative;
       z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 40px;
     }
     .meny-page-title {
       font-family: var(--serif);
@@ -277,7 +355,13 @@
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
       #nav { padding: 0 28px; }
-      #meny-header { padding: 120px 28px 80px; }
+      #meny-header { padding: 110px 20px 0; }
+      .meny-intro-wrap { padding: 28px 20px 32px; }
+      .meny-categories { gap: 14px; }
+      .meny-cat-card { width: 100px; }
+      .meny-cat-card img { height: 90px; padding: 6px; }
+      .meny-cat-card span { font-size: 10px; padding: 10px 4px; }
+      .meny-banner { height: 340px; margin-top: 44px; }
       .meny-section { padding: 72px 28px; }
       #happy-hour { padding: 72px 28px; }
       .meny-section-inner { grid-template-columns: 1fr; gap: 40px; }
@@ -326,8 +410,31 @@
 
   <!-- PAGE HEADER -->
   <section id="meny-header">
-    <h1 class="meny-page-title" data-edit-id="header-title">MENY</h1>
-    <p class="meny-page-sub" data-edit-id="header-sub">asiatisk mat &amp; dryck · söderhallarna · södermalm</p>
+    <div class="meny-intro-wrap">
+      <p class="meny-intro">Kolla in vår meny!</p>
+      <div class="meny-categories">
+        <a href="#middagsmeny" class="meny-cat-card">
+          <img src="images/tiger-bowl-new.png" alt="">
+          <span>Stora skålar</span>
+        </a>
+        <a href="#lunchmeny" class="meny-cat-card">
+          <img src="images/tiger-bowl.png" alt="">
+          <span>Små skålar</span>
+        </a>
+        <a href="#dryckesmeny" class="meny-cat-card">
+          <img src="images/tiger-beer.png" alt="">
+          <span>Dryck</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="meny-banner">
+      <img src="images/soder-gloder.jpg" alt="ZAZHA öppnar hösten 2026" class="meny-banner-img">
+      <div class="meny-banner-overlay">
+        <h1 class="meny-page-title" data-edit-id="header-title">MENY</h1>
+        <p class="meny-page-sub" data-edit-id="header-sub">asiatisk mat &amp; dryck · söderhallarna · södermalm</p>
+      </div>
+    </div>
   </section>
 
   <!-- LUNCHMENY -->
