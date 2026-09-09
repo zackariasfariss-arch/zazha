@@ -327,7 +327,15 @@
       position: absolute;
       inset: 0;
       background: url('images/hero-neon-wall.jpg') center 35% / cover no-repeat;
-      opacity: 0.16;
+      opacity: 0.55;
+      z-index: 0;
+    }
+
+    #hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 55% at 50% 48%, rgba(241,233,220,0.95) 0%, rgba(241,233,220,0.75) 45%, rgba(241,233,220,0.15) 78%, rgba(241,233,220,0) 100%);
       z-index: 0;
     }
 
