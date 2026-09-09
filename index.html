@@ -311,6 +311,7 @@
        Cream bg, centered logo — tiger always fully visible
     ============================================================ */
     #hero {
+      position: relative;
       min-height: 100vh;
       background: #F1E9DC;
       display: flex;
@@ -318,9 +319,21 @@
       justify-content: center;
       text-align: center;
       padding: 100px 40px 80px;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('images/hero-neon-wall.jpg') center 35% / cover no-repeat;
+      opacity: 0.16;
+      z-index: 0;
     }
 
     .hero-content {
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
