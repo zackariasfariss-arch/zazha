@@ -105,17 +105,18 @@
       font-size: clamp(60px, 10vw, 130px);
       letter-spacing: 0.25em;
       color: var(--cream);
+      text-shadow: 0 2px 24px rgba(0,0,0,0.55);
       line-height: 1;
       margin-bottom: 14px;
     }
     .meny-page-sub {
       font-family: var(--sans);
-      font-weight: 300;
+      font-weight: 500;
       font-size: 11px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--sand);
-      opacity: 0.75;
+      text-shadow: 0 1px 12px rgba(0,0,0,0.6);
     }
 
     /* ============================================================
@@ -194,23 +195,23 @@
     }
     body.zt-on .meny-section-img:not(.empty):hover::after { opacity: 1; }
 
-    /* Textkolumn — del av samma kort som bilden */
+    /* Textkolumn — del av samma kort som bilden, egen mörk panel för läsbarhet */
     .meny-section-text {
       padding: 56px 60px;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      background: rgba(14, 12, 9, 0.62);
     }
 
     .meny-section-eyebrow {
       font-family: var(--sans);
-      font-weight: 300;
-      font-size: 10px;
+      font-weight: 500;
+      font-size: 11px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--terracotta);
       margin-bottom: 12px;
-      opacity: 0.80;
     }
     .meny-section-heading {
       font-family: var(--serif);
@@ -218,13 +219,14 @@
       font-size: clamp(32px, 4vw, 54px);
       letter-spacing: 0.06em;
       color: var(--cream);
+      text-shadow: 0 2px 16px rgba(0,0,0,0.5);
       margin-bottom: 20px;
       line-height: 1.1;
     }
     .meny-heading-sub {
       display: block;
       font-family: var(--sans);
-      font-weight: 400;
+      font-weight: 500;
       font-size: clamp(12px, 1.4vw, 15px);
       letter-spacing: 0.20em;
       text-transform: uppercase;
@@ -233,11 +235,12 @@
     }
     .meny-section-body {
       font-family: var(--sans);
-      font-weight: 300;
-      font-size: 14px;
+      font-weight: 400;
+      font-size: 15px;
       line-height: 1.85;
-      color: var(--sand);
-      opacity: 0.90;
+      color: var(--cream);
+      opacity: 0.92;
+      text-shadow: 0 1px 10px rgba(0,0,0,0.4);
       margin-bottom: 28px;
     }
     /* Edit the href on this link to point to your menu PDF or page */
