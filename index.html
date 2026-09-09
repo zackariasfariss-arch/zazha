@@ -152,21 +152,22 @@
       padding: 0 48px;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      transition: background 0.4s ease, box-shadow 0.4s ease;
+      justify-content: space-between;
+      color: var(--cream);
+      transition: background 0.4s ease, box-shadow 0.4s ease, color 0.3s ease;
     }
 
     #nav.scrolled {
       background: var(--cream);
+      color: var(--charcoal);
       box-shadow: 0 1px 0 rgba(44,42,34,0.10);
     }
 
-    /* Logo — cream badge on hero, merges into nav bg on scroll */
+    .nav-logo { display: block; line-height: 0; }
     .nav-logo img {
-      height: 40px;
+      height: 34px;
       width: auto;
       display: block;
-      border-radius: 2px;
     }
 
     /* Desktop links */
@@ -182,7 +183,7 @@
       font-weight: 300;
       font-size: 12px;
       letter-spacing: 0.10em;
-      color: var(--charcoal);
+      color: inherit;
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--terracotta); }
@@ -259,7 +260,7 @@
       display: block;
       width: 22px;
       height: 1.5px;
-      background: var(--charcoal);
+      background: currentColor;
       transition: background 0.3s;
     }
 
@@ -313,13 +314,10 @@
     #hero {
       position: relative;
       min-height: 100vh;
-      background: #F1E9DC;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 100px 40px 80px;
+      align-items: flex-end;
       overflow: hidden;
+      padding: 0;
     }
 
     #hero::before {
@@ -334,44 +332,39 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 55% 50% at 50% 48%, rgba(241,233,220,0.97) 0%, rgba(241,233,220,0.85) 35%, rgba(241,233,220,0.35) 62%, rgba(241,233,220,0) 88%);
+      background: linear-gradient(0deg, rgba(10,8,6,0.78) 0%, rgba(10,8,6,0.45) 30%, rgba(10,8,6,0.05) 58%, rgba(10,8,6,0) 75%);
       z-index: 0;
     }
 
     .hero-content {
       position: relative;
       z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      width: 100%;
+      text-align: left;
+      padding: 0 48px 64px;
     }
 
-    .hero-cat {
-      width: min(220px, 46vw);
-      height: auto;
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    .hero-mascot {
-      width: min(400px, 85vw);
-      height: auto;
-      display: block;
+    .hero-tagline {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(42px, 7vw, 86px);
+      line-height: 1;
+      color: var(--cream);
+      margin-bottom: 20px;
     }
 
     .hero-sub {
       font-family: var(--sans);
-      font-weight: 300;
+      font-weight: 400;
       font-size: 13px;
-      color: var(--charcoal);
+      color: var(--sand);
       letter-spacing: 0.14em;
-      margin-top: 22px;
-      opacity: 0.55;
+      margin-bottom: 28px;
     }
 
     .hero-btn {
       display: inline-block;
-      margin-top: 32px;
       padding: 16px 44px;
       background: var(--terracotta);
       color: var(--cream);
@@ -984,6 +977,7 @@
        NAVIGATION
   ============================================================ -->
   <nav id="nav" role="navigation" aria-label="Huvudmeny">
+    <a href="#hero" class="nav-logo"><img src="images/header.png" alt="ZAZHA"></a>
     <ul class="nav-links">
       <li><a href="#concept">Om oss</a></li>
       <li><a href="meny.html">Meny</a></li>
@@ -1014,12 +1008,11 @@
        Full-bleed bar scene illustration with gradient + wordmark overlay
   ============================================================ -->
   <section id="hero" aria-label="Välkommen till ZAZHA">
+    <h1 class="sr-only">ZAZHA — Asiatisk Bistro &amp; Bar på Södermalm | Ramen, Poke Bowls &amp; Lunch vid Medborgarplatsen</h1>
     <div class="hero-content">
-      <h1 class="sr-only">ZAZHA — Asiatisk Bistro &amp; Bar på Södermalm | Ramen, Poke Bowls &amp; Lunch vid Medborgarplatsen</h1>
-      <img src="images/hero-cat.png" alt="" class="hero-cat">
-      <img src="images/header.png" alt="ZAZHA — Asiatisk Bistro &amp; Bar på Södermalm" class="hero-mascot">
-      <p class="hero-sub" data-edit-id="hero-sub">MEDBORGARPLATSEN 3, SÖDERMALM, STOCKHOLM</p>
-      <a href="#boka" class="hero-btn" data-edit-id="hero-btn">ÖPPNAR HÖSTEN 2026</a>
+      <p class="hero-tagline">Öl · Vin · Skål</p>
+      <p class="hero-sub" data-edit-id="hero-sub">Medborgarplatsen 3, Södermalm, Stockholm</p>
+      <a href="#boka" class="hero-btn" data-edit-id="hero-btn">Öppnar hösten 2026</a>
     </div>
   </section>
 
