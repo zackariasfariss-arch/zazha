@@ -322,13 +322,23 @@
       padding: 0;
     }
 
-    .hero-poster {
+    .hero-poster-wrap {
       flex: 1 1 auto;
       min-height: 0;
-      width: 100%;
-      object-fit: cover;
-      object-position: center 78%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+    }
+
+    .hero-poster {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
       display: block;
+      box-shadow: 0 40px 90px rgba(0,0,0,0.6);
     }
 
     .hero-content {
@@ -994,7 +1004,9 @@
   ============================================================ -->
   <section id="hero" aria-label="Välkommen till ZAZHA">
     <h1 class="sr-only">ZAZHA — Asiatisk Bistro &amp; Bar på Södermalm | Ramen, Poke Bowls &amp; Lunch vid Medborgarplatsen</h1>
-    <img src="images/hero-poster.jpg" alt="ZAZHA — Öl, Vin, Skål" class="hero-poster">
+    <div class="hero-poster-wrap">
+      <img src="images/hero-poster.jpg" alt="ZAZHA — Öl, Vin, Skål" class="hero-poster">
+    </div>
     <div class="hero-content">
       <p class="hero-sub" data-edit-id="hero-sub">MEDBORGARPLATSEN 3, SÖDERMALM, STOCKHOLM</p>
       <a href="#boka" class="hero-btn" data-edit-id="hero-btn">ÖPPNAR HÖSTEN 2026</a>
