@@ -393,6 +393,38 @@
     .hero-btn:hover { background: var(--olive); }
 
     /* ============================================================
+       POSTER CARD — paper note taped to the wall behind it,
+       used for every text block on the page (mirrors the hero)
+    ============================================================ */
+    .poster-card {
+      position: relative;
+      background:
+        radial-gradient(ellipse at 15% 10%, rgba(255,255,255,0.55), transparent 55%),
+        radial-gradient(ellipse at 88% 92%, rgba(150,110,70,0.14), transparent 60%),
+        var(--cream);
+      box-shadow: 0 26px 60px rgba(0,0,0,0.5);
+      border-radius: 2px;
+    }
+    .poster-card::before,
+    .poster-card::after {
+      content: '';
+      position: absolute;
+      top: -15px;
+      width: 72px;
+      height: 28px;
+      background: rgba(245, 240, 230, 0.68);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.28);
+    }
+    .poster-card::before {
+      left: 20px;
+      transform: rotate(-8deg);
+    }
+    .poster-card::after {
+      right: 20px;
+      transform: rotate(6deg);
+    }
+
+    /* ============================================================
        CONCEPT
        Cream bg, two-col: pull-quote + body text
     ============================================================ */
@@ -405,8 +437,18 @@
       max-width: 1160px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 1fr 300px;
-      gap: 80px;
+      grid-template-columns: 1fr 300px;
+      gap: 60px;
+      align-items: center;
+    }
+    .concept-card {
+      padding: 56px 60px;
+      transform: rotate(-0.8deg);
+    }
+    .concept-card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
       align-items: center;
     }
     .concept-mascot {
@@ -419,12 +461,11 @@
 
     .concept-eyebrow {
       font-family: var(--sans);
-      font-weight: 300;
+      font-weight: 500;
       font-size: 10px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--terracotta);
-      opacity: 0.80;
       margin-bottom: 14px;
     }
 
@@ -433,19 +474,18 @@
       font-style: italic;
       font-size: clamp(36px, 5vw, 64px);
       line-height: 1.25;
-      color: var(--cream);
+      color: var(--charcoal);
       font-weight: 400;
       margin: 0;
-      text-shadow: 0 2px 16px rgba(0,0,0,0.4);
     }
 
     .concept-body {
       font-family: var(--sans);
-      font-weight: 300;
+      font-weight: 400;
       font-size: 15px;
       line-height: 1.85;
-      color: var(--sand);
-      text-shadow: 0 1px 10px rgba(0,0,0,0.35);
+      color: var(--charcoal);
+      opacity: 0.82;
     }
 
     .concept-body p + p { margin-top: 1.4em; }
@@ -460,13 +500,15 @@
     }
 
     .ovs-cols {
-      max-width: 860px;
+      max-width: 1040px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 52px;
+      gap: 40px;
       text-align: center;
       align-items: end; /* bottom-align so VIN text aligns with ÖL/SKÅL text */
+      padding: 64px 56px;
+      transform: rotate(0.5deg);
     }
 
     .ovs-col {
@@ -482,7 +524,6 @@
       object-fit: contain;
       margin-bottom: 32px;
       display: block;
-      filter: brightness(0) invert(1) opacity(0.92);
     }
 
 
@@ -491,25 +532,24 @@
       width: 40px;
       height: 1px;
       background: var(--terracotta);
-      opacity: 0.55;
+      opacity: 0.7;
       margin: 0 auto 22px;
     }
 
     .ovs-word {
       font-family: var(--serif);
       font-size: clamp(48px, 7vw, 96px);
-      color: var(--cream);
+      color: var(--charcoal);
       letter-spacing: 0.12em;
       line-height: 1;
-      text-shadow: 0 2px 16px rgba(0,0,0,0.4);
     }
 
     .ovs-desc {
       font-family: var(--sans);
-      font-weight: 300;
+      font-weight: 400;
       font-size: 13px;
-      color: var(--sand);
-      opacity: 0.85;
+      color: var(--charcoal);
+      opacity: 0.7;
       margin-top: 10px;
       letter-spacing: 0.04em;
     }
@@ -558,6 +598,8 @@
       position: relative;
       overflow: hidden;
       align-self: start;
+      border: 10px solid #0a0a0a;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.55);
     }
 
     .lokal-hero-img img {
@@ -568,21 +610,20 @@
     }
 
     .lokal-hero-text {
-      background: rgba(44, 42, 34, 0.94);
       padding: 64px 52px;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      transform: rotate(-1deg);
     }
 
     .lokal-hero-label {
       font-family: var(--sans);
-      font-weight: 300;
+      font-weight: 500;
       font-size: 10px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--sand);
-      opacity: 0.75;
+      color: var(--terracotta);
       margin-bottom: 20px;
     }
 
@@ -591,17 +632,17 @@
       font-style: italic;
       font-size: clamp(26px, 3vw, 38px);
       line-height: 1.35;
-      color: var(--cream);
+      color: var(--charcoal);
       margin-bottom: 28px;
     }
 
     .lokal-hero-body {
       font-family: var(--sans);
-      font-weight: 300;
+      font-weight: 400;
       font-size: 14px;
       line-height: 1.85;
-      color: var(--sand);
-      opacity: 0.90;
+      color: var(--charcoal);
+      opacity: 0.82;
     }
 
     /* ============================================================
@@ -626,8 +667,8 @@
       position: relative;
       overflow: hidden;
       min-height: 480px;
-      border: 8px solid rgba(245, 240, 232, 0.85);
-      box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+      border: 10px solid #0a0a0a;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.55);
       border-radius: 2px;
     }
 
@@ -661,11 +702,11 @@
     }
 
     .guinness-text {
-      padding: 40px 56px;
+      padding: 56px 60px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      background: transparent;
+      transform: rotate(1deg);
     }
 
     .guinness-eyebrow {
@@ -676,7 +717,6 @@
       text-transform: uppercase;
       color: var(--terracotta);
       margin-bottom: 20px;
-      text-shadow: 0 1px 10px rgba(0,0,0,0.5);
     }
 
     .guinness-heading {
@@ -685,9 +725,8 @@
       font-size: clamp(28px, 3.2vw, 44px);
       line-height: 1.2;
       letter-spacing: -0.02em;
-      color: var(--cream);
+      color: var(--charcoal);
       margin-bottom: 36px;
-      text-shadow: 0 2px 18px rgba(0,0,0,0.55);
     }
 
     .guinness-body {
@@ -701,8 +740,8 @@
       font-weight: 400;
       font-size: 15px;
       line-height: 1.8;
-      color: var(--sand);
-      text-shadow: 0 1px 12px rgba(0,0,0,0.5);
+      color: var(--charcoal);
+      opacity: 0.82;
     }
 
     @media (max-width: 768px) {
@@ -728,6 +767,13 @@
       width: 100%;
       height: auto;
       display: block;
+      border: 10px solid #0a0a0a;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.55);
+    }
+
+    .events-content {
+      padding: 56px 60px;
+      transform: rotate(1.2deg);
     }
 
     .events-heading {
@@ -735,27 +781,25 @@
       font-weight: 400;
       font-size: clamp(36px, 5vw, 60px);
       letter-spacing: 0.12em;
-      color: var(--cream);
+      color: var(--charcoal);
       margin-bottom: 20px;
-      text-shadow: 0 2px 16px rgba(0,0,0,0.4);
     }
     .events-text {
       max-width: 480px;
       margin: 0 0 40px;
       font-family: var(--sans);
-      font-weight: 300;
+      font-weight: 400;
       font-size: 15px;
       line-height: 1.85;
-      color: var(--sand);
-      opacity: 0.90;
-      text-shadow: 0 1px 10px rgba(0,0,0,0.4);
+      color: var(--charcoal);
+      opacity: 0.82;
     }
     .events-contact-btn {
       display: inline-block;
       margin-bottom: 0;
       padding: 14px 40px;
-      border: 1.5px solid var(--sand);
-      color: var(--cream);
+      border: 1.5px solid var(--charcoal);
+      color: var(--charcoal);
       font-family: var(--sans);
       font-weight: 300;
       font-size: 11px;
@@ -781,8 +825,8 @@
       display: inline-block;
       margin-top: 28px;
       padding: 13px 36px;
-      border: 1.5px solid var(--sand);
-      color: var(--cream);
+      border: 1.5px solid var(--charcoal);
+      color: var(--charcoal);
       font-family: var(--sans);
       font-weight: 300;
       font-size: 11px;
@@ -813,13 +857,17 @@
       align-items: start;
     }
 
+    .hitta-info {
+      padding: 56px 52px;
+      transform: rotate(-0.6deg);
+    }
+
     .hitta-name {
       font-family: var(--serif);
       font-size: 28px;
       letter-spacing: 0.14em;
-      color: var(--cream);
+      color: var(--charcoal);
       margin-bottom: 6px;
-      text-shadow: 0 2px 14px rgba(0,0,0,0.45);
     }
 
     .hitta-address {
@@ -827,8 +875,8 @@
       font-weight: 400;
       font-size: 14px;
       line-height: 1.7;
-      color: var(--sand);
-      text-shadow: 0 1px 10px rgba(0,0,0,0.4);
+      color: var(--charcoal);
+      opacity: 0.82;
     }
 
     .hitta-divider {
@@ -844,8 +892,7 @@
       font-weight: 400;
       font-size: 14px;
       line-height: 2;
-      color: var(--cream);
-      text-shadow: 0 1px 10px rgba(0,0,0,0.4);
+      color: var(--charcoal);
     }
 
     .hitta-contact {
@@ -853,15 +900,17 @@
       font-weight: 400;
       font-size: 13px;
       line-height: 1.9;
-      color: var(--sand);
-      text-shadow: 0 1px 10px rgba(0,0,0,0.4);
+      color: var(--charcoal);
+      opacity: 0.82;
     }
-    .hitta-contact a { color: var(--sand); }
-    .hitta-contact a:hover { color: var(--cream); }
+    .hitta-contact a { color: var(--charcoal); }
+    .hitta-contact a:hover { color: var(--terracotta); }
 
     .hitta-map {
       overflow: hidden;
       height: 340px;
+      border: 10px solid #0a0a0a;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.55);
     }
 
     /* ============================================================
@@ -982,14 +1031,22 @@
       .concept-inner { grid-template-columns: 1fr; gap: 48px; }
       .concept-mascot { display: none; }
       .concept-quote { font-size: clamp(28px, 7vw, 40px); }
+      .concept-card { padding: 40px 28px; }
+      .concept-card-grid { grid-template-columns: 1fr; gap: 28px; }
 
       .events-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
       .events-text { margin: 0 auto 32px; }
+      .events-content { padding: 40px 28px; }
 
-      .ovs-cols { grid-template-columns: 1fr; gap: 52px; }
+      .ovs-cols { grid-template-columns: 1fr; gap: 52px; padding: 44px 28px; }
 
       .hitta-inner { grid-template-columns: 1fr; gap: 52px; }
+      .hitta-info { padding: 40px 28px; }
       .hitta-map { height: 220px; }
+
+      .guinness-text, .lokal-hero-text, .events-content, .hitta-info, .concept-card, .ovs-cols {
+        transform: none;
+      }
 
       .insta-grid { grid-template-columns: repeat(3, 1fr); max-width: 480px; }
       .insta-tile:nth-child(n + 4) { display: none; }
@@ -1058,17 +1115,21 @@
   ============================================================ -->
   <section id="concept">
     <div class="concept-inner">
-      <div>
-        <p class="concept-eyebrow">asiatisk mat · södermalm</p>
-        <h2 class="concept-quote" data-edit-id="concept-quote">SKÅL -<br>
-        på alla sätt<br>det kan betyda.
-        </h2>
-      </div>
-      <div>
-        <div class="concept-body" data-edit-id="concept-body">
-        <p>ZAZHA är en asiatisk bistro och bar på Södermalm där öl, vin och skål möts under samma tak. Här står asian comfort food i centrum - generösa, ramen- och poke-inspirerade skålar med djupa smaker och asiatisk gatumatskänsla, serverade tillsammans med noggrant utvald dryck i en avslappnad och välkomnande miljö. <br><br>Från lunch till sena kvällar är ZAZHA en plats att återvända till på Södermalm, oavsett om du kommer för en snabb lunch, en after work eller en lång middag med vänner.<br><br>ÖPPNAR HÖSTEN 2026</p>
-      </div>
-        <a href="meny.html" class="concept-meny-btn">Meny</a>
+      <div class="poster-card concept-card">
+        <div class="concept-card-grid">
+          <div>
+            <p class="concept-eyebrow">asiatisk mat · södermalm</p>
+            <h2 class="concept-quote" data-edit-id="concept-quote">SKÅL -<br>
+            på alla sätt<br>det kan betyda.
+            </h2>
+          </div>
+          <div>
+            <div class="concept-body" data-edit-id="concept-body">
+            <p>ZAZHA är en asiatisk bistro och bar på Södermalm där öl, vin och skål möts under samma tak. Här står asian comfort food i centrum - generösa, ramen- och poke-inspirerade skålar med djupa smaker och asiatisk gatumatskänsla, serverade tillsammans med noggrant utvald dryck i en avslappnad och välkomnande miljö. <br><br>Från lunch till sena kvällar är ZAZHA en plats att återvända till på Södermalm, oavsett om du kommer för en snabb lunch, en after work eller en lång middag med vänner.<br><br>ÖPPNAR HÖSTEN 2026</p>
+            </div>
+            <a href="meny.html" class="concept-meny-btn">Meny</a>
+          </div>
+        </div>
       </div>
       <img src="images/tiger-peek.png" class="concept-mascot" alt="">
     </div>
@@ -1086,7 +1147,7 @@
         </video>
         <button class="guinness-sound-btn" id="guinness-sound" aria-label="Ljud på/av" title="Ljud på/av">🔇</button>
       </div>
-      <div class="guinness-text">
+      <div class="guinness-text poster-card">
         <p class="guinness-eyebrow">det vi tror på</p>
         <h2 class="guinness-heading">Stockholms billigaste Guinness.</h2>
         <div class="guinness-body">
@@ -1109,7 +1170,7 @@
       <div class="lokal-hero-img">
         <img src="images/lokal-hero.jpg" alt="ZAZHA — uteservering vid kvällstid">
       </div>
-      <div class="lokal-hero-text">
+      <div class="lokal-hero-text poster-card">
         <p class="lokal-hero-label">platsen</p>
         <p class="lokal-hero-quote" data-edit-id="lokal-quote">Ett hörn av Södermalm som lever lite längre på kvällen.</p>
         <p class="lokal-hero-body" data-edit-id="lokal-body">Vi finns i den klassiska paviljongen utanför Söderhallarna — mitt på Medborgarplatsen, mitt i Södermalm. God mat, kall dryck och en av de bästa lunchplatserna på Södermalm. Kom för ett glas, stanna för maten. Eller tvärtom.&nbsp;<br><br>11-sent varje dag!</p>
@@ -1137,7 +1198,7 @@
       <div class="events-photo">
         <img src="images/event.jpg" alt="Gäster på ZAZHA">
       </div>
-      <div class="events-content">
+      <div class="events-content poster-card">
         <h2 class="events-heading" data-edit-id="events-heading">EVENTS</h2>
         <div class="events-text" data-edit-id="events-text">På ZAZHA skapar vi inte bara events - vi skapar minnen.
 Oavsett om det är företagsfest, födelsedagsmiddag eller
@@ -1155,7 +1216,7 @@ ni bestämmer anledningen - vi fixar resten.</div>
   ============================================================ -->
   <section id="hitta-oss">
     <div class="hitta-inner">
-      <div>
+      <div class="poster-card hitta-info">
         <div class="hitta-name">ZAZHA</div>
         <div class="hitta-address">
           Söderhallarna<br>
@@ -1193,7 +1254,7 @@ ni bestämmer anledningen - vi fixar resten.</div>
        ÖL VIN SKÅL
   ============================================================ -->
   <section id="ovs" aria-label="Öl, vin och skål">
-    <div class="ovs-cols">
+    <div class="ovs-cols poster-card">
 
       <!-- ÖL -->
       <div class="ovs-col">
