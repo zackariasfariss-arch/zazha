@@ -355,6 +355,21 @@
       box-shadow: 0 40px 90px rgba(0,0,0,0.6);
     }
 
+    /* Bred skärm: den bredare affischversionen fyller ytan kant-i-kant */
+    @media (min-width: 800px) {
+      .hero-poster-wrap { padding: 0; }
+      .hero-poster-wrap::before { display: none; }
+      .hero-poster {
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        max-height: none;
+        object-fit: cover;
+        object-position: center;
+        box-shadow: none;
+      }
+    }
+
     .hero-content {
       flex: 0 0 auto;
       display: flex;
@@ -1019,7 +1034,10 @@
   <section id="hero" aria-label="Välkommen till ZAZHA">
     <h1 class="sr-only">ZAZHA — Asiatisk Bistro &amp; Bar på Södermalm | Ramen, Poke Bowls &amp; Lunch vid Medborgarplatsen</h1>
     <div class="hero-poster-wrap">
-      <img src="images/hero-poster.jpg" alt="ZAZHA — Öl, Vin, Skål" class="hero-poster">
+      <picture>
+        <source media="(min-width: 800px)" srcset="images/hero-poster-wide.jpg">
+        <img src="images/hero-poster.jpg" alt="ZAZHA — Öl, Vin, Skål" class="hero-poster">
+      </picture>
     </div>
     <div class="hero-content">
       <p class="hero-sub" data-edit-id="hero-sub">MEDBORGARPLATSEN 3, SÖDERMALM, STOCKHOLM</p>
