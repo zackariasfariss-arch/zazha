@@ -326,13 +326,12 @@
       padding: 100px 40px 48px;
     }
 
-    /* Väggen/teglet i bilden — fyller hela hero som bakgrund */
+    /* Ren väggtextur — fyller hela hero som bakgrund, ingen text att dölja */
     .hero-backdrop {
       position: absolute;
       inset: 0;
-      background: url('images/hero-poster-wide.jpg') center / cover no-repeat;
-      filter: blur(22px) brightness(0.5) saturate(1.1);
-      transform: scale(1.08);
+      background: url('images/hero-wall.jpg') center / cover no-repeat;
+      filter: brightness(0.62) saturate(1.1);
       z-index: 0;
     }
 
@@ -354,7 +353,7 @@
       height: auto;
       object-fit: contain;
       display: block;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.55);
+      filter: drop-shadow(0 25px 60px rgba(0,0,0,0.5));
     }
 
     .hero-content {
@@ -1024,10 +1023,7 @@
     <h1 class="sr-only">ZAZHA — Asiatisk Bistro &amp; Bar på Södermalm | Ramen, Poke Bowls &amp; Lunch vid Medborgarplatsen</h1>
     <div class="hero-backdrop"></div>
     <div class="hero-poster-wrap">
-      <picture>
-        <source media="(min-width: 800px)" srcset="images/hero-poster-wide.jpg">
-        <img src="images/hero-poster.jpg" alt="ZAZHA — Öl, Vin, Skål" class="hero-poster">
-      </picture>
+      <img src="images/hero-poster-cutout.png" alt="ZAZHA — Öl, Vin, Skål" class="hero-poster">
     </div>
     <div class="hero-content">
       <p class="hero-sub" data-edit-id="hero-sub">MEDBORGARPLATSEN 3, SÖDERMALM, STOCKHOLM</p>
