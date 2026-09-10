@@ -153,11 +153,13 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      transition: background 0.4s ease, box-shadow 0.4s ease;
+      color: var(--cream);
+      transition: background 0.4s ease, box-shadow 0.4s ease, color 0.3s ease;
     }
 
     #nav.scrolled {
       background: var(--cream);
+      color: var(--charcoal);
       box-shadow: 0 1px 0 rgba(44,42,34,0.10);
     }
 
@@ -182,7 +184,7 @@
       font-weight: 300;
       font-size: 12px;
       letter-spacing: 0.10em;
-      color: var(--charcoal);
+      color: inherit;
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--terracotta); }
@@ -259,7 +261,7 @@
       display: block;
       width: 22px;
       height: 1.5px;
-      background: var(--charcoal);
+      background: currentColor;
       transition: background 0.3s;
     }
 
@@ -311,47 +313,44 @@
        Cream bg, centered logo — tiger always fully visible
     ============================================================ */
     #hero {
-      min-height: 100vh;
-      background: #F1E9DC;
+      height: 100vh;
+      background: #0a0603;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      flex-direction: column;
       text-align: center;
-      padding: 100px 40px 80px;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .hero-poster {
+      flex: 1 1 auto;
+      min-height: 0;
+      width: 100%;
+      object-fit: cover;
+      object-position: center 78%;
+      display: block;
     }
 
     .hero-content {
+      flex: 0 0 auto;
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-
-    .hero-cat {
-      width: min(220px, 46vw);
-      height: auto;
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    .hero-mascot {
-      width: min(400px, 85vw);
-      height: auto;
-      display: block;
+      background: #0a0603;
+      padding: 28px 40px 40px;
     }
 
     .hero-sub {
       font-family: var(--sans);
-      font-weight: 300;
+      font-weight: 400;
       font-size: 13px;
-      color: var(--charcoal);
+      color: var(--sand);
       letter-spacing: 0.14em;
-      margin-top: 22px;
-      opacity: 0.55;
     }
 
     .hero-btn {
       display: inline-block;
-      margin-top: 32px;
+      margin-top: 24px;
       padding: 16px 44px;
       background: var(--terracotta);
       color: var(--cream);
@@ -994,10 +993,9 @@
        Full-bleed bar scene illustration with gradient + wordmark overlay
   ============================================================ -->
   <section id="hero" aria-label="Välkommen till ZAZHA">
+    <h1 class="sr-only">ZAZHA — Asiatisk Bistro &amp; Bar på Södermalm | Ramen, Poke Bowls &amp; Lunch vid Medborgarplatsen</h1>
+    <img src="images/hero-poster.jpg" alt="ZAZHA — Öl, Vin, Skål" class="hero-poster">
     <div class="hero-content">
-      <h1 class="sr-only">ZAZHA — Asiatisk Bistro &amp; Bar på Södermalm | Ramen, Poke Bowls &amp; Lunch vid Medborgarplatsen</h1>
-      <img src="images/hero-cat.png" alt="" class="hero-cat">
-      <img src="images/header.png" alt="ZAZHA — Asiatisk Bistro &amp; Bar på Södermalm" class="hero-mascot">
       <p class="hero-sub" data-edit-id="hero-sub">MEDBORGARPLATSEN 3, SÖDERMALM, STOCKHOLM</p>
       <a href="#boka" class="hero-btn" data-edit-id="hero-btn">ÖPPNAR HÖSTEN 2026</a>
     </div>
