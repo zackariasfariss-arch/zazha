@@ -397,7 +397,7 @@
        Cream bg, two-col: pull-quote + body text
     ============================================================ */
     #concept {
-      background: rgba(248, 239, 230, 0.92);
+      background: transparent;
       padding: 120px 80px;
     }
 
@@ -414,7 +414,7 @@
       max-width: 300px;
       height: auto;
       display: block;
-      mix-blend-mode: multiply;
+      filter: brightness(0) invert(1) opacity(0.92);
     }
 
     .concept-eyebrow {
@@ -433,9 +433,10 @@
       font-style: italic;
       font-size: clamp(36px, 5vw, 64px);
       line-height: 1.25;
-      color: var(--charcoal);
+      color: var(--cream);
       font-weight: 400;
       margin: 0;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.4);
     }
 
     .concept-body {
@@ -443,7 +444,8 @@
       font-weight: 300;
       font-size: 15px;
       line-height: 1.85;
-      color: var(--charcoal);
+      color: var(--sand);
+      text-shadow: 0 1px 10px rgba(0,0,0,0.35);
     }
 
     .concept-body p + p { margin-top: 1.4em; }
@@ -453,7 +455,7 @@
        Olive bg, three columns with photo slots, tiger watermarks
     ============================================================ */
     #ovs {
-      background: rgba(244, 235, 226, 0.92);
+      background: transparent;
       padding: 120px 80px;
     }
 
@@ -480,7 +482,7 @@
       object-fit: contain;
       margin-bottom: 32px;
       display: block;
-      mix-blend-mode: multiply;
+      filter: brightness(0) invert(1) opacity(0.92);
     }
 
 
@@ -488,25 +490,26 @@
       display: block;
       width: 40px;
       height: 1px;
-      background: var(--olive);
-      opacity: 0.35;
+      background: var(--terracotta);
+      opacity: 0.55;
       margin: 0 auto 22px;
     }
 
     .ovs-word {
       font-family: var(--serif);
       font-size: clamp(48px, 7vw, 96px);
-      color: var(--charcoal);
+      color: var(--cream);
       letter-spacing: 0.12em;
       line-height: 1;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.4);
     }
 
     .ovs-desc {
       font-family: var(--sans);
       font-weight: 300;
       font-size: 13px;
-      color: var(--charcoal);
-      opacity: 0.55;
+      color: var(--sand);
+      opacity: 0.85;
       margin-top: 10px;
       letter-spacing: 0.04em;
     }
@@ -515,7 +518,7 @@
        LOKAL — hero image + text
     ============================================================ */
     #lokal {
-      background: rgba(245, 240, 232, 0.92);
+      background: transparent;
       padding: 120px 80px;
     }
 
@@ -536,9 +539,10 @@
       font-weight: 400;
       font-size: clamp(32px, 5vw, 60px);
       letter-spacing: 0.18em;
-      color: var(--charcoal);
+      color: var(--cream);
       margin-bottom: 60px;
       text-align: center;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.4);
     }
 
     .lokal-hero {
@@ -564,7 +568,7 @@
     }
 
     .lokal-hero-text {
-      background: rgba(58, 78, 40, 0.92);
+      background: rgba(44, 42, 34, 0.94);
       padding: 64px 52px;
       display: flex;
       flex-direction: column;
@@ -725,8 +729,9 @@
       font-weight: 400;
       font-size: clamp(36px, 5vw, 60px);
       letter-spacing: 0.12em;
-      color: var(--charcoal);
+      color: var(--cream);
       margin-bottom: 20px;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.4);
     }
     .events-text {
       max-width: 480px;
@@ -735,15 +740,15 @@
       font-weight: 300;
       font-size: 15px;
       line-height: 1.85;
-      color: var(--charcoal);
-      opacity: 0.70;
+      color: var(--sand);
+      opacity: 0.90;
     }
     .events-contact-btn {
       display: inline-block;
       margin-bottom: 0;
       padding: 14px 40px;
-      border: 1.5px solid var(--charcoal);
-      color: var(--charcoal);
+      border: 1.5px solid var(--sand);
+      color: var(--cream);
       font-family: var(--sans);
       font-weight: 300;
       font-size: 11px;
@@ -752,8 +757,9 @@
       transition: background 0.22s ease, color 0.22s ease;
     }
     .events-contact-btn:hover {
-      background: var(--charcoal);
-      color: #F3E7DE;
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+      color: var(--cream);
     }
 
     .insta-divider {
@@ -768,8 +774,8 @@
       display: inline-block;
       margin-top: 28px;
       padding: 13px 36px;
-      border: 1.5px solid var(--charcoal);
-      color: var(--charcoal);
+      border: 1.5px solid var(--sand);
+      color: var(--cream);
       font-family: var(--sans);
       font-weight: 300;
       font-size: 11px;
@@ -778,15 +784,15 @@
       text-decoration: none;
       transition: background 0.22s ease, color 0.22s ease;
     }
-    .concept-meny-btn:hover { background: var(--charcoal); color: var(--cream); }
-    .concept-meny-btn:active { background: var(--charcoal); color: var(--cream); }
+    .concept-meny-btn:hover { background: var(--terracotta); border-color: var(--terracotta); color: var(--cream); }
+    .concept-meny-btn:active { background: var(--terracotta); border-color: var(--terracotta); color: var(--cream); }
 
     /* ============================================================
        HITTA OSS
        Charcoal bg, two-col: info + map placeholder
     ============================================================ */
     #hitta-oss {
-      background: rgba(44, 42, 34, 0.86);
+      background: transparent;
       padding: 120px 80px;
       color: var(--cream);
     }
@@ -852,7 +858,7 @@
        Cream bg, handle + 5-tile grid
     ============================================================ */
     #instagram {
-      background: rgba(243, 231, 222, 0.92);
+      background: transparent;
       padding: 120px 80px;
       text-align: center;
     }
@@ -863,8 +869,8 @@
       font-size: 11px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--charcoal);
-      opacity: 0.45;
+      color: var(--sand);
+      opacity: 0.85;
       margin-bottom: 14px;
     }
 
@@ -893,7 +899,7 @@
        Charcoal bg, centered wordmark
     ============================================================ */
     footer {
-      background: rgba(44, 42, 34, 0.88);
+      background: transparent;
       padding: 100px 40px 80px;
       text-align: center;
     }
@@ -912,7 +918,7 @@
       font-weight: 300;
       font-size: 12px;
       letter-spacing: 0.10em;
-      color: var(--charcoal);
+      color: var(--sand);
       margin-bottom: 20px;
     }
 
