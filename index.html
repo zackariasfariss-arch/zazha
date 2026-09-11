@@ -968,14 +968,19 @@
       text-align: center;
     }
 
+    .footer-card {
+      display: inline-block;
+      padding: 48px 68px;
+      transform: rotate(-1deg);
+    }
+
     .footer-wordmark {
       font-family: var(--serif);
       font-weight: 400;
       font-size: 28px;
       letter-spacing: 0.22em;
-      color: var(--cream);
+      color: var(--charcoal);
       margin-bottom: 12px;
-      text-shadow: 0 2px 14px rgba(0,0,0,0.45);
     }
 
     .footer-loc {
@@ -983,9 +988,9 @@
       font-weight: 400;
       font-size: 12px;
       letter-spacing: 0.10em;
-      color: var(--sand);
+      color: var(--charcoal);
+      opacity: 0.75;
       margin-bottom: 20px;
-      text-shadow: 0 1px 10px rgba(0,0,0,0.4);
     }
 
     .footer-social a {
@@ -993,11 +998,11 @@
       font-weight: 400;
       font-size: 12px;
       letter-spacing: 0.08em;
-      color: var(--sand);
+      color: var(--charcoal);
+      opacity: 0.85;
       transition: color 0.2s;
-      text-shadow: 0 1px 10px rgba(0,0,0,0.4);
     }
-    .footer-social a:hover { color: var(--cream); }
+    .footer-social a:hover { color: var(--terracotta); }
 
     .footer-copy {
       margin-top: 36px;
@@ -1005,9 +1010,8 @@
       font-weight: 300;
       font-size: 11px;
       letter-spacing: 0.06em;
-      color: var(--cream);
+      color: var(--charcoal);
       opacity: 0.45;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.4);
     }
 
     /* Visually hidden but accessible to screen readers + search engines */
@@ -1047,9 +1051,10 @@
       .hitta-info { padding: 40px 28px; }
       .hitta-map { height: 220px; }
 
-      .guinness-text, .lokal-hero-text, .events-content, .hitta-info, .concept-card, .ovs-cols {
+      .guinness-text, .lokal-hero-text, .events-content, .hitta-info, .concept-card, .ovs-cols, .footer-card {
         transform: none;
       }
+      .footer-card { padding: 36px 32px; }
 
       .insta-grid { grid-template-columns: repeat(3, 1fr); max-width: 480px; }
       .insta-tile:nth-child(n + 4) { display: none; }
@@ -1290,12 +1295,14 @@ ni bestämmer anledningen - vi fixar resten.</div>
        FOOTER
   ============================================================ -->
   <footer>
-    <div class="footer-wordmark">ZAZHA</div>
-    <p class="footer-loc" data-edit-id="footer-loc">söderhallarna · södermalm · stockholm</p>
-    <div class="footer-social" data-edit-id="footer-social">
-      <a href="https://instagram.com/zazha.sthlm" target="_blank" rel="noopener">@zazha.sthlm</a>
+    <div class="poster-card footer-card">
+      <div class="footer-wordmark">ZAZHA</div>
+      <p class="footer-loc" data-edit-id="footer-loc">söderhallarna · södermalm · stockholm</p>
+      <div class="footer-social" data-edit-id="footer-social">
+        <a href="https://instagram.com/zazha.sthlm" target="_blank" rel="noopener">@zazha.sthlm</a>
+      </div>
+      <p class="footer-copy" data-edit-id="footer-copy">© 2025 ZAZHA Asian Bistro &amp; Bar</p>
     </div>
-    <p class="footer-copy" data-edit-id="footer-copy">© 2025 ZAZHA Asian Bistro &amp; Bar</p>
     <p style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;">
       ZAZHA är Stockholms billigaste Guinness. Vi är en asiatisk restaurang på Södermalm och en bar på Medborgarplatsen i Stockholm. God asiatisk mat och billig lunch på Södermalm varje dag från klockan 11. After work Södermalm, bar Medborgarplatsen, asiatisk bistro Stockholm. Bra lunch Södermalm, billig middag Stockholm, Guinness Stockholm, Guinness Södermalm.
     </p>
