@@ -1032,6 +1032,9 @@
        RESPONSIVE — mobile-first, collapse at 900px
     ============================================================ */
     @media (max-width: 900px) {
+      /* background-attachment: fixed rendrar blurry/lågupplöst på mobila webbläsare */
+      body { background-attachment: scroll; }
+
       .nav-links     { display: none; }
       .nav-hamburger { display: flex; }
       #nav           { padding: 0 28px; }
