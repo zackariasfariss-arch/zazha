@@ -258,6 +258,45 @@
     }
     .meny-section-link:hover { border-color: var(--terracotta); color: var(--cream); transform: translateX(4px); }
 
+    /* ---- Lightbox — förstorad meny ---- */
+    .meny-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(10,8,6,0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      cursor: zoom-out;
+    }
+    .meny-lightbox[hidden] { display: none; }
+    .meny-lightbox img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+      border-radius: 2px;
+      cursor: default;
+    }
+    .meny-lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      background: none;
+      border: none;
+      color: var(--cream);
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 8px;
+    }
+    @media (max-width: 900px) {
+      .meny-lightbox { padding: 16px; }
+      .meny-lightbox-close { top: 12px; right: 16px; }
+    }
+
     /* Happy Hour — centered, matches rest of page */
     #happy-hour {
       padding: 90px 80px;
@@ -312,9 +351,9 @@
       <li class="has-dropdown">
         <a href="meny.html">Meny <span class="nav-arrow">▾</span></a>
         <div class="dropdown">
-          <a href="#lunchmeny">Lunchmeny</a>
-          <a href="#middagsmeny">Middagsmeny</a>
-          <a href="#dryckesmeny">Dryckesmeny</a>
+          <a href="images/zazha-meny.jpg" class="open-full-meny">Lunchmeny</a>
+          <a href="images/zazha-meny.jpg" class="open-full-meny">Middagsmeny</a>
+          <a href="images/zazha-meny.jpg" class="open-full-meny">Dryckesmeny</a>
           <a href="#happy-hour">After Work</a>
           <a href="#catering">Catering</a>
         </div>
@@ -361,8 +400,7 @@
         <div class="meny-section-body" data-edit-id="lunch-body">
           Asiatisk mat på Södermalm — ramen, poké och comfort food, allt serverat i skål. Välj ris eller nudlar. Till det smårätter som funkar lika bra till en öl som till maten. Samma meny hela dagen, från lunch till sent.<br><br>Alltid till bra priser.
         </div>
-        <!-- Byt href till länk/PDF för din meny -->
-        <a href="#" class="meny-section-link" data-edit-id="lunch-link">Se lunchmenyn →</a>
+        <a href="images/zazha-meny.jpg" class="meny-section-link open-full-meny" data-edit-id="lunch-link">Se lunchmenyn →</a>
       </div>
     </div>
   </section>
@@ -385,7 +423,7 @@
         <div class="meny-section-body" data-edit-id="middag-body">
           Signature bowls med ramen- och pokéinfluenser, plus smårätter som funkar lika bra till en öl som till maten. Köket är öppet till sent — beställ en skål vid baren klockan elva om du vill.
         </div>
-        <a href="#" class="meny-section-link" data-edit-id="middag-link">Se middagsmenyn →</a>
+        <a href="images/zazha-meny.jpg" class="meny-section-link open-full-meny" data-edit-id="middag-link">Se middagsmenyn →</a>
       </div>
     </div>
   </section>
@@ -408,7 +446,7 @@
         <div class="meny-section-body" data-edit-id="dryck-body">
           Bar på Södermalm med öl på tapp, vin och husets roligaste cocktails. Och Sveriges billigaste Guinness — inte som erbjudande, utan som pris.
         </div>
-        <a href="#" class="meny-section-link" data-edit-id="dryck-link">Se dryckesmenyn →</a>
+        <a href="images/zazha-meny.jpg" class="meny-section-link open-full-meny" data-edit-id="dryck-link">Se dryckesmenyn →</a>
       </div>
     </div>
   </section>
@@ -458,6 +496,11 @@
     <p class="footer-copy" data-edit-id="footer-copy">© 2025 ZAZHA Asian Bistro &amp; Bar</p>
   </footer>
 
+  <div id="meny-lightbox" class="meny-lightbox" role="dialog" aria-modal="true" aria-label="ZAZHA meny" hidden>
+    <button type="button" class="meny-lightbox-close" id="meny-lightbox-close" aria-label="Stäng">✕</button>
+    <img src="images/zazha-meny.jpg" alt="ZAZHA meny — bowls, ramen, sides, cocktails, öl, vin och cider">
+  </div>
+
   <script>
     // Scroll-aware nav
     const nav = document.getElementById('nav');
@@ -475,6 +518,18 @@
     menuClose.addEventListener('click',  () => { mobileMenu.classList.remove('open'); hamburger.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; });
     mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }));
     document.addEventListener('keydown', e => { if (e.key === 'Escape') { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; } });
+
+    // Meny-lightbox — alla "Se X-menyn" / dropdown-länkar öppnar samma bild
+    const menyLightbox = document.getElementById('meny-lightbox');
+    const menyCloseBtn = document.getElementById('meny-lightbox-close');
+    function openMenyLightbox() { menyLightbox.hidden = false; document.body.style.overflow = 'hidden'; }
+    function closeMenyLightbox() { menyLightbox.hidden = true; document.body.style.overflow = ''; }
+    document.querySelectorAll('.open-full-meny').forEach(a => {
+      a.addEventListener('click', e => { e.preventDefault(); openMenyLightbox(); });
+    });
+    menyCloseBtn.addEventListener('click', closeMenyLightbox);
+    menyLightbox.addEventListener('click', e => { if (e.target === menyLightbox) closeMenyLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && !menyLightbox.hidden) closeMenyLightbox(); });
 
     // Mark images as empty only once we actually know they failed to load —
     // checking img.complete synchronously on page load is a race: on a real

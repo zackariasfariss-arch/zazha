@@ -394,6 +394,107 @@
     .hero-btn:hover { background: var(--olive); }
 
     /* ============================================================
+       MENY PREVIEW — hela menyn, direkt efter hero
+    ============================================================ */
+    #meny-preview {
+      background: transparent;
+      padding: 120px 80px 100px;
+      text-align: center;
+    }
+
+    .meny-preview-eyebrow {
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 14px;
+      text-shadow: 0 1px 10px rgba(0,0,0,0.4);
+    }
+
+    .meny-preview-heading {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(32px, 5vw, 60px);
+      letter-spacing: 0.18em;
+      color: var(--cream);
+      margin-bottom: 48px;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.4);
+    }
+
+    .meny-preview-frame {
+      display: block;
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0;
+      border: 10px solid #0a0a0a;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.55);
+      border-radius: 2px;
+      background: none;
+      cursor: zoom-in;
+      overflow: hidden;
+      transition: transform 0.25s ease;
+    }
+    .meny-preview-frame:hover { transform: scale(1.012); }
+    .meny-preview-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .meny-preview-link {
+      display: inline-block;
+      margin-top: 36px;
+      padding: 14px 40px;
+      border: 1.5px solid var(--sand);
+      color: var(--cream);
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: background 0.22s ease, color 0.22s ease;
+    }
+    .meny-preview-link:hover { background: var(--terracotta); border-color: var(--terracotta); color: var(--cream); }
+
+    /* ---- Lightbox — förstorad meny, delas av preview + ev. länkar ---- */
+    .meny-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(10,8,6,0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      cursor: zoom-out;
+    }
+    .meny-lightbox[hidden] { display: none; }
+    .meny-lightbox img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+      border-radius: 2px;
+      cursor: default;
+    }
+    .meny-lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      background: none;
+      border: none;
+      color: var(--cream);
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    /* ============================================================
        POSTER CARD — paper note taped to the wall behind it,
        used for every text block on the page (mirrors the hero)
     ============================================================ */
@@ -1040,6 +1141,10 @@
       #nav           { padding: 0 28px; }
 
       #concept, #meny, #hitta-oss, #instagram, #lokal { padding: 80px 28px; }
+      #meny-preview { padding: 80px 20px 60px; }
+      .meny-preview-frame { border-width: 6px; }
+      .meny-lightbox { padding: 16px; }
+      .meny-lightbox-close { top: 12px; right: 16px; }
       #ovs { padding: 80px 28px; }
       .lokal-hero { grid-template-columns: 1fr; }
       .lokal-hero-img img { height: 340px; min-height: 0; }
@@ -1128,6 +1233,23 @@
       <a href="#boka" class="hero-btn" data-edit-id="hero-btn">ÖPPNAR HÖSTEN 2026</a>
     </div>
   </section>
+
+  <!-- ============================================================
+       MENY PREVIEW — hela menyn direkt efter hero
+  ============================================================ -->
+  <section id="meny-preview" aria-label="Meny">
+    <p class="meny-preview-eyebrow">öl · vin · skål</p>
+    <h2 class="meny-preview-heading">MENY</h2>
+    <button type="button" class="meny-preview-frame" id="meny-preview-open" aria-label="Förstora menyn">
+      <img src="images/zazha-meny.jpg" alt="ZAZHA meny — bowls, ramen, sides, cocktails, öl, vin och cider" loading="lazy">
+    </button>
+    <a href="meny.html" class="meny-preview-link">Till hela menyn →</a>
+  </section>
+
+  <div id="meny-lightbox" class="meny-lightbox" role="dialog" aria-modal="true" aria-label="ZAZHA meny" hidden>
+    <button type="button" class="meny-lightbox-close" id="meny-lightbox-close" aria-label="Stäng">✕</button>
+    <img src="images/zazha-meny.jpg" alt="ZAZHA meny — bowls, ramen, sides, cocktails, öl, vin och cider">
+  </div>
 
   <!-- ============================================================
        CONCEPT — öl, vin och skål
@@ -1352,6 +1474,17 @@ ni bestämmer anledningen - vi fixar resten.</div>
     menuClose.addEventListener('click', closeMenu);
     mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+    // --- Meny-lightbox ---
+    const menyOpenBtn  = document.getElementById('meny-preview-open');
+    const menyLightbox = document.getElementById('meny-lightbox');
+    const menyCloseBtn = document.getElementById('meny-lightbox-close');
+    function openMenyLightbox() { menyLightbox.hidden = false; document.body.style.overflow = 'hidden'; }
+    function closeMenyLightbox() { menyLightbox.hidden = true; document.body.style.overflow = ''; }
+    if (menyOpenBtn)  menyOpenBtn.addEventListener('click', openMenyLightbox);
+    if (menyCloseBtn) menyCloseBtn.addEventListener('click', closeMenyLightbox);
+    if (menyLightbox) menyLightbox.addEventListener('click', e => { if (e.target === menyLightbox) closeMenyLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && menyLightbox && !menyLightbox.hidden) closeMenyLightbox(); });
 
     // editor borttagen
       void 0; /*
