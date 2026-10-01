@@ -459,6 +459,29 @@
     }
     .meny-preview-link:hover { background: var(--terracotta); border-color: var(--terracotta); color: var(--cream); }
 
+    .meny-preview-insta {
+      margin: 32px auto 0;
+      max-width: 420px;
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      line-height: 1.7;
+      color: var(--sand);
+      text-shadow: 0 1px 10px rgba(0,0,0,0.4);
+    }
+    .meny-preview-insta a {
+      display: inline-block;
+      margin-top: 8px;
+      color: var(--terracotta);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+    .meny-preview-insta a:hover { color: var(--cream); }
+
     /* ---- Lightbox — förstorad meny, delas av preview + ev. länkar ---- */
     .meny-lightbox {
       position: fixed;
@@ -1133,8 +1156,17 @@
        RESPONSIVE — mobile-first, collapse at 900px
     ============================================================ */
     @media (max-width: 900px) {
-      /* background-attachment: fixed rendrar blurry/lågupplöst på mobila webbläsare */
-      body { background-attachment: scroll; }
+      /* background-attachment: fixed rendrar blurry på mobila webbläsare, och
+         "cover" skalar texturen efter hela sidans höjd (inte bara skärmen) —
+         vilket sträcker ut en 941px-hög bild flera gånger om. Kaklar i stället
+         bilden i sin egen upplösning så den alltid förblir skarp. */
+      body {
+        background-image: url('images/hero-wall.jpg');
+        background-attachment: scroll;
+        background-repeat: repeat;
+        background-size: 900px auto;
+        background-position: top center;
+      }
 
       .nav-links     { display: none; }
       .nav-hamburger { display: flex; }
@@ -1184,6 +1216,7 @@
     @media (max-width: 480px) {
       .hero-title { font-size: 48px; }
       .hero-sub   { font-size: 11px; }
+      body { background-size: 480px auto; }
     }
   </style>
 </head>
@@ -1244,6 +1277,10 @@
       <img src="images/zazha-meny.jpg" alt="ZAZHA meny — bowls, ramen, sides, cocktails, öl, vin och cider" loading="lazy">
     </button>
     <a href="meny.html" class="meny-preview-link">Till hela menyn →</a>
+    <p class="meny-preview-insta">
+      KIKA ALLTID IN PÅ VÅR INSTAGRAM FÖR VECKANS DEALS PÅ MAT OCH DRYCK!<br>
+      <a href="https://instagram.com/zazha.sthlm" target="_blank" rel="noopener">@zazha.sthlm</a>
+    </p>
   </section>
 
   <div id="meny-lightbox" class="meny-lightbox" role="dialog" aria-modal="true" aria-label="ZAZHA meny" hidden>
