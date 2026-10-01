@@ -460,28 +460,31 @@
     .meny-preview-link:hover { background: var(--terracotta); border-color: var(--terracotta); color: var(--cream); }
 
     .meny-preview-insta {
-      margin: 40px auto 0;
-      max-width: 520px;
+      margin: 56px auto 0;
+      max-width: 540px;
+      padding: 40px 48px;
+      transform: rotate(-0.8deg);
+    }
+    .meny-preview-insta p {
       font-family: var(--sans);
       font-weight: 500;
       font-size: 17px;
       letter-spacing: 0.02em;
       line-height: 1.6;
-      color: var(--cream);
-      text-shadow: 0 2px 14px rgba(0,0,0,0.6);
+      color: var(--charcoal);
     }
     .meny-preview-insta a {
       display: inline-block;
       margin-top: 14px;
-      font-size: 17px;
+      font-size: 18px;
       color: var(--terracotta);
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.08em;
       text-decoration: underline;
       text-underline-offset: 4px;
       transition: color 0.2s;
     }
-    .meny-preview-insta a:hover { color: var(--cream); }
+    .meny-preview-insta a:hover { color: var(--charcoal); }
 
     /* ---- Lightbox — förstorad meny, delas av preview + ev. länkar ---- */
     .meny-lightbox {
@@ -1199,11 +1202,12 @@
       .hitta-info { padding: 40px 28px; }
       .hitta-map { height: 220px; }
 
-      .guinness-text, .lokal-hero-text, .events-content, .hitta-info, .concept-card, .ovs-cols, .footer-card, .insta-card {
+      .guinness-text, .lokal-hero-text, .events-content, .hitta-info, .concept-card, .ovs-cols, .footer-card, .insta-card, .meny-preview-insta {
         transform: none;
       }
       .footer-card { padding: 36px 32px; }
       .insta-card { padding: 26px 32px; }
+      .meny-preview-insta { padding: 32px 28px; }
 
       .insta-grid { grid-template-columns: repeat(3, 1fr); max-width: 480px; }
       .insta-tile:nth-child(n + 4) { display: none; }
@@ -1278,10 +1282,13 @@
       <img src="images/zazha-meny.jpg" alt="ZAZHA meny — bowls, ramen, sides, cocktails, öl, vin och cider" loading="lazy">
     </button>
     <a href="meny.html" class="meny-preview-link">Till hela menyn →</a>
-    <p class="meny-preview-insta">
-      KIKA ALLTID IN PÅ VÅR INSTAGRAM FÖR VECKANS DEALS PÅ MAT OCH DRYCK!<br>
-      <a href="https://instagram.com/zazha.sthlm" target="_blank" rel="noopener">@zazha.sthlm</a>
-    </p>
+
+    <div class="poster-card meny-preview-insta">
+      <p>
+        KIKA ALLTID IN PÅ VÅR INSTAGRAM FÖR VECKANS DEALS PÅ MAT OCH DRYCK!<br>
+        <a href="https://instagram.com/zazha.sthlm" target="_blank" rel="noopener">@zazha.sthlm</a>
+      </p>
+    </div>
   </section>
 
   <div id="meny-lightbox" class="meny-lightbox" role="dialog" aria-modal="true" aria-label="ZAZHA meny" hidden>
