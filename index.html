@@ -134,8 +134,19 @@
       font-family: var(--sans);
       font-weight: 300;
       color: var(--charcoal);
-      background: var(--cream) url('images/hero-wall.jpg') center / cover fixed no-repeat;
+      background: var(--cream);
       -webkit-font-smoothing: antialiased;
+    }
+
+    /* Fast, viewport-storlek bakgrund i stället för background-attachment:fixed —
+       den CSS-egenskapen renderas suddig/kaklad på mobila webbläsare eftersom
+       "cover" då skalas efter HELA sidans höjd. En fixed-positionerad div skalas
+       alltid bara mot skärmen, så bilden förblir skarp och sömlös (ingen repeat). */
+    .site-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: url('images/hero-wall.jpg') center / cover no-repeat;
     }
 
     img { display: block; max-width: 100%; }
@@ -1160,18 +1171,6 @@
        RESPONSIVE — mobile-first, collapse at 900px
     ============================================================ */
     @media (max-width: 900px) {
-      /* background-attachment: fixed rendrar blurry på mobila webbläsare, och
-         "cover" skalar texturen efter hela sidans höjd (inte bara skärmen) —
-         vilket sträcker ut en 941px-hög bild flera gånger om. Kaklar i stället
-         bilden i sin egen upplösning så den alltid förblir skarp. */
-      body {
-        background-image: url('images/hero-wall.jpg');
-        background-attachment: scroll;
-        background-repeat: repeat;
-        background-size: 900px auto;
-        background-position: top center;
-      }
-
       .nav-links     { display: none; }
       .nav-hamburger { display: flex; }
       #nav           { padding: 0 28px; }
@@ -1221,11 +1220,11 @@
     @media (max-width: 480px) {
       .hero-title { font-size: 48px; }
       .hero-sub   { font-size: 11px; }
-      body { background-size: 480px auto; }
     }
   </style>
 </head>
 <body>
+  <div class="site-bg" aria-hidden="true"></div>
 
   <!-- ============================================================
        NAVIGATION
