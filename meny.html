@@ -17,8 +17,14 @@
   <meta property="og:url"         content="https://zazha.se/meny.html">
   <meta property="og:title"       content="Meny · Ramen, Poke Bowls & Asiatisk Mat · ZAZHA Södermalm">
   <meta property="og:description" content="Ramen-inspirerade skålar, poke bowls, dumplings och asiatisk gatumat till lunch och middag på Södermalm.">
-  <meta property="og:image"       content="https://zazha.vercel.app/images/og-image.png">
+  <meta property="og:image"       content="https://zazha.se/images/og-image.png">
   <meta property="og:locale"      content="sv_SE">
+
+  <!-- Twitter/iMessage card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Meny · ZAZHA Södermalm">
+  <meta name="twitter:description" content="Ramen-inspirerade skålar, poke bowls och asiatisk gatumat till lunch och middag på Södermalm.">
+  <meta name="twitter:image"       content="https://zazha.se/images/og-image.png">
   <style>
     :root {
       --cream:      #F5F0E8;
@@ -33,17 +39,19 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    #lunchmeny, #middagsmeny, #dryckesmeny { scroll-margin-top: 88px; }
+    #lunchmeny, #middagsmeny, #dryckesmeny, #hela-menyn, #happy-hour, #catering { scroll-margin-top: 88px; }
     body {
       font-family: var(--sans); font-weight: 300; color: var(--charcoal);
       background:
         linear-gradient(rgba(16,14,10,0.64), rgba(16,14,10,0.64)),
-        url('images/meny-wallpaper.jpg');
+        url('images/meny-wallpaper.webp');
       background-repeat: no-repeat, repeat;
       background-size: auto, 900px auto;
       -webkit-font-smoothing: antialiased;
     }
     img  { display: block; max-width: 100%; }
+    picture { display: contents; }
+    :focus-visible { outline: 2px solid var(--terracotta); outline-offset: 3px; }
     a    { text-decoration: none; color: inherit; }
 
     /* ============================================================
@@ -258,6 +266,116 @@
     }
     .meny-section-link:hover { border-color: var(--terracotta); color: var(--cream); transform: translateX(4px); }
 
+    /* ============================================================
+       HELA MENYN — riktig HTML, kategori för kategori
+    ============================================================ */
+    #hela-menyn {
+      padding: 90px 80px 110px;
+      text-align: center;
+    }
+    .meny-full-eyebrow {
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 12px;
+    }
+    .meny-full-heading {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(32px, 4vw, 54px);
+      letter-spacing: 0.06em;
+      color: var(--cream);
+      text-shadow: 0 2px 16px rgba(0,0,0,0.5);
+    }
+    .meny-full-note {
+      max-width: 560px;
+      margin: 18px auto 0;
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--sand);
+      opacity: 0.85;
+    }
+    .meny-cats {
+      max-width: 1180px;
+      margin: 56px auto 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+      text-align: left;
+    }
+    .meny-cat {
+      background: rgba(245, 240, 232, 0.05);
+      border: 1px solid rgba(245, 240, 232, 0.12);
+      border-radius: 10px;
+      padding: 34px 32px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.30);
+    }
+    .meny-cat h3 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 26px;
+      color: var(--terracotta);
+      letter-spacing: 0.04em;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(184,92,56,0.3);
+    }
+    .meny-cat h4 {
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sand);
+      opacity: 0.6;
+      margin: 20px 0 10px;
+    }
+    .meny-cat h4:first-of-type { margin-top: 0; }
+    .meny-cat ul { list-style: none; }
+    .meny-item { margin-bottom: 16px; }
+    .meny-item:last-child { margin-bottom: 0; }
+    .meny-item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 14px;
+      font-family: var(--sans);
+    }
+    .meny-item-name { color: var(--cream); font-weight: 500; font-size: 14.5px; }
+    .meny-item-price { color: var(--sand); font-size: 13.5px; white-space: nowrap; }
+    .meny-item-desc {
+      color: var(--sand);
+      opacity: 0.72;
+      font-size: 12.5px;
+      line-height: 1.6;
+      margin-top: 3px;
+      font-weight: 300;
+    }
+    .meny-full-download {
+      display: inline-block;
+      margin-top: 52px;
+      padding: 14px 36px;
+      border: 1.5px solid var(--sand);
+      color: var(--cream);
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+    .meny-full-download:hover { background: var(--terracotta); border-color: var(--terracotta); color: var(--cream); }
+    @media (max-width: 900px) {
+      #hela-menyn { padding: 64px 24px 80px; }
+      .meny-cats { grid-template-columns: 1fr; gap: 20px; }
+      .meny-cat { padding: 28px 24px; }
+    }
+
     /* ---- Lightbox — förstorad meny ---- */
     .meny-lightbox {
       position: fixed;
@@ -351,9 +469,10 @@
       <li class="has-dropdown">
         <a href="meny.html">Meny <span class="nav-arrow">▾</span></a>
         <div class="dropdown">
-          <a href="images/zazha-meny.jpg" class="open-full-meny">Lunchmeny</a>
-          <a href="images/zazha-meny.jpg" class="open-full-meny">Middagsmeny</a>
-          <a href="images/zazha-meny.jpg" class="open-full-meny">Dryckesmeny</a>
+          <a href="#lunchmeny">Lunchmeny</a>
+          <a href="#middagsmeny">Middagsmeny</a>
+          <a href="#dryckesmeny">Dryckesmeny</a>
+          <a href="#hela-menyn">Hela menyn</a>
           <a href="#happy-hour">After Work</a>
           <a href="#catering">Catering</a>
         </div>
@@ -386,9 +505,11 @@
   <section id="lunchmeny" class="meny-section">
     <div class="meny-section-inner">
       <div class="meny-section-img" id="img-lunch">
-        <!-- Ersätt src med din bild: src="images/lunch.jpg" -->
-        <img src="images/lunch.jpg" alt="Lunchmeny"
-             onerror="this.closest('.meny-section-img').classList.add('empty')">
+        <picture>
+          <source srcset="images/lunch.webp" type="image/webp">
+          <img src="images/lunch.jpg" alt="Lunchmeny" width="1170" height="1443" loading="lazy" decoding="async"
+               onerror="this.closest('.meny-section-img').classList.add('empty')">
+        </picture>
         <div class="meny-img-placeholder">
           <span>＋</span>
           <span>Lägg till bild<br>images/lunch.jpg</span>
@@ -400,7 +521,7 @@
         <div class="meny-section-body" data-edit-id="lunch-body">
           Asiatisk mat på Södermalm — ramen, poké och comfort food, allt serverat i skål. Välj ris eller nudlar. Till det smårätter som funkar lika bra till en öl som till maten. Samma meny hela dagen, från lunch till sent.<br><br>Alltid till bra priser.
         </div>
-        <a href="images/zazha-meny.jpg" class="meny-section-link open-full-meny" data-edit-id="lunch-link">Se lunchmenyn →</a>
+        <a href="#hela-menyn" class="meny-section-link" data-edit-id="lunch-link">Se lunchmenyn →</a>
       </div>
     </div>
   </section>
@@ -409,9 +530,11 @@
   <section id="middagsmeny" class="meny-section meny-reverse">
     <div class="meny-section-inner">
       <div class="meny-section-img" id="img-middag">
-        <!-- Ersätt src: src="images/middag.jpg" -->
-        <img src="images/middag.jpg" alt="Middagsmeny"
-             onerror="this.closest('.meny-section-img').classList.add('empty')">
+        <picture>
+          <source srcset="images/middag.webp" type="image/webp">
+          <img src="images/middag.jpg" alt="Middagsmeny" width="1122" height="1402" loading="lazy" decoding="async"
+               onerror="this.closest('.meny-section-img').classList.add('empty')">
+        </picture>
         <div class="meny-img-placeholder">
           <span>＋</span>
           <span>Lägg till bild<br>images/middag.jpg</span>
@@ -423,7 +546,7 @@
         <div class="meny-section-body" data-edit-id="middag-body">
           Signature bowls med ramen- och pokéinfluenser, plus smårätter som funkar lika bra till en öl som till maten. Köket är öppet till sent — beställ en skål vid baren klockan elva om du vill.
         </div>
-        <a href="images/zazha-meny.jpg" class="meny-section-link open-full-meny" data-edit-id="middag-link">Se middagsmenyn →</a>
+        <a href="#hela-menyn" class="meny-section-link" data-edit-id="middag-link">Se middagsmenyn →</a>
       </div>
     </div>
   </section>
@@ -432,9 +555,11 @@
   <section id="dryckesmeny" class="meny-section">
     <div class="meny-section-inner">
       <div class="meny-section-img" id="img-dryck">
-        <!-- Ersätt src: src="images/dryck.jpg" -->
-        <img src="images/dryck.jpg" alt="Dryckesmeny"
-             onerror="this.closest('.meny-section-img').classList.add('empty')">
+        <picture>
+          <source srcset="images/dryck.webp" type="image/webp">
+          <img src="images/dryck.jpg" alt="Dryckesmeny" width="1170" height="1381" loading="lazy" decoding="async"
+               onerror="this.closest('.meny-section-img').classList.add('empty')">
+        </picture>
         <div class="meny-img-placeholder">
           <span>＋</span>
           <span>Lägg till bild<br>images/dryck.jpg</span>
@@ -446,9 +571,198 @@
         <div class="meny-section-body" data-edit-id="dryck-body">
           Bar på Södermalm med öl på tapp, vin och husets roligaste cocktails. Och Sveriges billigaste Guinness — inte som erbjudande, utan som pris.
         </div>
-        <a href="images/zazha-meny.jpg" class="meny-section-link open-full-meny" data-edit-id="dryck-link">Se dryckesmenyn →</a>
+        <a href="#hela-menyn" class="meny-section-link" data-edit-id="dryck-link">Se dryckesmenyn →</a>
       </div>
     </div>
+  </section>
+
+  <!-- ============================================================
+       HELA MENYN — riktig HTML (bild finns kvar som valfri nedladdning)
+  ============================================================ -->
+  <section id="hela-menyn" aria-label="Hela menyn">
+    <p class="meny-full-eyebrow">hela menyn</p>
+    <h2 class="meny-full-heading">Mat &amp; dryck</h2>
+    <p class="meny-full-note">Allergier eller frågor om en rätt? Fråga oss på plats eller mejla <a href="mailto:info@zazha.se" style="color:var(--terracotta)">info@zazha.se</a>.</p>
+
+    <div class="meny-cats">
+
+      <!-- BOWLS -->
+      <div class="meny-cat">
+        <h3>Bowls</h3>
+        <ul>
+          <li class="meny-item">
+            <div class="meny-item-row"><span class="meny-item-name">Pork Fiction</span><span class="meny-item-price">169 kr</span></div>
+            <p class="meny-item-desc">Långbakad fläsksida, jasminris, edamame, kimchi, inlagd gurka, syrlig rödkål. Sås: Sriracha-Yuzu Mayo.</p>
+          </li>
+          <li class="meny-item">
+            <div class="meny-item-row"><span class="meny-item-name">Yaki Zan</span><span class="meny-item-price">179 kr</span></div>
+            <p class="meny-item-desc">Yakiniku-marinerat nötkött, jasminris, edamame, inlagd rättika, böngroddar, syrlig rödkål, onsenägg. Sås: Yakiniku Sauce.</p>
+          </li>
+          <li class="meny-item">
+            <div class="meny-item-row"><span class="meny-item-name">Chicken Business</span><span class="meny-item-price">159 kr</span></div>
+            <p class="meny-item-desc">Grillad teriyakikyckling, jasminris, edamame, avokado, mango, kimchi, onsenägg. Sås: Teriyaki Sauce.</p>
+          </li>
+          <li class="meny-item">
+            <div class="meny-item-row"><span class="meny-item-name">Tofu Town 🌱</span><span class="meny-item-price">149 kr</span></div>
+            <p class="meny-item-desc">Krispig tofu, jasminris, edamame, avokado, böngroddar, inlagd gurka, inlagd rättika. Sås: Spicy Sriracha Mayo.</p>
+          </li>
+          <li class="meny-item">
+            <div class="meny-item-row"><span class="meny-item-name">Karaage Kid</span><span class="meny-item-price">159 kr</span></div>
+            <p class="meny-item-desc">Krispig japansk karaagekyckling, jasminris, edamame, avokado, syrlig rödkål, inlagd gurka. Sås: Mango-Yuzu Curry Mayo.</p>
+          </li>
+          <li class="meny-item">
+            <div class="meny-item-row"><span class="meny-item-name">Orange Crunch</span><span class="meny-item-price">159 kr</span></div>
+            <p class="meny-item-desc">Krispig kyckling, jasminris, edamame, kimchi, syrlig rödkål, inlagd gurka. Sås: ZAZHA Orange Sauce.</p>
+          </li>
+          <li class="meny-item">
+            <div class="meny-item-row"><span class="meny-item-name">Salmon Says</span><span class="meny-item-price">179 kr</span></div>
+            <p class="meny-item-desc">Marinerad lax, jasminris, avokado, edamame, gurka, mango, sjögrässallad. Sås: Wasabi-Yuzu Ponzu.</p>
+          </li>
+          <li class="meny-item">
+            <div class="meny-item-row"><span class="meny-item-name">Tuna Turner</span><span class="meny-item-price">179 kr</span></div>
+            <p class="meny-item-desc">Marinerad tonfisk, jasminris, avokado, edamame, gurka, mango, sjögrässallad. Sås: Gochujang-Lime Sauce.</p>
+          </li>
+          <li class="meny-item">
+            <div class="meny-item-row"><span class="meny-item-name">Soy Nice 🌱</span><span class="meny-item-price">149 kr</span></div>
+            <p class="meny-item-desc">Umamitofu, jasminris, avokado, edamame, gurka, mango, sjögrässallad. Sås: Goma Sesame Dressing.</p>
+          </li>
+          <li class="meny-item">
+            <div class="meny-item-row"><span class="meny-item-name">Prawn Star</span><span class="meny-item-price">169 kr</span></div>
+            <p class="meny-item-desc">Krispiga vårrullar med räkor, glasnudlar, gurka, böngroddar, romansallad. Sås: Seafood Yum Sauce.</p>
+          </li>
+        </ul>
+        <h4>Extras</h4>
+        <ul>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Svart ris</span><span class="meny-item-price">+15 kr</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Onsenägg</span><span class="meny-item-price">+25 kr</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Extra ZAZHA-sås</span><span class="meny-item-price">+15 kr</span></div></li>
+        </ul>
+      </div>
+
+      <!-- RAMEN -->
+      <div class="meny-cat">
+        <h3>Ramen</h3>
+        <ul>
+          <li class="meny-item">
+            <div class="meny-item-row"><span class="meny-item-name">Chicken Soup Club</span><span class="meny-item-price">159 kr</span></div>
+            <p class="meny-item-desc">Kyckling, ramennudlar, fyllig kycklingbuljong, skogssvamp, salladslök, onsenägg.</p>
+          </li>
+          <li class="meny-item">
+            <div class="meny-item-row"><span class="meny-item-name">Pork Side Story</span><span class="meny-item-price">169 kr</span></div>
+            <p class="meny-item-desc">Långbakad fläsksida, ramennudlar, fyllig kycklingbuljong, skogssvamp, salladslök, onsenägg.</p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- SIDES -->
+      <div class="meny-cat">
+        <h3>Sides</h3>
+        <p class="meny-item-desc" style="margin-bottom:16px;">Perfekta att dela — eller behålla själv.</p>
+        <ul>
+          <li class="meny-item">
+            <div class="meny-item-row"><span class="meny-item-name">Sweet Potato Fries 🌱</span><span class="meny-item-price">69 kr</span></div>
+            <p class="meny-item-desc">Krispiga sötpotatispommes, sesam, salladslök. Sriracha Mayo.</p>
+          </li>
+          <li class="meny-item">
+            <div class="meny-item-row"><span class="meny-item-name">Karaage</span><span class="meny-item-price">79 kr</span></div>
+            <p class="meny-item-desc">Krispig japansk karaagekyckling. Mango-Yuzu Curry Mayo.</p>
+          </li>
+          <li class="meny-item">
+            <div class="meny-item-row"><span class="meny-item-name">Tempura Shrimp</span><span class="meny-item-price">89 kr</span></div>
+            <p class="meny-item-desc">Krispiga tempuraräkor. Chili-Yuzu Mayo.</p>
+          </li>
+          <li class="meny-item">
+            <div class="meny-item-row"><span class="meny-item-name">Shrimp Rolls</span><span class="meny-item-price">69 kr</span></div>
+            <p class="meny-item-desc">Gyllene och krispiga vårrullar fyllda med räkor. Seafood Yum Sauce.</p>
+          </li>
+          <li class="meny-item">
+            <div class="meny-item-row"><span class="meny-item-name">Edamame 🌱</span><span class="meny-item-price">49 kr</span></div>
+            <p class="meny-item-desc">Ångade edamamebönor, havssalt.</p>
+          </li>
+          <li class="meny-item">
+            <div class="meny-item-row"><span class="meny-item-name">Kimchi 🌶</span><span class="meny-item-price">39 kr</span></div>
+            <p class="meny-item-desc">Koreansk fermenterad kål, syrlig, smakrik, lätt het.</p>
+          </li>
+          <li class="meny-item">
+            <div class="meny-item-row"><span class="meny-item-name">Inlagd rättika</span><span class="meny-item-price">39 kr</span></div>
+            <p class="meny-item-desc">Syrlig, söt, smakrik.</p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- COCKTAILS -->
+      <div class="meny-cat">
+        <h3>Cocktails</h3>
+        <h4>Signature — Asian Twist</h4>
+        <ul>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Kiss My Ass</span><span class="meny-item-price">150 kr</span></div><p class="meny-item-desc">Vodka, tomat, citron, Tabasco, Tajín.</p></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Hold My Bag</span><span class="meny-item-price">195 kr</span></div><p class="meny-item-desc">Aperol, persikolikör, vodka, citron, grapefrukt.</p></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Trip Tip</span><span class="meny-item-price">150 kr</span></div><p class="meny-item-desc">Mörk rom, kokos, mango, passionsfrukt, lime.</p></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Milk Money</span><span class="meny-item-price">150 kr</span></div><p class="meny-item-desc">Vaniljvodka, matcha, ZAZHA Milk.</p></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Zip It</span><span class="meny-item-price">150 kr</span></div><p class="meny-item-desc">Gin, fläder, citron, lemon-lime soda.</p></li>
+        </ul>
+        <h4>ZAZHA Highballs — Classics, ZAZHA Style</h4>
+        <ul>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Gin There, Done That</span><span class="meny-item-price">98 kr</span></div><p class="meny-item-desc">Gin, tonic, lime.</p></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Rum Away</span><span class="meny-item-price">98 kr</span></div><p class="meny-item-desc">Rom, Coca-Cola, lime.</p></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Oak &amp; Coke</span><span class="meny-item-price">98 kr</span></div><p class="meny-item-desc">Whisky, Coca-Cola.</p></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Skinny Dip</span><span class="meny-item-price">98 kr</span></div><p class="meny-item-desc">Vodka, soda, lime.</p></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Ginger James</span><span class="meny-item-price">98 kr</span></div><p class="meny-item-desc">Jameson, ginger ale, lime.</p></li>
+        </ul>
+      </div>
+
+      <!-- ÖL -->
+      <div class="meny-cat">
+        <h3>Öl</h3>
+        <ul>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Guinness</span><span class="meny-item-price">[PRIS]</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Carlsberg Export</span><span class="meny-item-price">49 kr</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Brooklyn IPA</span><span class="meny-item-price">85 kr</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">1664 Blanc</span><span class="meny-item-price">79 kr</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Singha</span><span class="meny-item-price">78 kr</span></div></li>
+        </ul>
+      </div>
+
+      <!-- VIN -->
+      <div class="meny-cat">
+        <h3>Vin</h3>
+        <h4>Vitt — glas / flaska</h4>
+        <ul>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">[VINNAMN — vitt 1]</span><span class="meny-item-price">95 / 359 kr</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">[VINNAMN — vitt 2]</span><span class="meny-item-price">135 / 555 kr</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">[VINNAMN — vitt 3]</span><span class="meny-item-price">135 / 595 kr</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">[VINNAMN — vitt 4]</span><span class="meny-item-price">— / 695 kr</span></div></li>
+        </ul>
+        <h4>Rött — glas / flaska</h4>
+        <ul>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">[VINNAMN — rött 1]</span><span class="meny-item-price">95 / 359 kr</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">[VINNAMN — rött 2]</span><span class="meny-item-price">135 / 555 kr</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">[VINNAMN — rött 3]</span><span class="meny-item-price">149 / 650 kr</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">[VINNAMN — rött 4]</span><span class="meny-item-price">149 / 650 kr</span></div></li>
+        </ul>
+        <h4>Mousserande — glas / flaska</h4>
+        <ul>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">[VINNAMN — cava]</span><span class="meny-item-price">95 / 450 kr</span></div></li>
+        </ul>
+      </div>
+
+      <!-- CIDER -->
+      <div class="meny-cat">
+        <h3>Cider</h3>
+        <ul>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Somersby Pear 33 cl</span><span class="meny-item-price">79 kr</span></div></li>
+        </ul>
+        <h4>Övrigt</h4>
+        <ul>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Läsk</span><span class="meny-item-price">35 kr</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Alkoholfri öl / cider</span><span class="meny-item-price">från 40 kr</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Mocktails 🌱</span><span class="meny-item-price">från 95 kr</span></div></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <a href="images/zazha-meny.jpg" class="meny-full-download open-full-meny">Visa menyn som bild ↓</a>
   </section>
 
   <!-- AFTER WORK -->
@@ -466,9 +780,11 @@
   <section id="catering" class="meny-section meny-reverse">
     <div class="meny-section-inner">
       <div class="meny-section-img" id="img-catering">
-        <!-- Ersätt src: src="images/catering.jpg" -->
-        <img src="images/catering.jpg" alt="Catering"
-             onerror="this.closest('.meny-section-img').classList.add('empty')">
+        <picture>
+          <source srcset="images/catering.webp" type="image/webp">
+          <img src="images/catering.jpg" alt="Catering" width="1170" height="1550" loading="lazy" decoding="async"
+               onerror="this.closest('.meny-section-img').classList.add('empty')">
+        </picture>
         <div class="meny-img-placeholder">
           <span>＋</span>
           <span>Lägg till bild<br>images/catering.jpg</span>
@@ -493,15 +809,19 @@
     <div class="footer-social" data-edit-id="footer-social">
       <a href="https://instagram.com/zazha.sthlm" target="_blank" rel="noopener">@zazha.sthlm</a>
     </div>
-    <p class="footer-copy" data-edit-id="footer-copy">© 2025 ZAZHA Asian Bistro &amp; Bar</p>
+    <p class="footer-copy" data-edit-id="footer-copy">© <span id="footer-year">2026</span> ZAZHA Asian Bistro &amp; Bar</p>
   </footer>
 
   <div id="meny-lightbox" class="meny-lightbox" role="dialog" aria-modal="true" aria-label="ZAZHA meny" hidden>
     <button type="button" class="meny-lightbox-close" id="meny-lightbox-close" aria-label="Stäng">✕</button>
-    <img src="images/zazha-meny.jpg" alt="ZAZHA meny — bowls, ramen, sides, cocktails, öl, vin och cider">
+    <img id="meny-lightbox-img" data-src="images/zazha-meny.webp" data-fallback="images/zazha-meny.jpg" alt="ZAZHA meny — bowls, ramen, sides, cocktails, öl, vin och cider" width="1492" height="1054">
   </div>
 
   <script>
+    // Footer copyright year
+    const footerYear = document.getElementById('footer-year');
+    if (footerYear) footerYear.textContent = new Date().getFullYear();
+
     // Scroll-aware nav
     const nav = document.getElementById('nav');
     function updateNav() {
@@ -521,8 +841,16 @@
 
     // Meny-lightbox — alla "Se X-menyn" / dropdown-länkar öppnar samma bild
     const menyLightbox = document.getElementById('meny-lightbox');
+    const menyLightboxImg = document.getElementById('meny-lightbox-img');
     const menyCloseBtn = document.getElementById('meny-lightbox-close');
-    function openMenyLightbox() { menyLightbox.hidden = false; document.body.style.overflow = 'hidden'; }
+    function openMenyLightbox() {
+      if (menyLightboxImg && !menyLightboxImg.src) {
+        menyLightboxImg.onerror = () => { menyLightboxImg.onerror = null; menyLightboxImg.src = menyLightboxImg.dataset.fallback; };
+        menyLightboxImg.src = menyLightboxImg.dataset.src;
+      }
+      menyLightbox.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
     function closeMenyLightbox() { menyLightbox.hidden = true; document.body.style.overflow = ''; }
     document.querySelectorAll('.open-full-meny').forEach(a => {
       a.addEventListener('click', e => { e.preventDefault(); openMenyLightbox(); });

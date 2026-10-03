@@ -27,7 +27,7 @@
   <meta property="og:url"         content="https://zazha.se/">
   <meta property="og:title"       content="ZAZHA · Asiatisk Mat på Södermalm · Ramen, Poke Bowls & Lunch">
   <meta property="og:description" content="Asiatisk bistro & bar på Medborgarplatsen, Södermalm. Ramen-inspirerade skålar, poke bowls och asiatisk gatumat till lunch, middag och after work.">
-  <meta property="og:image"       content="https://zazha.vercel.app/images/og-image.png">
+  <meta property="og:image"       content="https://zazha.se/images/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale"      content="sv_SE">
@@ -36,7 +36,7 @@
   <meta name="twitter:card"        content="summary_large_image">
   <meta name="twitter:title"       content="ZAZHA — Asiatisk Bistro & Bar · Södermalm">
   <meta name="twitter:description" content="Ramen, poke bowls och asiatisk gatumat på Södermalm. Bar-first bistro i Söderhallarna.">
-  <meta name="twitter:image"       content="https://zazha.vercel.app/images/og-image.png">
+  <meta name="twitter:image"       content="https://zazha.se/images/og-image.png">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -58,8 +58,18 @@
     },
     "servesCuisine": ["Asian", "Japanese", "Korean", "Chinese", "Asian Fusion", "Ramen", "Poke"],
     "priceRange": "$",
-    "openingHours": ["Mo-Fr 11:00-23:00", "Sa 11:00-23:00", "Su 11:00-23:00"],
+    "openingHours": ["Mo-Su 11:00-23:00"],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "11:00",
+        "closes": "23:00"
+      }
+    ],
+    "acceptsReservations": "False",
     "hasMenu": "https://zazha.se/meny.html",
+    "menu": "https://zazha.se/meny.html",
     "url": "https://zazha.se",
     "telephone": "+46702522200",
     "sameAs": ["https://instagram.com/zazha.sthlm"],
@@ -146,16 +156,20 @@
       position: fixed;
       inset: 0;
       z-index: -1;
-      background: url('images/hero-wall.jpg') center / cover no-repeat;
+      background: url('images/hero-wall.webp') center / cover no-repeat;
     }
 
     img { display: block; max-width: 100%; }
+    picture { display: contents; }
+    :focus-visible { outline: 2px solid var(--terracotta); outline-offset: 3px; }
     a   { text-decoration: none; color: inherit; }
 
     /* ============================================================
        NAVIGATION
        Transparent over hero → cream bg when scrolled
     ============================================================ */
+    #events { scroll-margin-top: 88px; }
+
     #nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -328,7 +342,7 @@
     #hero {
       position: relative;
       height: 100vh;
-      background: #0a0603;
+      background: transparent;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -338,12 +352,12 @@
       padding: 100px 40px 48px;
     }
 
-    /* Ren väggtextur — fyller hela hero som bakgrund, ingen text att dölja */
+    /* Mörklägger .site-bg (samma väggtextur, fast fixed) under hero i stället
+       för att hämta bilden en gång till — sparar ~600 kB på förstaladdningen. */
     .hero-backdrop {
       position: absolute;
       inset: 0;
-      background: url('images/hero-wall.jpg') center / cover no-repeat;
-      filter: brightness(0.62) saturate(1.1);
+      background: rgba(10, 6, 3, 0.48);
       z-index: 0;
     }
 
@@ -376,6 +390,17 @@
       flex-direction: column;
       align-items: center;
       padding-top: 24px;
+    }
+
+    .hero-tagline {
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--cream);
+      letter-spacing: 0.06em;
+      text-shadow: 0 2px 14px rgba(0,0,0,0.7);
+      margin-bottom: 10px;
+      text-align: center;
     }
 
     .hero-sub {
@@ -1233,9 +1258,9 @@
     <ul class="nav-links">
       <li><a href="#concept">Om oss</a></li>
       <li><a href="meny.html">Meny</a></li>
-      <li><a href="#instagram">Events</a></li>
+      <li><a href="#events">Events</a></li>
       <li><a href="#hitta-oss">Kontakt</a></li>
-      <li><a href="#boka" class="nav-cta">Öppnar 23 oktober</a></li>
+      <li><a href="#hitta-oss" class="nav-cta">Öppnar 23 oktober</a></li>
     </ul>
 
     <button class="nav-hamburger" id="hamburger" aria-label="Öppna meny" aria-expanded="false">
@@ -1250,9 +1275,9 @@
     <button id="menu-close" aria-label="Stäng meny">stäng ✕</button>
     <a href="#concept">Om oss</a>
     <a href="meny.html">Meny</a>
-    <a href="#instagram">Events</a>
+    <a href="#events">Events</a>
     <a href="#hitta-oss">Kontakt</a>
-    <a href="#boka">Öppnar 23 oktober</a>
+    <a href="#hitta-oss">Öppnar 23 oktober</a>
   </div>
 
   <!-- ============================================================
@@ -1260,14 +1285,17 @@
        Full-bleed bar scene illustration with gradient + wordmark overlay
   ============================================================ -->
   <section id="hero" aria-label="Välkommen till ZAZHA">
-    <h1 class="sr-only">ZAZHA — Asiatisk Bistro &amp; Bar på Södermalm | Ramen, Poke Bowls &amp; Lunch vid Medborgarplatsen</h1>
     <div class="hero-backdrop"></div>
     <div class="hero-poster-wrap">
-      <img src="images/hero-poster-cutout.png" alt="ZAZHA — Öl, Vin, Skål" class="hero-poster">
+      <picture>
+        <source srcset="images/hero-poster-cutout.webp" type="image/webp">
+        <img src="images/hero-poster-cutout.png" alt="ZAZHA — Öl, Vin, Skål" class="hero-poster" width="900" height="1225" fetchpriority="high">
+      </picture>
     </div>
     <div class="hero-content">
+      <h1 class="hero-tagline">Asiatisk bistro &amp; bar på Medis</h1>
       <p class="hero-sub" data-edit-id="hero-sub">MEDBORGARPLATSEN 3, SÖDERMALM, STOCKHOLM</p>
-      <a href="https://instagram.com/zazha.sthlm" target="_blank" rel="noopener" class="hero-btn" data-edit-id="hero-btn">ÖPPNAR 23 OKTOBER</a>
+      <a href="#hitta-oss" class="hero-btn" data-edit-id="hero-btn">ÖPPNAR 23 OKTOBER</a>
     </div>
   </section>
 
@@ -1278,7 +1306,10 @@
     <p class="meny-preview-eyebrow">öl · vin · skål</p>
     <h2 class="meny-preview-heading">MENY</h2>
     <button type="button" class="meny-preview-frame" id="meny-preview-open" aria-label="Förstora menyn">
-      <img src="images/zazha-meny.jpg" alt="ZAZHA meny — bowls, ramen, sides, cocktails, öl, vin och cider" loading="lazy">
+      <picture>
+        <source srcset="images/zazha-meny.webp" type="image/webp">
+        <img src="images/zazha-meny.jpg" alt="ZAZHA meny — bowls, ramen, sides, cocktails, öl, vin och cider" width="1492" height="1054" loading="lazy" decoding="async">
+      </picture>
     </button>
     <a href="meny.html" class="meny-preview-link">Till hela menyn →</a>
 
@@ -1292,7 +1323,7 @@
 
   <div id="meny-lightbox" class="meny-lightbox" role="dialog" aria-modal="true" aria-label="ZAZHA meny" hidden>
     <button type="button" class="meny-lightbox-close" id="meny-lightbox-close" aria-label="Stäng">✕</button>
-    <img src="images/zazha-meny.jpg" alt="ZAZHA meny — bowls, ramen, sides, cocktails, öl, vin och cider">
+    <img id="meny-lightbox-img" data-src="images/zazha-meny.webp" data-fallback="images/zazha-meny.jpg" alt="ZAZHA meny — bowls, ramen, sides, cocktails, öl, vin och cider" width="1492" height="1054">
   </div>
 
   <!-- ============================================================
@@ -1304,7 +1335,7 @@
         <div class="concept-card-grid">
           <div>
             <p class="concept-eyebrow">asiatisk mat · södermalm</p>
-            <h2 class="concept-quote" data-edit-id="concept-quote">SKÅL -<br>
+            <h2 class="concept-quote" data-edit-id="concept-quote">SKÅL –<br>
             på alla sätt<br>det kan betyda.
             </h2>
           </div>
@@ -1316,7 +1347,10 @@
           </div>
         </div>
       </div>
-      <img src="images/tiger-peek.png" class="concept-mascot" alt="">
+      <picture>
+        <source srcset="images/tiger-peek.webp" type="image/webp">
+        <img src="images/tiger-peek.png" class="concept-mascot" alt="" aria-hidden="true" width="1150" height="1368" loading="lazy" decoding="async">
+      </picture>
     </div>
   </section>
 
@@ -1326,9 +1360,12 @@
   <section id="guinness" aria-label="Guinness">
     <div class="guinness-inner">
       <div class="guinness-img">
-        <video id="guinness-vid" autoplay muted loop playsinline preload="auto">
+        <video id="guinness-vid" autoplay muted loop playsinline preload="none" poster="images/guinness-grand.webp" width="1086" height="1448">
           <source src="images/guinness-video.mp4" type="video/mp4">
-          <img src="images/guinness-grand.png" alt="Neonupplyst gränd — ZAZHA Guinness">
+          <picture>
+            <source srcset="images/guinness-grand.webp" type="image/webp">
+            <img src="images/guinness-grand.jpg" alt="Neonupplyst gränd — ZAZHA Guinness" width="1086" height="1448" loading="lazy" decoding="async">
+          </picture>
         </video>
         <button class="guinness-sound-btn" id="guinness-sound" aria-label="Ljud på/av" title="Ljud på/av">🔇</button>
       </div>
@@ -1353,12 +1390,15 @@
     <h2 class="lokal-heading" data-edit-id="lokal-heading">MITT PÅ MEDIS</h2>
     <div class="lokal-hero">
       <div class="lokal-hero-img">
-        <img src="images/lokal-hero.jpg" alt="ZAZHA — uteservering vid kvällstid">
+        <picture>
+          <source srcset="images/lokal-hero.webp" type="image/webp">
+          <img src="images/lokal-hero.jpg" alt="ZAZHA — uteservering vid kvällstid" width="1154" height="2048" loading="lazy" decoding="async">
+        </picture>
       </div>
       <div class="lokal-hero-text poster-card">
         <p class="lokal-hero-label">platsen</p>
         <p class="lokal-hero-quote" data-edit-id="lokal-quote">Ett hörn av Södermalm som lever lite längre på kvällen.</p>
-        <p class="lokal-hero-body" data-edit-id="lokal-body">Vi finns i den klassiska paviljongen utanför Söderhallarna — mitt på Medborgarplatsen, mitt i Södermalm. God mat, kall dryck och en av de bästa lunchplatserna på Södermalm. Kom för ett glas, stanna för maten. Eller tvärtom.&nbsp;<br><br>11-sent varje dag!</p>
+        <p class="lokal-hero-body" data-edit-id="lokal-body">Vi finns i den klassiska paviljongen utanför Söderhallarna — mitt på Medborgarplatsen, mitt i Södermalm. God mat, kall dryck och en av de bästa lunchplatserna på Södermalm. Kom för ett glas, stanna för maten. Eller tvärtom.&nbsp;<br><br>Alla dagar 11–sent!</p>
       </div>
     </div>
   </section>
@@ -1381,9 +1421,12 @@
 
     <span class="insta-divider" aria-hidden="true"></span>
 
-    <div class="events-inner">
+    <div class="events-inner" id="events">
       <div class="events-photo">
-        <img src="images/event.jpg" alt="Gäster på ZAZHA">
+        <picture>
+          <source srcset="images/event.webp" type="image/webp">
+          <img src="images/event.jpg" alt="Gäster på ZAZHA" width="481" height="573" loading="lazy" decoding="async">
+        </picture>
       </div>
       <div class="events-content poster-card">
         <h2 class="events-heading" data-edit-id="events-heading">EVENTS</h2>
@@ -1391,7 +1434,7 @@
 Oavsett om det är företagsfest, födelsedagsmiddag eller
 något helt eget, är ZAZHA på Södermalm scenen för det.
 
-ni bestämmer anledningen - vi fixar resten.</div>
+Ni bestämmer anledningen - vi fixar resten.</div>
 
         <a href="#hitta-oss" class="events-contact-btn">Kontakta oss</a>
       </div>
@@ -1406,14 +1449,12 @@ ni bestämmer anledningen - vi fixar resten.</div>
       <div class="poster-card hitta-info">
         <div class="hitta-name">ZAZHA</div>
         <div class="hitta-address">
-          Söderhallarna<br>
-          Södermalm, Stockholm
+          Medborgarplatsen 3<br>
+          118 26 Stockholm
         </div>
         <span class="hitta-divider" aria-hidden="true"></span>
         <div class="hitta-hours">
-          Mån–fre: 11–sent<br>
-          Lördag: 11–sent<br>
-          Söndag: 11–sent<br>After Work: Dagligen!
+          Alla dagar: 11–sent<br>After Work: Dagligen!
         </div>
         <span class="hitta-divider" aria-hidden="true"></span>
         <div class="hitta-contact">
@@ -1445,7 +1486,10 @@ ni bestämmer anledningen - vi fixar resten.</div>
 
       <!-- ÖL -->
       <div class="ovs-col">
-        <img src="images/tiger-skal.png" class="ovs-mascot" alt="">
+        <picture>
+          <source srcset="images/tiger-skal.webp" type="image/webp">
+          <img src="images/tiger-skal.png" class="ovs-mascot" alt="" aria-hidden="true" width="1341" height="1173" loading="lazy" decoding="async">
+        </picture>
         <span class="ovs-rule" aria-hidden="true"></span>
         <div class="ovs-word" data-edit-id="ovs-ol">ÖL</div>
         <div class="ovs-desc" data-edit-id="ovs-ol-desc">det enkla nöjet.</div>
@@ -1453,7 +1497,10 @@ ni bestämmer anledningen - vi fixar resten.</div>
 
       <!-- VIN -->
       <div class="ovs-col">
-        <img src="images/tiger-meny.png" class="ovs-mascot" alt="">
+        <picture>
+          <source srcset="images/tiger-meny.webp" type="image/webp">
+          <img src="images/tiger-meny.png" class="ovs-mascot" alt="" aria-hidden="true" width="1231" height="1278" loading="lazy" decoding="async">
+        </picture>
         <span class="ovs-rule" aria-hidden="true"></span>
         <div class="ovs-word" data-edit-id="ovs-vin">VIN</div>
         <div class="ovs-desc" data-edit-id="ovs-vin-desc">det valda njutandet.</div>
@@ -1461,7 +1508,10 @@ ni bestämmer anledningen - vi fixar resten.</div>
 
       <!-- SKÅL -->
       <div class="ovs-col">
-        <img src="images/tiger-bowl-new.png" class="ovs-mascot" alt="">
+        <picture>
+          <source srcset="images/tiger-bowl-new.webp" type="image/webp">
+          <img src="images/tiger-bowl-new.png" class="ovs-mascot" alt="" aria-hidden="true" width="1268" height="1241" loading="lazy" decoding="async">
+        </picture>
         <span class="ovs-rule" aria-hidden="true"></span>
         <div class="ovs-word" data-edit-id="ovs-skal">SKÅL</div>
         <div class="ovs-desc" data-edit-id="ovs-skal-desc">glaset och skålen. båda.</div>
@@ -1480,17 +1530,18 @@ ni bestämmer anledningen - vi fixar resten.</div>
       <div class="footer-social" data-edit-id="footer-social">
         <a href="https://instagram.com/zazha.sthlm" target="_blank" rel="noopener">@zazha.sthlm</a>
       </div>
-      <p class="footer-copy" data-edit-id="footer-copy">© 2025 ZAZHA Asian Bistro &amp; Bar</p>
+      <p class="footer-copy" data-edit-id="footer-copy">© <span id="footer-year">2026</span> ZAZHA Asian Bistro &amp; Bar</p>
     </div>
-    <p style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;">
-      ZAZHA är Stockholms billigaste Guinness. Vi är en asiatisk restaurang på Södermalm och en bar på Medborgarplatsen i Stockholm. God asiatisk mat och billig lunch på Södermalm varje dag från klockan 11. After work Södermalm, bar Medborgarplatsen, asiatisk bistro Stockholm. Bra lunch Södermalm, billig middag Stockholm, Guinness Stockholm, Guinness Södermalm.
-    </p>
   </footer>
 
   <!-- ============================================================
        JAVASCRIPT — nav, hamburger menu, live text editing
   ============================================================ -->
   <script>
+    // --- Footer copyright year ---
+    const footerYear = document.getElementById('footer-year');
+    if (footerYear) footerYear.textContent = new Date().getFullYear();
+
     // --- Scroll-aware nav ---
     const nav  = document.getElementById('nav');
     const hero = document.getElementById('hero');
@@ -1519,11 +1570,19 @@ ni bestämmer anledningen - vi fixar resten.</div>
     mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 
-    // --- Meny-lightbox ---
+    // --- Meny-lightbox --- (bilden laddas bara en gång, första gången den öppnas)
     const menyOpenBtn  = document.getElementById('meny-preview-open');
     const menyLightbox = document.getElementById('meny-lightbox');
+    const menyLightboxImg = document.getElementById('meny-lightbox-img');
     const menyCloseBtn = document.getElementById('meny-lightbox-close');
-    function openMenyLightbox() { menyLightbox.hidden = false; document.body.style.overflow = 'hidden'; }
+    function openMenyLightbox() {
+      if (menyLightboxImg && !menyLightboxImg.src) {
+        menyLightboxImg.onerror = () => { menyLightboxImg.onerror = null; menyLightboxImg.src = menyLightboxImg.dataset.fallback; };
+        menyLightboxImg.src = menyLightboxImg.dataset.src;
+      }
+      menyLightbox.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
     function closeMenyLightbox() { menyLightbox.hidden = true; document.body.style.overflow = ''; }
     if (menyOpenBtn)  menyOpenBtn.addEventListener('click', openMenyLightbox);
     if (menyCloseBtn) menyCloseBtn.addEventListener('click', closeMenyLightbox);
