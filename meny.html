@@ -309,11 +309,11 @@
       text-align: left;
     }
     .meny-cat {
-      background: rgba(245, 240, 232, 0.05);
-      border: 1px solid rgba(245, 240, 232, 0.12);
+      background: rgba(10, 8, 6, 0.78);
+      border: 1px solid rgba(245, 240, 232, 0.16);
       border-radius: 10px;
       padding: 34px 32px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.30);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.45);
     }
     .meny-cat h3 {
       font-family: var(--serif);
@@ -327,12 +327,12 @@
     }
     .meny-cat h4 {
       font-family: var(--sans);
-      font-weight: 500;
-      font-size: 10px;
+      font-weight: 600;
+      font-size: 10.5px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--sand);
-      opacity: 0.6;
+      color: var(--terracotta);
+      opacity: 0.9;
       margin: 20px 0 10px;
     }
     .meny-cat h4:first-of-type { margin-top: 0; }
@@ -346,15 +346,23 @@
       gap: 14px;
       font-family: var(--sans);
     }
-    .meny-item-name { color: var(--cream); font-weight: 500; font-size: 14.5px; }
-    .meny-item-price { color: var(--sand); font-size: 13.5px; white-space: nowrap; }
+    .meny-item-name { color: var(--cream); font-weight: 600; font-size: 15px; }
+    .meny-item-price { color: var(--terracotta); font-weight: 600; font-size: 14px; white-space: nowrap; }
+    .meny-placeholder {
+      color: var(--sand) !important;
+      opacity: 0.7;
+      font-weight: 400 !important;
+      font-style: italic;
+      border-bottom: 1px dashed rgba(196,168,130,0.6);
+      cursor: help;
+    }
     .meny-item-desc {
       color: var(--sand);
-      opacity: 0.72;
+      opacity: 0.92;
       font-size: 12.5px;
       line-height: 1.6;
       margin-top: 3px;
-      font-weight: 300;
+      font-weight: 400;
     }
     .meny-full-download {
       display: inline-block;
@@ -729,7 +737,7 @@
       <div class="meny-cat">
         <h3>Öl</h3>
         <ul>
-          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Guinness</span><span class="meny-item-price">[PRIS]</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Guinness</span><span class="meny-item-price meny-placeholder" title="Pris saknas i källan — fyll i">[PRIS]</span></div></li>
           <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Carlsberg Export</span><span class="meny-item-price">49 kr</span></div></li>
           <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Brooklyn IPA</span><span class="meny-item-price">85 kr</span></div></li>
           <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">1664 Blanc</span><span class="meny-item-price">79 kr</span></div></li>
@@ -742,21 +750,21 @@
         <h3>Vin</h3>
         <h4>Vitt — glas / flaska</h4>
         <ul>
-          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">[VINNAMN — vitt 1]</span><span class="meny-item-price">95 / 359 kr</span></div></li>
-          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">[VINNAMN — vitt 2]</span><span class="meny-item-price">135 / 555 kr</span></div></li>
-          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">[VINNAMN — vitt 3]</span><span class="meny-item-price">135 / 595 kr</span></div></li>
-          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">[VINNAMN — vitt 4]</span><span class="meny-item-price">— / 695 kr</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Le Arche Primitia Bianco</span><span class="meny-item-price">95 / 359 kr</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Les Deux Pins Sauvignon Blanc</span><span class="meny-item-price">135 / 555 kr</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Sun Gate Chardonnay</span><span class="meny-item-price">135 / 595 kr</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Laugal Cuvée Riesling</span><span class="meny-item-price">— / 695 kr</span></div></li>
         </ul>
         <h4>Rött — glas / flaska</h4>
         <ul>
-          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">[VINNAMN — rött 1]</span><span class="meny-item-price">95 / 359 kr</span></div></li>
-          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">[VINNAMN — rött 2]</span><span class="meny-item-price">135 / 555 kr</span></div></li>
-          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">[VINNAMN — rött 3]</span><span class="meny-item-price">149 / 650 kr</span></div></li>
-          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">[VINNAMN — rött 4]</span><span class="meny-item-price">149 / 650 kr</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Le Arche Primitia Rosso</span><span class="meny-item-price">95 / 359 kr</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Woods Street Line Côtes du Rhône</span><span class="meny-item-price">135 / 555 kr</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Victor Berard Côtes du Rhône</span><span class="meny-item-price">149 / 650 kr</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">Il Fortino Chianti Classico</span><span class="meny-item-price">149 / 650 kr</span></div></li>
         </ul>
         <h4>Mousserande — glas / flaska</h4>
         <ul>
-          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">[VINNAMN — cava]</span><span class="meny-item-price">95 / 450 kr</span></div></li>
+          <li class="meny-item"><div class="meny-item-row"><span class="meny-item-name">MVSA Cava Brut</span><span class="meny-item-price">95 / 450 kr</span></div></li>
         </ul>
       </div>
 
