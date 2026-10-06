@@ -39,7 +39,7 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    #lunchmeny, #middagsmeny, #dryckesmeny, #hela-menyn, #happy-hour, #catering { scroll-margin-top: 88px; }
+    #lunchmeny, #middagsmeny, #dryckesmeny, #meny-mat, #meny-dryck, #happy-hour, #catering { scroll-margin-top: 88px; }
     body {
       font-family: var(--sans); font-weight: 300; color: var(--charcoal);
       background:
@@ -269,7 +269,7 @@
     /* ============================================================
        HELA MENYN — riktig HTML, kategori för kategori
     ============================================================ */
-    #hela-menyn {
+    .meny-full-section {
       padding: 90px 80px 110px;
       text-align: center;
     }
@@ -371,7 +371,7 @@
     }
     .meny-full-download:hover { background: var(--terracotta); border-color: var(--terracotta); color: var(--cream); }
     @media (max-width: 900px) {
-      #hela-menyn { padding: 64px 24px 80px; }
+      .meny-full-section { padding: 64px 24px 80px; }
       .meny-cats { grid-template-columns: 1fr; gap: 20px; }
       .meny-cat { padding: 28px 24px; }
     }
@@ -472,7 +472,8 @@
           <a href="#lunchmeny">Lunchmeny</a>
           <a href="#middagsmeny">Middagsmeny</a>
           <a href="#dryckesmeny">Dryckesmeny</a>
-          <a href="#hela-menyn">Hela menyn</a>
+          <a href="#meny-mat">Hela matmenyn</a>
+          <a href="#meny-dryck">Hela dryckesmenyn</a>
           <a href="#happy-hour">After Work</a>
           <a href="#catering">Catering</a>
         </div>
@@ -521,7 +522,7 @@
         <div class="meny-section-body" data-edit-id="lunch-body">
           Asiatisk mat på Södermalm — ramen, poké och comfort food, allt serverat i skål. Välj ris eller nudlar. Till det smårätter som funkar lika bra till en öl som till maten. Samma meny hela dagen, från lunch till sent.<br><br>Alltid till bra priser.
         </div>
-        <a href="#hela-menyn" class="meny-section-link" data-edit-id="lunch-link">Se lunchmenyn →</a>
+        <a href="#meny-mat" class="meny-section-link" data-edit-id="lunch-link">Se lunchmenyn →</a>
       </div>
     </div>
   </section>
@@ -546,42 +547,17 @@
         <div class="meny-section-body" data-edit-id="middag-body">
           Signature bowls med ramen- och pokéinfluenser, plus smårätter som funkar lika bra till en öl som till maten. Köket är öppet till sent — beställ en skål vid baren klockan elva om du vill.
         </div>
-        <a href="#hela-menyn" class="meny-section-link" data-edit-id="middag-link">Se middagsmenyn →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- DRYCKESMENY -->
-  <section id="dryckesmeny" class="meny-section">
-    <div class="meny-section-inner">
-      <div class="meny-section-img" id="img-dryck">
-        <picture>
-          <source srcset="images/dryck.webp" type="image/webp">
-          <img src="images/dryck.jpg" alt="Dryckesmeny" width="1170" height="1381" loading="lazy" decoding="async"
-               onerror="this.closest('.meny-section-img').classList.add('empty')">
-        </picture>
-        <div class="meny-img-placeholder">
-          <span>＋</span>
-          <span>Lägg till bild<br>images/dryck.jpg</span>
-        </div>
-      </div>
-      <div class="meny-section-text">
-        <p class="meny-section-eyebrow" data-edit-id="dryck-eyebrow">öl · vin · cocktails</p>
-        <h2 class="meny-section-heading" data-edit-id="dryck-heading">Dryck</h2>
-        <div class="meny-section-body" data-edit-id="dryck-body">
-          Bar på Södermalm med öl på tapp, vin och husets roligaste cocktails. Och Sveriges billigaste Guinness — inte som erbjudande, utan som pris.
-        </div>
-        <a href="#hela-menyn" class="meny-section-link" data-edit-id="dryck-link">Se dryckesmenyn →</a>
+        <a href="#meny-mat" class="meny-section-link" data-edit-id="middag-link">Se middagsmenyn →</a>
       </div>
     </div>
   </section>
 
   <!-- ============================================================
-       HELA MENYN — riktig HTML (bild finns kvar som valfri nedladdning)
+       HELA MATMENYN — riktig HTML, direkt under lunch/middag
   ============================================================ -->
-  <section id="hela-menyn" aria-label="Hela menyn">
-    <p class="meny-full-eyebrow">hela menyn</p>
-    <h2 class="meny-full-heading">Mat &amp; dryck</h2>
+  <section id="meny-mat" class="meny-full-section" aria-label="Hela matmenyn">
+    <p class="meny-full-eyebrow">hela matmenyn</p>
+    <h2 class="meny-full-heading">Bowls, ramen &amp; sides</h2>
     <p class="meny-full-note">Allergier eller frågor om en rätt? Fråga oss på plats eller mejla <a href="mailto:info@zazha.se" style="color:var(--terracotta)">info@zazha.se</a>.</p>
 
     <div class="meny-cats">
@@ -689,6 +665,44 @@
           </li>
         </ul>
       </div>
+
+    </div>
+  </section>
+
+  <!-- DRYCKESMENY -->
+  <section id="dryckesmeny" class="meny-section">
+    <div class="meny-section-inner">
+      <div class="meny-section-img" id="img-dryck">
+        <picture>
+          <source srcset="images/dryck.webp" type="image/webp">
+          <img src="images/dryck.jpg" alt="Dryckesmeny" width="1170" height="1381" loading="lazy" decoding="async"
+               onerror="this.closest('.meny-section-img').classList.add('empty')">
+        </picture>
+        <div class="meny-img-placeholder">
+          <span>＋</span>
+          <span>Lägg till bild<br>images/dryck.jpg</span>
+        </div>
+      </div>
+      <div class="meny-section-text">
+        <p class="meny-section-eyebrow" data-edit-id="dryck-eyebrow">öl · vin · cocktails</p>
+        <h2 class="meny-section-heading" data-edit-id="dryck-heading">Dryck</h2>
+        <div class="meny-section-body" data-edit-id="dryck-body">
+          Bar på Södermalm med öl på tapp, vin och husets roligaste cocktails. Och Sveriges billigaste Guinness — inte som erbjudande, utan som pris.
+        </div>
+        <a href="#meny-dryck" class="meny-section-link" data-edit-id="dryck-link">Se dryckesmenyn →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HELA DRYCKESMENYN — riktig HTML, direkt under dryck
+       (bild finns kvar som valfri nedladdning)
+  ============================================================ -->
+  <section id="meny-dryck" class="meny-full-section" aria-label="Hela dryckesmenyn">
+    <p class="meny-full-eyebrow">hela dryckesmenyn</p>
+    <h2 class="meny-full-heading">Cocktails, öl, vin &amp; cider</h2>
+
+    <div class="meny-cats">
 
       <!-- COCKTAILS -->
       <div class="meny-cat">
