@@ -378,6 +378,40 @@
       transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
     }
     .meny-full-download:hover { background: var(--terracotta); border-color: var(--terracotta); color: var(--cream); }
+
+    /* ============================================================
+       MENY-GALLERI — riktiga foton av maten
+    ============================================================ */
+    #meny-galleri {
+      padding: 90px 80px 110px;
+      text-align: center;
+    }
+    .meny-galleri-grid {
+      max-width: 1200px;
+      margin: 56px auto 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .meny-galleri-grid figure {
+      overflow: hidden;
+      border: 6px solid #0a0a0a;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.4);
+      border-radius: 2px;
+    }
+    .meny-galleri-grid img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+    .meny-galleri-grid figure:hover img { transform: scale(1.06); }
+    @media (max-width: 900px) {
+      #meny-galleri { padding: 64px 24px 80px; }
+      .meny-galleri-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    }
     @media (max-width: 900px) {
       .meny-full-section { padding: 64px 24px 80px; }
       .meny-cats { grid-template-columns: 1fr; gap: 20px; }
@@ -799,6 +833,28 @@
     </div>
 
     <a href="images/zazha-meny.jpg" class="meny-full-download open-full-meny">Visa menyn som bild ↓</a>
+  </section>
+
+  <!-- ============================================================
+       MENY-GALLERI — riktiga foton av maten
+  ============================================================ -->
+  <section id="meny-galleri" aria-label="Bilder på maten">
+    <p class="meny-full-eyebrow">på riktigt</p>
+    <h2 class="meny-full-heading">Så här ser det ut</h2>
+    <div class="meny-galleri-grid">
+      <figure><picture><source srcset="images/meny-mat-01.webp" type="image/webp"><img src="images/meny-mat-01.jpg" alt="Bowl från ZAZHA" width="1120" height="1400" loading="lazy" decoding="async"></picture></figure>
+      <figure><picture><source srcset="images/meny-mat-02.webp" type="image/webp"><img src="images/meny-mat-02.jpg" alt="Bowl med krispiga räkor" width="1120" height="1400" loading="lazy" decoding="async"></picture></figure>
+      <figure><picture><source srcset="images/meny-mat-03.webp" type="image/webp"><img src="images/meny-mat-03.jpg" alt="Ramen från ZAZHA" width="1120" height="1400" loading="lazy" decoding="async"></picture></figure>
+      <figure><picture><source srcset="images/meny-mat-04.webp" type="image/webp"><img src="images/meny-mat-04.jpg" alt="Ramen med fläsksida" width="1120" height="1400" loading="lazy" decoding="async"></picture></figure>
+      <figure><picture><source srcset="images/meny-mat-05.webp" type="image/webp"><img src="images/meny-mat-05.jpg" alt="Bowl från ZAZHA" width="1120" height="1400" loading="lazy" decoding="async"></picture></figure>
+      <figure><picture><source srcset="images/meny-mat-06.webp" type="image/webp"><img src="images/meny-mat-06.jpg" alt="Färsk bowl med picklade grönsaker" width="1120" height="1400" loading="lazy" decoding="async"></picture></figure>
+      <figure><picture><source srcset="images/meny-mat-07.webp" type="image/webp"><img src="images/meny-mat-07.jpg" alt="Bowl med onsenägg" width="1120" height="1400" loading="lazy" decoding="async"></picture></figure>
+      <figure><picture><source srcset="images/meny-mat-08.webp" type="image/webp"><img src="images/meny-mat-08.jpg" alt="Bowl serverad i handen" width="1120" height="1400" loading="lazy" decoding="async"></picture></figure>
+      <figure><picture><source srcset="images/meny-mat-09.webp" type="image/webp"><img src="images/meny-mat-09.jpg" alt="Färsk bowl serverad i handen" width="1120" height="1400" loading="lazy" decoding="async"></picture></figure>
+      <figure><picture><source srcset="images/meny-mat-10.webp" type="image/webp"><img src="images/meny-mat-10.jpg" alt="Flera bowls på disken" width="1120" height="1400" loading="lazy" decoding="async"></picture></figure>
+      <figure><picture><source srcset="images/meny-mat-11.webp" type="image/webp"><img src="images/meny-mat-11.jpg" alt="Flera bowls uppställda" width="1120" height="1400" loading="lazy" decoding="async"></picture></figure>
+      <figure><picture><source srcset="images/meny-mat-12.webp" type="image/webp"><img src="images/meny-mat-12.jpg" alt="Bowl med färska grönsaker" width="1120" height="1400" loading="lazy" decoding="async"></picture></figure>
+    </div>
   </section>
 
   <!-- AFTER WORK -->

@@ -778,6 +778,57 @@
     }
 
     /* ============================================================
+       FOOD GALLERI — riktiga foton av maten
+    ============================================================ */
+    #food-galleri {
+      background: transparent;
+      padding: 120px 80px;
+    }
+    .food-galleri-eyebrow {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      opacity: 0.80;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+    .food-galleri-heading {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(32px, 5vw, 60px);
+      letter-spacing: 0.18em;
+      color: var(--cream);
+      margin-bottom: 50px;
+      text-align: center;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.4);
+    }
+    .food-galleri-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .food-galleri-grid figure {
+      overflow: hidden;
+      border: 6px solid #0a0a0a;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.45);
+      border-radius: 2px;
+    }
+    .food-galleri-grid img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+    .food-galleri-grid figure:hover img { transform: scale(1.06); }
+
+    /* ============================================================
        GUINNESS
     ============================================================ */
     #guinness {
@@ -1223,6 +1274,8 @@
       #nav           { padding: 0 28px; }
 
       #concept, #meny, #hitta-oss, #instagram, #lokal { padding: 80px 28px; }
+      #food-galleri { padding: 80px 20px; }
+      .food-galleri-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
       #meny-preview { padding: 80px 20px 60px; }
       .meny-preview-frame { border-width: 6px; }
       .meny-lightbox { padding: 16px; }
@@ -1371,6 +1424,24 @@
           <a href="https://instagram.com/zazha.sthlm" target="_blank" rel="noopener">@zazha.sthlm</a>
         </p>
       </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOD GALLERI
+  ============================================================ -->
+  <section id="food-galleri" aria-label="Bilder på maten">
+    <p class="food-galleri-eyebrow">på riktigt</p>
+    <h2 class="food-galleri-heading">SÅ HÄR SER DET UT</h2>
+    <div class="food-galleri-grid">
+      <figure><picture><source srcset="images/gallery-01.webp" type="image/webp"><img src="images/gallery-01.jpg" alt="Bowl från ZAZHA" width="1120" height="1400" loading="lazy" decoding="async"></picture></figure>
+      <figure><picture><source srcset="images/gallery-02.webp" type="image/webp"><img src="images/gallery-02.jpg" alt="Bowl från ZAZHA" width="1120" height="1400" loading="lazy" decoding="async"></picture></figure>
+      <figure><picture><source srcset="images/gallery-03.webp" type="image/webp"><img src="images/gallery-03.jpg" alt="Bowl serverad i handen" width="1120" height="1400" loading="lazy" decoding="async"></picture></figure>
+      <figure><picture><source srcset="images/gallery-04.webp" type="image/webp"><img src="images/gallery-04.jpg" alt="Flera bowls på disken" width="1120" height="1400" loading="lazy" decoding="async"></picture></figure>
+      <figure><picture><source srcset="images/gallery-05.webp" type="image/webp"><img src="images/gallery-05.jpg" alt="Bowl från ZAZHA" width="1120" height="1400" loading="lazy" decoding="async"></picture></figure>
+      <figure><picture><source srcset="images/gallery-06.webp" type="image/webp"><img src="images/gallery-06.jpg" alt="Två bowls sida vid sida" width="1120" height="1400" loading="lazy" decoding="async"></picture></figure>
+      <figure><picture><source srcset="images/gallery-07.webp" type="image/webp"><img src="images/gallery-07.jpg" alt="Bowl från ZAZHA" width="1120" height="1400" loading="lazy" decoding="async"></picture></figure>
+      <figure><picture><source srcset="images/gallery-08.webp" type="image/webp"><img src="images/gallery-08.jpg" alt="Flera bowls uppställda" width="1120" height="1400" loading="lazy" decoding="async"></picture></figure>
     </div>
   </section>
 
