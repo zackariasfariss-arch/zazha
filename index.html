@@ -849,38 +849,25 @@
     .guinness-img {
       position: relative;
       overflow: hidden;
-      min-height: 480px;
+      height: 620px;
       border: 10px solid #0a0a0a;
       box-shadow: 0 30px 70px rgba(0,0,0,0.55);
       border-radius: 2px;
     }
 
-    .guinness-sound-btn {
-      position: absolute;
-      bottom: 16px;
-      left: 16px;
-      z-index: 10;
-      background: rgba(0,0,0,0.55);
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 17px;
-      transition: background 0.2s;
-      backdrop-filter: blur(6px);
+    .guinness-photo-split {
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 6px;
+      height: 100%;
+      background: #0a0a0a;
     }
-    .guinness-sound-btn:hover { background: rgba(0,0,0,0.75); }
-
-    .guinness-img video,
     .guinness-img img {
+      min-height: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center top;
+      object-position: center 20%;
       display: block;
     }
 
@@ -929,7 +916,7 @@
 
     @media (max-width: 768px) {
       .guinness-inner { grid-template-columns: 1fr; }
-      .guinness-img { min-height: 320px; }
+      .guinness-img { height: 420px; }
       .guinness-text { padding: 48px 28px; }
     }
 
@@ -1451,14 +1438,10 @@
   <section id="guinness" aria-label="Guinness">
     <div class="guinness-inner">
       <div class="guinness-img">
-        <video id="guinness-vid" autoplay muted loop playsinline preload="none" poster="images/guinness-grand.webp" width="1086" height="1448">
-          <source src="images/guinness-video.mp4" type="video/mp4">
-          <picture>
-            <source srcset="images/guinness-grand.webp" type="image/webp">
-            <img src="images/guinness-grand.jpg" alt="Neonupplyst gränd — ZAZHA Guinness" width="1086" height="1448" loading="lazy" decoding="async">
-          </picture>
-        </video>
-        <button class="guinness-sound-btn" id="guinness-sound" aria-label="Ljud på/av" title="Ljud på/av">🔇</button>
+        <div class="guinness-photo-split">
+          <img src="images/guinness-team-01.jpg" alt="ZAZHA-teamet i köket" width="1120" height="1400" loading="lazy" decoding="async">
+          <img src="images/guinness-team-02.jpg" alt="ZAZHA-kockar lagar mat" width="1120" height="1400" loading="lazy" decoding="async">
+        </div>
       </div>
       <div class="guinness-text poster-card">
         <p class="guinness-eyebrow">det vi tror på</p>
@@ -2066,19 +2049,6 @@ Ni bestämmer anledningen - vi fixar resten.</div>
       }
 
     */ // end removed editor
-  </script>
-
-  <!-- Guinness-video: ljud-knapp -->
-  <script>
-    (function() {
-      var vid = document.getElementById('guinness-vid');
-      var btn = document.getElementById('guinness-sound');
-      if (!vid || !btn) return;
-      btn.addEventListener('click', function() {
-        vid.muted = !vid.muted;
-        btn.textContent = vid.muted ? '🔇' : '🔊';
-      });
-    })();
   </script>
 
   <!-- Behold Instagram feed -->
