@@ -837,30 +837,22 @@
     }
 
     .guinness-inner {
-      max-width: 1200px;
+      max-width: 1280px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1.15fr 1fr;
       align-items: center;
-      gap: 64px;
+      gap: 40px;
       padding: 100px 0;
     }
 
     .guinness-img {
       position: relative;
       overflow: hidden;
-      height: 620px;
+      height: 480px;
       border: 10px solid #0a0a0a;
       box-shadow: 0 30px 70px rgba(0,0,0,0.55);
       border-radius: 2px;
-    }
-
-    .guinness-photo-split {
-      display: grid;
-      grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
-      gap: 6px;
-      height: 100%;
-      background: #0a0a0a;
     }
     .guinness-img img {
       min-height: 0;
@@ -915,8 +907,8 @@
     }
 
     @media (max-width: 768px) {
-      .guinness-inner { grid-template-columns: 1fr; }
-      .guinness-img { height: 420px; }
+      .guinness-inner { grid-template-columns: 1fr; gap: 24px; }
+      .guinness-img { height: 320px; }
       .guinness-text { padding: 48px 28px; }
     }
 
@@ -1438,10 +1430,7 @@
   <section id="guinness" aria-label="Guinness">
     <div class="guinness-inner">
       <div class="guinness-img">
-        <div class="guinness-photo-split">
-          <img src="images/guinness-team-01.jpg" alt="ZAZHA-teamet i köket" width="1120" height="1400" loading="lazy" decoding="async">
-          <img src="images/guinness-team-02.jpg" alt="ZAZHA-kockar lagar mat" width="1120" height="1400" loading="lazy" decoding="async">
-        </div>
+        <img src="images/guinness-team-01.jpg" alt="ZAZHA-teamet i köket" width="1120" height="1400" loading="lazy" decoding="async">
       </div>
       <div class="guinness-text poster-card">
         <p class="guinness-eyebrow">det vi tror på</p>
@@ -1452,6 +1441,9 @@
           <p>Därför serverar vi Stockholms billigaste Guinness.</p>
           <p>Mer Guinness åt folket. Alltid hos ZAZHA. 🍺</p>
         </div>
+      </div>
+      <div class="guinness-img">
+        <img src="images/guinness-team-02.jpg" alt="ZAZHA-kockar lagar mat" width="1120" height="1400" loading="lazy" decoding="async">
       </div>
     </div>
   </section>
