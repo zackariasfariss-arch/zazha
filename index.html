@@ -562,6 +562,28 @@
       transition: color 0.2s;
     }
     .meny-preview-insta a:hover { color: var(--charcoal); }
+    .meny-preview-insta-big {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(28px, 4.2vw, 42px);
+      line-height: 1.25;
+      letter-spacing: 0.01em;
+      color: var(--charcoal);
+      text-transform: uppercase;
+    }
+    .meny-preview-insta-big .meny-preview-insta-price {
+      color: var(--terracotta);
+      font-style: italic;
+    }
+    .meny-preview-insta-sub {
+      margin-top: 10px;
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      color: var(--charcoal);
+      opacity: 0.75;
+    }
 
     /* ---- Lightbox — förstorad meny, delas av preview + ev. länkar ---- */
     .meny-lightbox {
@@ -1407,10 +1429,8 @@
     <a href="meny.html" class="meny-preview-link">Till hela menyn →</a>
 
     <div class="poster-card meny-preview-insta">
-      <p>
-        KIKA ALLTID IN PÅ VÅR INSTAGRAM FÖR VECKANS DEALS PÅ MAT OCH DRYCK!<br>
-        <a href="https://instagram.com/zazha.sthlm" target="_blank" rel="noopener">@zazha.sthlm</a>
-      </p>
+      <p class="meny-preview-insta-big">Vi säljer alltid dagens skål för <span class="meny-preview-insta-price">99 kr</span></p>
+      <p class="meny-preview-insta-sub">Fråga i baren vilken skål som gäller idag — eller <a href="https://instagram.com/zazha.sthlm" target="_blank" rel="noopener">följ oss på Instagram</a> för veckans deals.</p>
     </div>
   </section>
 
