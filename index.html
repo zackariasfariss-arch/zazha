@@ -781,26 +781,29 @@
     }
 
     .lokal-hero {
-      max-width: 1200px;
+      max-width: 1280px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 3fr 2fr;
-      gap: 0;
-      align-items: stretch;
+      grid-template-columns: 1fr 1.15fr 1fr;
+      align-items: center;
+      gap: 40px;
     }
 
     .lokal-hero-img {
       position: relative;
       overflow: hidden;
-      align-self: start;
+      height: 480px;
       border: 10px solid #0a0a0a;
       box-shadow: 0 30px 70px rgba(0,0,0,0.55);
+      border-radius: 2px;
     }
 
     .lokal-hero-img img {
+      min-height: 0;
       width: 100%;
-      height: 520px;
+      height: 100%;
       object-fit: cover;
+      object-position: center 25%;
       display: block;
     }
 
@@ -1322,8 +1325,8 @@
       .meny-preview-frame { border-width: 6px; }
       .meny-lightbox { padding: 16px; }
       .meny-lightbox-close { top: 12px; right: 16px; }
-      .lokal-hero { grid-template-columns: 1fr; }
-      .lokal-hero-img img { height: 340px; min-height: 0; }
+      .lokal-hero { grid-template-columns: 1fr; gap: 24px; }
+      .lokal-hero-img { height: 320px; }
       .lokal-hero-text { padding: 44px 32px; }
 
       .concept-inner { grid-template-columns: 1fr; gap: 28px; }
@@ -1517,15 +1520,15 @@
     <h2 class="lokal-heading" data-edit-id="lokal-heading">MITT PÅ MEDIS</h2>
     <div class="lokal-hero">
       <div class="lokal-hero-img">
-        <picture>
-          <source srcset="images/lokal-hero.webp" type="image/webp">
-          <img src="images/lokal-hero.jpg" alt="ZAZHA — uteservering vid kvällstid" width="1154" height="2048" loading="lazy" decoding="async">
-        </picture>
+        <img src="images/lokal-facade.jpg" alt="ZAZHA — fasaden vid Söderhallarna, kvällstid" width="1120" height="1400" loading="lazy" decoding="async">
       </div>
       <div class="lokal-hero-text poster-card">
         <p class="lokal-hero-label">platsen</p>
         <p class="lokal-hero-quote" data-edit-id="lokal-quote">Ett hörn av Södermalm som lever lite längre på kvällen.</p>
         <p class="lokal-hero-body" data-edit-id="lokal-body">Vi finns i den klassiska paviljongen utanför Söderhallarna — mitt på Medborgarplatsen, mitt i Södermalm. God mat, kall dryck och en av de bästa lunchplatserna på Södermalm. Kom för ett glas, stanna för maten. Eller tvärtom.&nbsp;<br><br>Alla dagar 11–sent!</p>
+      </div>
+      <div class="lokal-hero-img">
+        <img src="images/lokal-interior.jpg" alt="ZAZHA — inomhus med neonskyltar och gäster" width="1120" height="1400" loading="lazy" decoding="async">
       </div>
     </div>
   </section>
