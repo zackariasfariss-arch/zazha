@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Hanken+Grotesk:wght@300;400&display=swap">
-  <meta name="description" content="Asiatisk bistro & bar på Medborgarplatsen, Södermalm. Ramen-inspirerade skålar, poke bowls och asiatisk gatumat till lunch, middag och after work. Stockholms billigaste Guinness. Öppnar 23 oktober.">
+  <meta name="description" content="Asiatisk bistro & bar på Medborgarplatsen, Södermalm. Ramen-inspirerade skålar, poke bowls och asiatisk gatumat till lunch, middag och after work. Stockholms billigaste Guinness. Öppet alla dagar.">
   <meta name="keywords" content="asiatisk mat södermalm, asiatisk restaurang södermalm, god mat södermalm, ramen södermalm, ramen stockholm, poke bowl södermalm, poke bowl stockholm, asiatisk gatumat stockholm, lunch södermalm, bra lunch södermalm, billig lunch södermalm, bästa lunchen södermalm, restaurang medborgarplatsen, bar medborgarplatsen, after work södermalm, bistro södermalm, guinness stockholm, billigaste guinness stockholm, ZAZHA">
 
   <!-- Open Graph / länkförhandsvisning -->
@@ -59,13 +59,19 @@
     "image": ["https://zazha.se/images/og-image.png", "https://zazha.se/images/gallery-01.jpg", "https://zazha.se/images/gallery-04.jpg"],
     "servesCuisine": ["Asian", "Japanese", "Korean", "Chinese", "Asian Fusion", "Ramen", "Poke"],
     "priceRange": "$",
-    "openingHours": ["Mo-Su 11:00-23:00"],
+    "openingHours": ["Su-Tu 11:00-22:00", "We-Sa 11:00-01:00"],
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "dayOfWeek": ["Sunday", "Monday", "Tuesday"],
         "opens": "11:00",
-        "closes": "23:00"
+        "closes": "22:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "11:00",
+        "closes": "01:00"
       }
     ],
     "acceptsReservations": "False",
@@ -149,10 +155,10 @@
       },
       {
         "@type": "Question",
-        "name": "När öppnar ZAZHA?",
+        "name": "Vilka är öppettiderna på ZAZHA?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "ZAZHA öppnar den 23 oktober på Medborgarplatsen, Södermalm."
+          "text": "ZAZHA på Medborgarplatsen, Södermalm har öppet söndag–tisdag 11:00–22:00 och onsdag–lördag 11:00–01:00."
         }
       }
     ]
@@ -469,6 +475,41 @@
       transition: background 0.25s;
     }
     .hero-btn:hover { background: var(--olive); }
+
+    .hero-hours {
+      display: inline-flex;
+      margin-top: 24px;
+      border: 1px solid rgba(245,240,232,0.4);
+      background: rgba(10,8,6,0.28);
+      backdrop-filter: blur(2px);
+    }
+    .hero-hours-item {
+      padding: 14px 26px;
+      text-align: center;
+    }
+    .hero-hours-item + .hero-hours-item {
+      border-left: 1px solid rgba(245,240,232,0.4);
+    }
+    .hero-hours-label {
+      display: block;
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sand);
+      text-shadow: 0 2px 14px rgba(0,0,0,0.7);
+      margin-bottom: 5px;
+    }
+    .hero-hours-time {
+      display: block;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 17px;
+      letter-spacing: 0.02em;
+      color: var(--cream);
+      text-shadow: 0 2px 14px rgba(0,0,0,0.7);
+    }
 
     /* ============================================================
        MENY PREVIEW — hela menyn, direkt efter hero
@@ -1413,7 +1454,10 @@
     <div class="hero-content">
       <h1 class="hero-tagline">Asiatisk bistro &amp; bar på Medis</h1>
       <p class="hero-sub" data-edit-id="hero-sub">MEDBORGARPLATSEN 3, SÖDERMALM, STOCKHOLM</p>
-      <a href="#hitta-oss" class="hero-btn" data-edit-id="hero-btn">ÖPPNAR 23 OKTOBER</a>
+      <a href="#hitta-oss" class="hero-hours" data-edit-id="hero-btn" aria-label="Öppettider — till vägbeskrivning">
+        <span class="hero-hours-item"><span class="hero-hours-label">Sön–Tis</span><span class="hero-hours-time">11:00–22:00</span></span>
+        <span class="hero-hours-item"><span class="hero-hours-label">Ons–Lör</span><span class="hero-hours-time">11:00–01:00</span></span>
+      </a>
     </div>
   </section>
 
@@ -1453,7 +1497,7 @@
         på alla sätt<br>det kan betyda.
         </h2>
         <div class="concept-body" data-edit-id="concept-body">
-          <p>ZAZHA är en asiatisk bistro och bar på Södermalm där öl, vin och skål möts under samma tak. Här står asian comfort food i centrum - generösa, ramen- och poke-inspirerade skålar med djupa smaker och asiatisk gatumatskänsla, serverade tillsammans med noggrant utvald dryck i en avslappnad och välkomnande miljö. <br><br>Från lunch till sena kvällar är ZAZHA en plats att återvända till på Södermalm, oavsett om du kommer för en snabb lunch, en after work eller en lång middag med vänner.<br><br>ÖPPNAR 23 OKTOBER</p>
+          <p>ZAZHA är en asiatisk bistro och bar på Södermalm där öl, vin och skål möts under samma tak. Här står asian comfort food i centrum - generösa, ramen- och poke-inspirerade skålar med djupa smaker och asiatisk gatumatskänsla, serverade tillsammans med noggrant utvald dryck i en avslappnad och välkomnande miljö. <br><br>Från lunch till sena kvällar är ZAZHA en plats att återvända till på Södermalm, oavsett om du kommer för en snabb lunch, en after work eller en lång middag med vänner.</p>
         </div>
         <a href="meny.html" class="concept-meny-btn">Meny</a>
       </div>
@@ -1463,7 +1507,7 @@
           <img src="images/team.jpg" alt="Grundarna av ZAZHA i köket" width="1080" height="1440" loading="lazy" decoding="async">
         </picture>
         <p class="concept-photo-caption">
-          ZAZHA incoming... 23 oktober! Välkomna! 💥
+          Nu är vi igång! Välkomna in 💥
           <a href="https://instagram.com/zazha.sthlm" target="_blank" rel="noopener">@zazha.sthlm</a>
         </p>
       </div>
