@@ -401,12 +401,28 @@
       padding: 100px 40px 48px;
     }
 
-    /* Mörklägger .site-bg (samma väggtextur, fast fixed) under hero i stället
-       för att hämta bilden en gång till — sparar ~600 kB på förstaladdningen. */
+    /* Bakgrundsbildspel — korsar mellan riktiga foton av lokalen och maten */
+    .hero-slideshow {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.8s ease;
+    }
+    .hero-slide.active { opacity: 1; }
+
     .hero-backdrop {
       position: absolute;
       inset: 0;
-      background: rgba(10, 6, 3, 0.48);
+      background: linear-gradient(rgba(10, 6, 3, 0.58), rgba(10, 6, 3, 0.5) 45%, rgba(10, 6, 3, 0.62));
       z-index: 0;
     }
 
@@ -1457,6 +1473,14 @@
        Full-bleed bar scene illustration with gradient + wordmark overlay
   ============================================================ -->
   <section id="hero" aria-label="Välkommen till ZAZHA">
+    <div class="hero-slideshow" id="hero-slideshow" aria-hidden="true">
+      <picture><source srcset="images/lokal-facade.webp" type="image/webp"><img src="images/lokal-facade.jpg" class="hero-slide active" alt="" fetchpriority="high"></picture>
+      <picture><source srcset="images/action-01.webp" type="image/webp"><img src="images/action-01.jpg" class="hero-slide" alt=""></picture>
+      <picture><source srcset="images/action-60.webp" type="image/webp"><img src="images/action-60.jpg" class="hero-slide" alt=""></picture>
+      <picture><source srcset="images/action-39.webp" type="image/webp"><img src="images/action-39.jpg" class="hero-slide" alt=""></picture>
+      <picture><source srcset="images/meny-mat-08.webp" type="image/webp"><img src="images/meny-mat-08.jpg" class="hero-slide" alt=""></picture>
+      <picture><source srcset="images/action-66.webp" type="image/webp"><img src="images/action-66.jpg" class="hero-slide" alt=""></picture>
+    </div>
     <div class="hero-backdrop"></div>
     <div class="hero-poster-wrap">
       <picture>
@@ -1701,6 +1725,17 @@ Ni bestämmer anledningen - vi fixar resten.</div>
     // --- Footer copyright year ---
     const footerYear = document.getElementById('footer-year');
     if (footerYear) footerYear.textContent = new Date().getFullYear();
+
+    // --- Hero-bildspel ---
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    if (heroSlides.length > 1) {
+      let heroSlideIndex = 0;
+      setInterval(() => {
+        heroSlides[heroSlideIndex].classList.remove('active');
+        heroSlideIndex = (heroSlideIndex + 1) % heroSlides.length;
+        heroSlides[heroSlideIndex].classList.add('active');
+      }, 5000);
+    }
 
     // --- Scroll-aware nav ---
     const nav  = document.getElementById('nav');
