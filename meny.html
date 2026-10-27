@@ -216,9 +216,9 @@
     /* ============================================================
        MOBILE MENU
     ============================================================ */
-    #mobile-menu { position: fixed; inset: 0; z-index: 199; background: var(--olive); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 44px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    #mobile-menu { position: fixed; inset: 0; z-index: 199; background: var(--olive); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; overflow-y: auto; padding: 100px 0 40px; }
     #mobile-menu.open { opacity: 1; pointer-events: all; }
-    #mobile-menu a { font-family: var(--serif); font-size: 36px; color: var(--cream); letter-spacing: 0.08em; transition: opacity 0.2s; }
+    #mobile-menu a { font-family: var(--serif); font-size: 30px; color: var(--cream); letter-spacing: 0.08em; transition: opacity 0.2s; }
     #mobile-menu a:hover { opacity: 0.6; }
     #menu-close { position: absolute; top: 28px; right: 40px; font-family: var(--sans); font-weight: 300; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sand); background: none; border: none; cursor: pointer; }
 
@@ -677,7 +677,13 @@
   <!-- NAVIGATION -->
   <nav id="nav" role="navigation" aria-label="Huvudmeny">
     <ul class="nav-links">
-      <li><a href="index.html#concept">Om oss</a></li>
+      <li class="has-dropdown">
+        <a href="index.html#concept">Om oss <span class="nav-arrow">▾</span></a>
+        <div class="dropdown">
+          <a href="index.html#concept">Om oss</a>
+          <a href="zazha-in-action.html">ZAZHA in Action</a>
+        </div>
+      </li>
       <li class="has-dropdown">
         <a href="meny.html">Meny <span class="nav-arrow">▾</span></a>
         <div class="dropdown">
@@ -687,9 +693,10 @@
           <a href="#meny-mat">Hela matmenyn</a>
           <a href="#meny-dryck">Hela dryckesmenyn</a>
           <a href="#happy-hour">After Work</a>
-          <a href="#catering">Catering</a>
         </div>
       </li>
+      <li><a href="takeaway.html">Takeaway</a></li>
+      <li><a href="catering.html">Catering</a></li>
       <li><a href="index.html#instagram">Events</a></li>
       <li><a href="index.html#hitta-oss">Kontakt</a></li>
       <li><a href="index.html#boka" class="nav-cta">Boka bord</a></li>
@@ -702,7 +709,10 @@
   <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Meny">
     <button id="menu-close" aria-label="Stäng meny">stäng ✕</button>
     <a href="index.html#concept">Om oss</a>
+    <a href="zazha-in-action.html">ZAZHA in Action</a>
     <a href="meny.html">Meny</a>
+    <a href="takeaway.html">Takeaway</a>
+    <a href="catering.html">Catering</a>
     <a href="index.html#instagram">Events</a>
     <a href="index.html#hitta-oss">Kontakt</a>
     <a href="index.html#boka">Boka bord</a>
@@ -1050,10 +1060,9 @@
         <p class="meny-section-eyebrow" data-edit-id="catering-eyebrow">för event &amp; möten</p>
         <h2 class="meny-section-heading" data-edit-id="catering-heading">Catering</h2>
         <div class="meny-section-body" data-edit-id="catering-body">
-          Vi tar med oss ZAZHA till dig. Perfekt för konferenser, privata middagar och fester. Kontakta oss för offert och bokning.
+          Vi tar med oss ZAZHA till dig. Perfekt för konferenser, privata middagar och fester. Få ett skräddarsytt förslag — för 10 till 200 personer.
         </div>
-        <!-- Byt href till mailto eller bokningssida -->
-        <a href="mailto:info@zazha.se" class="meny-section-link" data-edit-id="catering-link">Kontakta oss →</a>
+        <a href="catering.html" class="meny-section-link" data-edit-id="catering-link">Till cateringsidan →</a>
       </div>
     </div>
   </section>

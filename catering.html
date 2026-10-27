@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catering · ZAZHA Asian Bistro &amp; Bar · Södermalm</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <meta name="description" content="ZAZHA catering för kontor, event och fest — asiatisk comfort food levererat i Stockholm, för 10 till 200 personer. Få ett skräddarsytt förslag.">
+  <meta name="keywords" content="zazha catering, asiatisk catering stockholm, catering södermalm, kontorscatering stockholm, eventmat stockholm, asiatisk mat catering">
+  <link rel="canonical" href="https://zazha.se/catering.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Hanken+Grotesk:wght@300;400&display=swap">
+
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://zazha.se/catering.html">
+  <meta property="og:title"       content="Catering · ZAZHA Södermalm">
+  <meta property="og:description" content="Asiatisk catering för kontor, event eller fest. Leverans i Stockholm, för 10 till 200 personer.">
+  <meta property="og:image"       content="https://zazha.se/images/og-image.png">
+  <meta property="og:locale"      content="sv_SE">
+
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Catering · ZAZHA Södermalm">
+  <meta name="twitter:description" content="Asiatisk catering för kontor, event eller fest i Stockholm.">
+  <meta name="twitter:image"       content="https://zazha.se/images/og-image.png">
+
+  <style>
+    :root {
+      --cream:      #F5F0E8;
+      --charcoal:   #2C2A22;
+      --olive:      #3A4E28;
+      --terracotta: #B85C38;
+      --sage:       #6B7D4A;
+      --sand:       #C4A882;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'Hanken Grotesk', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans); font-weight: 300; color: var(--charcoal);
+      background:
+        linear-gradient(rgba(16,14,10,0.64), rgba(16,14,10,0.64)),
+        url('images/meny-wallpaper.webp');
+      background-repeat: no-repeat, repeat;
+      background-size: auto, 900px auto;
+      -webkit-font-smoothing: antialiased;
+    }
+    img  { display: block; max-width: 100%; }
+    picture { display: contents; }
+    :focus-visible { outline: 2px solid var(--terracotta); outline-offset: 3px; }
+    a    { text-decoration: none; color: inherit; }
+
+    /* NAVIGATION */
+    #nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 72px; padding: 0 48px; display: flex; align-items: center; justify-content: flex-end; transition: background 0.4s ease, box-shadow 0.4s ease; }
+    #nav.scrolled { background: var(--cream); box-shadow: 0 1px 0 rgba(44,42,34,0.10); }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a { font-family: var(--sans); font-weight: 300; font-size: 12px; letter-spacing: 0.10em; color: var(--charcoal); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--terracotta); }
+    .nav-cta { background: var(--terracotta) !important; color: var(--cream) !important; padding: 10px 22px; font-size: 11px !important; letter-spacing: 0.16em !important; text-transform: uppercase; transition: background 0.2s !important; }
+    .nav-cta:hover { background: var(--olive) !important; opacity: 1 !important; }
+    .has-dropdown { position: relative; }
+    .nav-arrow { display: inline-block; font-size: 9px; margin-left: 3px; opacity: 0.55; transition: transform 0.22s ease; vertical-align: middle; }
+    .has-dropdown:hover .nav-arrow { transform: rotate(180deg); }
+    .dropdown { position: absolute; top: calc(100% + 16px); left: 50%; transform: translateX(-50%) translateY(-10px); background: var(--cream); border-top: 2px solid var(--terracotta); padding: 6px 0 14px; min-width: 175px; box-shadow: 0 16px 44px rgba(44,42,34,0.13); opacity: 0; pointer-events: none; transition: opacity 0.22s ease, transform 0.22s ease; z-index: 201; }
+    .has-dropdown:hover .dropdown, .has-dropdown:focus-within .dropdown { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
+    .dropdown a { display: block; padding: 9px 22px; font-family: var(--sans); font-weight: 300; font-size: 12px; letter-spacing: 0.08em; color: var(--charcoal); transition: color 0.15s, padding-left 0.18s; }
+    .dropdown a:hover { color: var(--terracotta); padding-left: 30px; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 6px; cursor: pointer; }
+    .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--charcoal); transition: background 0.3s; }
+
+    /* MOBILE MENU */
+    #mobile-menu { position: fixed; inset: 0; z-index: 199; background: var(--olive); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 36px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; overflow-y: auto; padding: 100px 0 40px; }
+    #mobile-menu.open { opacity: 1; pointer-events: all; }
+    #mobile-menu a { font-family: var(--serif); font-size: 32px; color: var(--cream); letter-spacing: 0.08em; transition: opacity 0.2s; }
+    #mobile-menu a:hover { opacity: 0.6; }
+    #menu-close { position: absolute; top: 28px; right: 40px; font-family: var(--sans); font-weight: 300; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sand); background: none; border: none; cursor: pointer; }
+
+    /* PAGE HEADER */
+    #page-header { padding: 160px 80px 90px; text-align: center; }
+    .page-title { font-family: var(--serif); font-weight: 400; font-size: clamp(50px, 9vw, 110px); letter-spacing: 0.18em; color: var(--cream); text-shadow: 0 2px 24px rgba(0,0,0,0.55); line-height: 1; margin-bottom: 14px; }
+    .page-sub { font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sand); text-shadow: 0 1px 12px rgba(0,0,0,0.6); }
+
+    /* INTRO — image + text */
+    .cat-intro { padding: 0 80px 80px; }
+    .cat-intro-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; align-items: stretch;
+      background: rgba(245, 240, 232, 0.05); border: 1px solid rgba(245, 240, 232, 0.12);
+      border-radius: 10px; overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,0.40);
+    }
+    .cat-intro-img { position: relative; overflow: hidden; min-height: 460px; }
+    .cat-intro-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cat-intro-text { padding: 56px 60px; display: flex; flex-direction: column; justify-content: center; background: rgba(14, 12, 9, 0.62); }
+    .cat-eyebrow { font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 18px; }
+    .cat-heading { font-family: var(--serif); font-weight: 400; font-style: italic; font-size: clamp(26px, 2.8vw, 36px); color: var(--cream); margin-bottom: 20px; line-height: 1.3; }
+    .cat-body { font-family: var(--sans); font-weight: 400; font-size: 15px; line-height: 1.85; color: var(--cream); opacity: 0.88; margin-bottom: 26px; }
+    .cat-perks { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .cat-perks li { font-family: var(--sans); font-weight: 400; font-size: 14px; color: var(--cream); opacity: 0.92; padding-left: 24px; position: relative; }
+    .cat-perks li::before { content: '✓'; position: absolute; left: 0; color: var(--sage); font-weight: 700; }
+
+    /* FORM SECTION */
+    #cat-form-section { padding: 0 80px 120px; }
+    .cat-form-wrap {
+      max-width: 1000px; margin: 0 auto;
+      background: rgba(10, 8, 6, 0.82); border: 1px solid rgba(245, 240, 232, 0.14);
+      border-radius: 10px; padding: 56px 60px; box-shadow: 0 30px 70px rgba(0,0,0,0.40);
+    }
+    .cat-form-heading { font-family: var(--serif); font-weight: 400; font-size: clamp(26px, 3vw, 34px); color: var(--cream); text-align: center; margin-bottom: 10px; }
+    .cat-form-sub { font-family: var(--sans); font-weight: 300; font-size: 13px; color: var(--sand); text-align: center; margin-bottom: 40px; }
+    .cat-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 28px; }
+    .cat-field { display: flex; flex-direction: column; gap: 8px; }
+    .cat-field.full { grid-column: 1 / -1; }
+    .cat-field label { font-family: var(--sans); font-weight: 400; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sand); }
+    .cat-field label .req { color: var(--terracotta); }
+    .cat-field input, .cat-field select, .cat-field textarea {
+      font-family: var(--sans); font-size: 14px; color: var(--cream);
+      background: rgba(245,240,232,0.06); border: 1px solid rgba(245,240,232,0.22);
+      border-radius: 4px; padding: 12px 14px; outline: none; transition: border-color 0.2s, background 0.2s;
+    }
+    .cat-field input::placeholder, .cat-field textarea::placeholder { color: rgba(245,240,232,0.38); }
+    .cat-field input:focus, .cat-field select:focus, .cat-field textarea:focus { border-color: var(--terracotta); background: rgba(245,240,232,0.1); }
+    .cat-field select { cursor: pointer; }
+    .cat-field select option { background: var(--charcoal); color: var(--cream); }
+    .cat-field textarea { resize: vertical; min-height: 90px; font-family: var(--sans); }
+    .cat-submit-row { text-align: center; margin-top: 36px; }
+    .cat-submit {
+      display: inline-block; padding: 16px 48px; background: transparent;
+      border: 1.5px solid var(--terracotta); color: var(--cream);
+      font-family: var(--sans); font-weight: 500; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+      cursor: pointer; transition: background 0.22s, color 0.22s;
+    }
+    .cat-submit:hover { background: var(--terracotta); }
+    .cat-form-note { margin-top: 18px; font-family: var(--sans); font-size: 12px; color: var(--sand); text-align: center; opacity: 0.8; }
+
+    /* FOOTER */
+    footer { padding: 90px 40px 80px; text-align: center; }
+    .footer-wordmark { font-family: var(--serif); font-weight: 400; font-size: 36px; letter-spacing: 0.22em; color: var(--cream); margin-bottom: 12px; }
+    .footer-loc { font-family: var(--sans); font-weight: 300; font-size: 12px; letter-spacing: 0.10em; color: var(--sage); margin-bottom: 20px; }
+    .footer-social a { font-family: var(--sans); font-weight: 300; font-size: 12px; letter-spacing: 0.08em; color: var(--sand); transition: color 0.2s; }
+    .footer-social a:hover { color: var(--cream); }
+    .footer-copy { margin-top: 36px; font-family: var(--sans); font-weight: 300; font-size: 11px; color: var(--cream); opacity: 0.28; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      #nav { padding: 0 28px; }
+      #page-header { padding: 120px 28px 70px; }
+      .cat-intro, #cat-form-section { padding-left: 20px; padding-right: 20px; }
+      .cat-intro-inner { grid-template-columns: 1fr; }
+      .cat-intro-img { min-height: 280px; }
+      .cat-intro-text { padding: 40px 32px; }
+      .cat-form-wrap { padding: 40px 26px; }
+      .cat-form-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .page-title { font-size: 48px; }
+      body { background-size: auto, 480px auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav id="nav" role="navigation" aria-label="Huvudmeny">
+    <ul class="nav-links">
+      <li class="has-dropdown">
+        <a href="index.html#concept">Om oss <span class="nav-arrow">▾</span></a>
+        <div class="dropdown">
+          <a href="index.html#concept">Om oss</a>
+          <a href="zazha-in-action.html">ZAZHA in Action</a>
+        </div>
+      </li>
+      <li class="has-dropdown">
+        <a href="meny.html">Meny <span class="nav-arrow">▾</span></a>
+        <div class="dropdown">
+          <a href="meny.html#lunchmeny">Lunchmeny</a>
+          <a href="meny.html#middagsmeny">Middagsmeny</a>
+          <a href="meny.html#dryckesmeny">Dryckesmeny</a>
+          <a href="meny.html#meny-mat">Hela matmenyn</a>
+          <a href="meny.html#meny-dryck">Hela dryckesmenyn</a>
+          <a href="meny.html#happy-hour">After Work</a>
+        </div>
+      </li>
+      <li><a href="takeaway.html">Takeaway</a></li>
+      <li><a href="catering.html">Catering</a></li>
+      <li><a href="index.html#events">Events</a></li>
+      <li><a href="index.html#hitta-oss">Kontakt</a></li>
+      <li><a href="index.html#boka" class="nav-cta">Boka bord</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Öppna meny" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Meny">
+    <button id="menu-close" aria-label="Stäng meny">stäng ✕</button>
+    <a href="index.html#concept">Om oss</a>
+    <a href="zazha-in-action.html">ZAZHA in Action</a>
+    <a href="meny.html">Meny</a>
+    <a href="takeaway.html">Takeaway</a>
+    <a href="catering.html">Catering</a>
+    <a href="index.html#events">Events</a>
+    <a href="index.html#hitta-oss">Kontakt</a>
+    <a href="index.html#boka">Boka bord</a>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <section id="page-header">
+    <p class="page-sub">asiatisk catering · stockholm</p>
+    <h1 class="page-title">Catering</h1>
+  </section>
+
+  <!-- INTRO -->
+  <section class="cat-intro">
+    <div class="cat-intro-inner">
+      <div class="cat-intro-img">
+        <picture>
+          <source srcset="images/catering.webp" type="image/webp">
+          <img src="images/catering.jpg" alt="ZAZHA catering — krispiga rullar serverade i skål" width="1170" height="1550" loading="lazy" decoding="async">
+        </picture>
+      </div>
+      <div class="cat-intro-text">
+        <p class="cat-eyebrow">asian fusion catering</p>
+        <h2 class="cat-heading">Mindre stress, mer smak</h2>
+        <p class="cat-body">
+          Asiatisk catering för kontoret, eventet eller bara ett hungrigt gäng — vi fixar maten. Samma generösa bowls, ramen och crispy sides som i lokalen, packade snyggt och redo att ställas fram. Leverans i Stockholm, för 10 till 200 personer.
+        </p>
+        <ul class="cat-perks">
+          <li>Färskt och noggrant tillagat</li>
+          <li>Snyggt presenterat — redo att ställas fram</li>
+          <li>Flexibla menyer för olika behov</li>
+          <li>Perfekt för både små och stora sällskap</li>
+          <li>Leverans direkt till dörren</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section id="cat-form-section">
+    <div class="cat-form-wrap">
+      <h2 class="cat-form-heading">Få ett skräddarsytt catering­förslag</h2>
+      <p class="cat-form-sub">Berätta om ditt event — vi återkommer snabbt med menyförslag och pris.</p>
+
+      <form id="cat-form">
+        <div class="cat-form-grid">
+          <div class="cat-field">
+            <label for="cat-antal">Antal personer <span class="req">*</span></label>
+            <input type="number" id="cat-antal" name="antal" min="10" max="200" placeholder="T.ex. 20" required>
+          </div>
+          <div class="cat-field">
+            <label for="cat-typ">Typ av event</label>
+            <select id="cat-typ" name="typ">
+              <option value="Kontorslunch">Kontorslunch</option>
+              <option value="Företagsevent">Företagsevent</option>
+              <option value="Konferens">Konferens</option>
+              <option value="Födelsedag">Födelsedag</option>
+              <option value="Privat fest">Privat fest</option>
+              <option value="Övrigt">Övrigt</option>
+            </select>
+          </div>
+          <div class="cat-field full">
+            <label for="cat-adress">Leveransadress <span class="req">*</span></label>
+            <input type="text" id="cat-adress" name="adress" placeholder="Leveransadress" required>
+          </div>
+          <div class="cat-field">
+            <label for="cat-datum">Datum för event <span class="req">*</span></label>
+            <input type="date" id="cat-datum" name="datum" required>
+          </div>
+          <div class="cat-field">
+            <label for="cat-namn">Namn <span class="req">*</span></label>
+            <input type="text" id="cat-namn" name="namn" placeholder="Namn" required>
+          </div>
+          <div class="cat-field">
+            <label for="cat-tel">Telefonnummer <span class="req">*</span></label>
+            <input type="tel" id="cat-tel" name="telefon" placeholder="Telefonnummer" required>
+          </div>
+          <div class="cat-field">
+            <label for="cat-epost">E-postadress <span class="req">*</span></label>
+            <input type="email" id="cat-epost" name="epost" placeholder="E-postadress" required>
+          </div>
+          <div class="cat-field full">
+            <label for="cat-ovrigt">Övriga önskemål</label>
+            <textarea id="cat-ovrigt" name="ovrigt" placeholder="Allergier, menyönskemål, tema osv."></textarea>
+          </div>
+        </div>
+        <div class="cat-submit-row">
+          <button type="submit" class="cat-submit">Skicka din förfrågan</button>
+          <p class="cat-form-note">Öppnar din e-postklient med ett färdigifyllt mejl till info@zazha.se</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-wordmark">ZAZHA</div>
+    <p class="footer-loc">söderhallarna · södermalm · stockholm</p>
+    <div class="footer-social">
+      <a href="https://instagram.com/zazha.sthlm" target="_blank" rel="noopener">@zazha.sthlm</a>
+    </div>
+    <p class="footer-copy">© <span id="footer-year">2026</span> ZAZHA Asian Bistro &amp; Bar</p>
+  </footer>
+
+  <script>
+    const footerYear = document.getElementById('footer-year');
+    if (footerYear) footerYear.textContent = new Date().getFullYear();
+
+    const nav = document.getElementById('nav');
+    function updateNav() { nav.classList.toggle('scrolled', window.scrollY > 80); }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+
+    const hamburger  = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuClose  = document.getElementById('menu-close');
+    hamburger.addEventListener('click', () => { mobileMenu.classList.add('open'); hamburger.setAttribute('aria-expanded', 'true'); document.body.style.overflow = 'hidden'; });
+    menuClose.addEventListener('click',  () => { mobileMenu.classList.remove('open'); hamburger.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; } });
+
+    // Catering-formulär — bygger ett mailto: med ifyllda uppgifter (statisk sajt, inget backend)
+    const catForm = document.getElementById('cat-form');
+    catForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const v = (id) => document.getElementById(id).value.trim();
+      const subject = `Cateringförfrågan — ${v('cat-namn') || 'Nytt event'}`;
+      const body =
+`Antal personer: ${v('cat-antal')}
+Typ av event: ${v('cat-typ')}
+Leveransadress: ${v('cat-adress')}
+Datum för event: ${v('cat-datum')}
+Namn: ${v('cat-namn')}
+Telefonnummer: ${v('cat-tel')}
+E-postadress: ${v('cat-epost')}
+
+Övriga önskemål:
+${v('cat-ovrigt') || '–'}`;
+      window.location.href = `mailto:info@zazha.se?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  </script>
+</body>
+</html>

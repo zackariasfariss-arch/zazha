@@ -352,16 +352,18 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 44px;
+      gap: 30px;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s ease;
+      overflow-y: auto;
+      padding: 100px 0 40px;
     }
     #mobile-menu.open { opacity: 1; pointer-events: all; }
 
     #mobile-menu a {
       font-family: var(--serif);
-      font-size: 36px;
+      font-size: 30px;
       color: var(--cream);
       letter-spacing: 0.08em;
       transition: opacity 0.2s;
@@ -1415,8 +1417,16 @@
   ============================================================ -->
   <nav id="nav" role="navigation" aria-label="Huvudmeny">
     <ul class="nav-links">
-      <li><a href="#concept">Om oss</a></li>
+      <li class="has-dropdown">
+        <a href="#concept">Om oss <span class="nav-arrow">▾</span></a>
+        <div class="dropdown">
+          <a href="#concept">Om oss</a>
+          <a href="zazha-in-action.html">ZAZHA in Action</a>
+        </div>
+      </li>
       <li><a href="meny.html">Meny</a></li>
+      <li><a href="takeaway.html">Takeaway</a></li>
+      <li><a href="catering.html">Catering</a></li>
       <li><a href="#events">Events</a></li>
       <li><a href="#hitta-oss">Kontakt</a></li>
       <li><a href="#boka" class="nav-cta">Boka bord</a></li>
@@ -1433,7 +1443,10 @@
   <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Meny">
     <button id="menu-close" aria-label="Stäng meny">stäng ✕</button>
     <a href="#concept">Om oss</a>
+    <a href="zazha-in-action.html">ZAZHA in Action</a>
     <a href="meny.html">Meny</a>
+    <a href="takeaway.html">Takeaway</a>
+    <a href="catering.html">Catering</a>
     <a href="#events">Events</a>
     <a href="#hitta-oss">Kontakt</a>
     <a href="#boka">Boka bord</a>

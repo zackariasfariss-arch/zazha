@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAZHA in Action · Bilder från lokalen · Södermalm</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <meta name="description" content="ZAZHA in Action — bilder från kvällarna på Medborgarplatsen. Mat, drinkar, neon och stämning från vår asiatiska bistro & bar på Södermalm.">
+  <link rel="canonical" href="https://zazha.se/zazha-in-action.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Hanken+Grotesk:wght@300;400&display=swap">
+
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://zazha.se/zazha-in-action.html">
+  <meta property="og:title"       content="ZAZHA in Action · Södermalm">
+  <meta property="og:description" content="Bilder från kvällarna på ZAZHA — mat, drinkar, neon och stämning.">
+  <meta property="og:image"       content="https://zazha.se/images/og-image.png">
+  <meta property="og:locale"      content="sv_SE">
+
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="ZAZHA in Action · Södermalm">
+  <meta name="twitter:description" content="Bilder från kvällarna på ZAZHA — mat, drinkar, neon och stämning.">
+  <meta name="twitter:image"       content="https://zazha.se/images/og-image.png">
+
+  <style>
+    :root {
+      --cream:      #F5F0E8;
+      --charcoal:   #2C2A22;
+      --olive:      #3A4E28;
+      --terracotta: #B85C38;
+      --sage:       #6B7D4A;
+      --sand:       #C4A882;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'Hanken Grotesk', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans); font-weight: 300; color: var(--charcoal);
+      background:
+        linear-gradient(rgba(16,14,10,0.64), rgba(16,14,10,0.64)),
+        url('images/meny-wallpaper.webp');
+      background-repeat: no-repeat, repeat;
+      background-size: auto, 900px auto;
+      -webkit-font-smoothing: antialiased;
+    }
+    img  { display: block; max-width: 100%; }
+    picture { display: contents; }
+    :focus-visible { outline: 2px solid var(--terracotta); outline-offset: 3px; }
+    a    { text-decoration: none; color: inherit; }
+
+    /* NAVIGATION */
+    #nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 72px; padding: 0 48px; display: flex; align-items: center; justify-content: flex-end; transition: background 0.4s ease, box-shadow 0.4s ease; }
+    #nav.scrolled { background: var(--cream); box-shadow: 0 1px 0 rgba(44,42,34,0.10); }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a { font-family: var(--sans); font-weight: 300; font-size: 12px; letter-spacing: 0.10em; color: var(--charcoal); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--terracotta); }
+    .nav-cta { background: var(--terracotta) !important; color: var(--cream) !important; padding: 10px 22px; font-size: 11px !important; letter-spacing: 0.16em !important; text-transform: uppercase; transition: background 0.2s !important; }
+    .nav-cta:hover { background: var(--olive) !important; opacity: 1 !important; }
+    .has-dropdown { position: relative; }
+    .nav-arrow { display: inline-block; font-size: 9px; margin-left: 3px; opacity: 0.55; transition: transform 0.22s ease; vertical-align: middle; }
+    .has-dropdown:hover .nav-arrow { transform: rotate(180deg); }
+    .dropdown { position: absolute; top: calc(100% + 16px); left: 50%; transform: translateX(-50%) translateY(-10px); background: var(--cream); border-top: 2px solid var(--terracotta); padding: 6px 0 14px; min-width: 175px; box-shadow: 0 16px 44px rgba(44,42,34,0.13); opacity: 0; pointer-events: none; transition: opacity 0.22s ease, transform 0.22s ease; z-index: 201; }
+    .has-dropdown:hover .dropdown, .has-dropdown:focus-within .dropdown { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
+    .dropdown a { display: block; padding: 9px 22px; font-family: var(--sans); font-weight: 300; font-size: 12px; letter-spacing: 0.08em; color: var(--charcoal); transition: color 0.15s, padding-left 0.18s; }
+    .dropdown a:hover { color: var(--terracotta); padding-left: 30px; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 6px; cursor: pointer; }
+    .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--charcoal); transition: background 0.3s; }
+
+    /* MOBILE MENU */
+    #mobile-menu { position: fixed; inset: 0; z-index: 199; background: var(--olive); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 36px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; overflow-y: auto; padding: 100px 0 40px; }
+    #mobile-menu.open { opacity: 1; pointer-events: all; }
+    #mobile-menu a { font-family: var(--serif); font-size: 32px; color: var(--cream); letter-spacing: 0.08em; transition: opacity 0.2s; }
+    #mobile-menu a:hover { opacity: 0.6; }
+    #menu-close { position: absolute; top: 28px; right: 40px; font-family: var(--sans); font-weight: 300; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sand); background: none; border: none; cursor: pointer; }
+
+    /* PAGE HEADER */
+    #page-header { padding: 160px 80px 70px; text-align: center; }
+    .page-title { font-family: var(--serif); font-weight: 400; font-size: clamp(42px, 8vw, 90px); letter-spacing: 0.1em; color: var(--cream); text-shadow: 0 2px 24px rgba(0,0,0,0.55); line-height: 1; margin-bottom: 14px; }
+    .page-sub { font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sand); text-shadow: 0 1px 12px rgba(0,0,0,0.6); max-width: 540px; margin: 0 auto; line-height: 1.8; }
+
+    /* GALLERY GRID */
+    #action-gallery { padding: 0 20px 100px; }
+    .action-grid {
+      max-width: 1400px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 6px;
+    }
+    .action-tile { position: relative; aspect-ratio: 4 / 5; overflow: hidden; cursor: pointer; background: rgba(0,0,0,0.3); border-radius: 2px; }
+    .action-tile img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s ease, filter 0.35s ease; }
+    .action-tile:hover img { transform: scale(1.06); filter: brightness(1.08); }
+
+    /* LIGHTBOX / SLIDESHOW */
+    .action-lightbox {
+      position: fixed; inset: 0; z-index: 500; background: rgba(10,8,6,0.95);
+      display: flex; align-items: center; justify-content: center; padding: 40px;
+    }
+    .action-lightbox[hidden] { display: none; }
+    .action-lightbox img { max-width: 100%; max-height: 88vh; object-fit: contain; box-shadow: 0 30px 80px rgba(0,0,0,0.6); }
+    .action-lightbox-close { position: absolute; top: 24px; right: 32px; background: none; border: none; color: var(--cream); font-size: 22px; cursor: pointer; opacity: 0.8; transition: opacity 0.2s; }
+    .action-lightbox-close:hover { opacity: 1; }
+    .action-lightbox-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(245,240,232,0.08); border: 1px solid rgba(245,240,232,0.3);
+      color: var(--cream); width: 48px; height: 48px; border-radius: 50%;
+      font-size: 20px; cursor: pointer; transition: background 0.2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .action-lightbox-nav:hover { background: var(--terracotta); border-color: var(--terracotta); }
+    .action-lightbox-prev { left: 20px; }
+    .action-lightbox-next { right: 20px; }
+    .action-lightbox-counter { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); font-family: var(--sans); font-size: 12px; letter-spacing: 0.1em; color: var(--sand); }
+
+    /* FOOTER */
+    footer { padding: 90px 40px 80px; text-align: center; }
+    .footer-wordmark { font-family: var(--serif); font-weight: 400; font-size: 36px; letter-spacing: 0.22em; color: var(--cream); margin-bottom: 12px; }
+    .footer-loc { font-family: var(--sans); font-weight: 300; font-size: 12px; letter-spacing: 0.10em; color: var(--sage); margin-bottom: 20px; }
+    .footer-social a { font-family: var(--sans); font-weight: 300; font-size: 12px; letter-spacing: 0.08em; color: var(--sand); transition: color 0.2s; }
+    .footer-social a:hover { color: var(--cream); }
+    .footer-copy { margin-top: 36px; font-family: var(--sans); font-weight: 300; font-size: 11px; color: var(--cream); opacity: 0.28; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      #nav { padding: 0 28px; }
+      #page-header { padding: 120px 24px 56px; }
+      .action-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 4px; }
+      .action-lightbox { padding: 16px; }
+      .action-lightbox-nav { width: 40px; height: 40px; font-size: 16px; }
+    }
+    @media (max-width: 480px) {
+      .page-title { font-size: 42px; }
+      body { background-size: auto, 480px auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav id="nav" role="navigation" aria-label="Huvudmeny">
+    <ul class="nav-links">
+      <li class="has-dropdown">
+        <a href="index.html#concept">Om oss <span class="nav-arrow">▾</span></a>
+        <div class="dropdown">
+          <a href="index.html#concept">Om oss</a>
+          <a href="zazha-in-action.html">ZAZHA in Action</a>
+        </div>
+      </li>
+      <li class="has-dropdown">
+        <a href="meny.html">Meny <span class="nav-arrow">▾</span></a>
+        <div class="dropdown">
+          <a href="meny.html#lunchmeny">Lunchmeny</a>
+          <a href="meny.html#middagsmeny">Middagsmeny</a>
+          <a href="meny.html#dryckesmeny">Dryckesmeny</a>
+          <a href="meny.html#meny-mat">Hela matmenyn</a>
+          <a href="meny.html#meny-dryck">Hela dryckesmenyn</a>
+          <a href="meny.html#happy-hour">After Work</a>
+        </div>
+      </li>
+      <li><a href="takeaway.html">Takeaway</a></li>
+      <li><a href="catering.html">Catering</a></li>
+      <li><a href="index.html#events">Events</a></li>
+      <li><a href="index.html#hitta-oss">Kontakt</a></li>
+      <li><a href="index.html#boka" class="nav-cta">Boka bord</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Öppna meny" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Meny">
+    <button id="menu-close" aria-label="Stäng meny">stäng ✕</button>
+    <a href="index.html#concept">Om oss</a>
+    <a href="zazha-in-action.html">ZAZHA in Action</a>
+    <a href="meny.html">Meny</a>
+    <a href="takeaway.html">Takeaway</a>
+    <a href="catering.html">Catering</a>
+    <a href="index.html#events">Events</a>
+    <a href="index.html#hitta-oss">Kontakt</a>
+    <a href="index.html#boka">Boka bord</a>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <section id="page-header">
+    <p class="page-sub">mat · drinkar · neon · stämning</p>
+    <h1 class="page-title">ZAZHA in Action</h1>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="action-gallery" aria-label="Bildspel från ZAZHA">
+    <div class="action-grid" id="action-grid">
+      <figure class="action-tile" data-index="0">
+        <picture>
+          <source srcset="images/action-01.webp" type="image/webp">
+          <img src="images/action-01.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="1">
+        <picture>
+          <source srcset="images/action-02.webp" type="image/webp">
+          <img src="images/action-02.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="2">
+        <picture>
+          <source srcset="images/action-03.webp" type="image/webp">
+          <img src="images/action-03.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="3">
+        <picture>
+          <source srcset="images/action-04.webp" type="image/webp">
+          <img src="images/action-04.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="4">
+        <picture>
+          <source srcset="images/action-05.webp" type="image/webp">
+          <img src="images/action-05.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="5">
+        <picture>
+          <source srcset="images/action-06.webp" type="image/webp">
+          <img src="images/action-06.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="6">
+        <picture>
+          <source srcset="images/action-07.webp" type="image/webp">
+          <img src="images/action-07.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="7">
+        <picture>
+          <source srcset="images/action-08.webp" type="image/webp">
+          <img src="images/action-08.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="8">
+        <picture>
+          <source srcset="images/action-09.webp" type="image/webp">
+          <img src="images/action-09.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="9">
+        <picture>
+          <source srcset="images/action-10.webp" type="image/webp">
+          <img src="images/action-10.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="10">
+        <picture>
+          <source srcset="images/action-11.webp" type="image/webp">
+          <img src="images/action-11.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="11">
+        <picture>
+          <source srcset="images/action-12.webp" type="image/webp">
+          <img src="images/action-12.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="12">
+        <picture>
+          <source srcset="images/action-13.webp" type="image/webp">
+          <img src="images/action-13.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="13">
+        <picture>
+          <source srcset="images/action-14.webp" type="image/webp">
+          <img src="images/action-14.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="14">
+        <picture>
+          <source srcset="images/action-15.webp" type="image/webp">
+          <img src="images/action-15.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="15">
+        <picture>
+          <source srcset="images/action-16.webp" type="image/webp">
+          <img src="images/action-16.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="16">
+        <picture>
+          <source srcset="images/action-17.webp" type="image/webp">
+          <img src="images/action-17.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="17">
+        <picture>
+          <source srcset="images/action-18.webp" type="image/webp">
+          <img src="images/action-18.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="18">
+        <picture>
+          <source srcset="images/action-19.webp" type="image/webp">
+          <img src="images/action-19.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="19">
+        <picture>
+          <source srcset="images/action-20.webp" type="image/webp">
+          <img src="images/action-20.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="20">
+        <picture>
+          <source srcset="images/action-21.webp" type="image/webp">
+          <img src="images/action-21.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="21">
+        <picture>
+          <source srcset="images/action-22.webp" type="image/webp">
+          <img src="images/action-22.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="22">
+        <picture>
+          <source srcset="images/action-23.webp" type="image/webp">
+          <img src="images/action-23.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="23">
+        <picture>
+          <source srcset="images/action-24.webp" type="image/webp">
+          <img src="images/action-24.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="24">
+        <picture>
+          <source srcset="images/action-25.webp" type="image/webp">
+          <img src="images/action-25.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="25">
+        <picture>
+          <source srcset="images/action-26.webp" type="image/webp">
+          <img src="images/action-26.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="26">
+        <picture>
+          <source srcset="images/action-27.webp" type="image/webp">
+          <img src="images/action-27.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="27">
+        <picture>
+          <source srcset="images/action-28.webp" type="image/webp">
+          <img src="images/action-28.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="28">
+        <picture>
+          <source srcset="images/action-29.webp" type="image/webp">
+          <img src="images/action-29.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="29">
+        <picture>
+          <source srcset="images/action-30.webp" type="image/webp">
+          <img src="images/action-30.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="30">
+        <picture>
+          <source srcset="images/action-31.webp" type="image/webp">
+          <img src="images/action-31.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="31">
+        <picture>
+          <source srcset="images/action-32.webp" type="image/webp">
+          <img src="images/action-32.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="32">
+        <picture>
+          <source srcset="images/action-33.webp" type="image/webp">
+          <img src="images/action-33.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="33">
+        <picture>
+          <source srcset="images/action-34.webp" type="image/webp">
+          <img src="images/action-34.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="34">
+        <picture>
+          <source srcset="images/action-35.webp" type="image/webp">
+          <img src="images/action-35.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="35">
+        <picture>
+          <source srcset="images/action-36.webp" type="image/webp">
+          <img src="images/action-36.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="36">
+        <picture>
+          <source srcset="images/action-37.webp" type="image/webp">
+          <img src="images/action-37.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="37">
+        <picture>
+          <source srcset="images/action-38.webp" type="image/webp">
+          <img src="images/action-38.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="38">
+        <picture>
+          <source srcset="images/action-39.webp" type="image/webp">
+          <img src="images/action-39.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="39">
+        <picture>
+          <source srcset="images/action-40.webp" type="image/webp">
+          <img src="images/action-40.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="40">
+        <picture>
+          <source srcset="images/action-41.webp" type="image/webp">
+          <img src="images/action-41.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="41">
+        <picture>
+          <source srcset="images/action-42.webp" type="image/webp">
+          <img src="images/action-42.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="42">
+        <picture>
+          <source srcset="images/action-43.webp" type="image/webp">
+          <img src="images/action-43.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="43">
+        <picture>
+          <source srcset="images/action-44.webp" type="image/webp">
+          <img src="images/action-44.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="44">
+        <picture>
+          <source srcset="images/action-45.webp" type="image/webp">
+          <img src="images/action-45.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="45">
+        <picture>
+          <source srcset="images/action-46.webp" type="image/webp">
+          <img src="images/action-46.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="46">
+        <picture>
+          <source srcset="images/action-47.webp" type="image/webp">
+          <img src="images/action-47.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="47">
+        <picture>
+          <source srcset="images/action-48.webp" type="image/webp">
+          <img src="images/action-48.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="48">
+        <picture>
+          <source srcset="images/action-49.webp" type="image/webp">
+          <img src="images/action-49.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="49">
+        <picture>
+          <source srcset="images/action-50.webp" type="image/webp">
+          <img src="images/action-50.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="50">
+        <picture>
+          <source srcset="images/action-51.webp" type="image/webp">
+          <img src="images/action-51.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="51">
+        <picture>
+          <source srcset="images/action-52.webp" type="image/webp">
+          <img src="images/action-52.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="52">
+        <picture>
+          <source srcset="images/action-53.webp" type="image/webp">
+          <img src="images/action-53.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="53">
+        <picture>
+          <source srcset="images/action-54.webp" type="image/webp">
+          <img src="images/action-54.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="54">
+        <picture>
+          <source srcset="images/action-55.webp" type="image/webp">
+          <img src="images/action-55.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="55">
+        <picture>
+          <source srcset="images/action-56.webp" type="image/webp">
+          <img src="images/action-56.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="56">
+        <picture>
+          <source srcset="images/action-57.webp" type="image/webp">
+          <img src="images/action-57.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="57">
+        <picture>
+          <source srcset="images/action-58.webp" type="image/webp">
+          <img src="images/action-58.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="58">
+        <picture>
+          <source srcset="images/action-59.webp" type="image/webp">
+          <img src="images/action-59.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="59">
+        <picture>
+          <source srcset="images/action-60.webp" type="image/webp">
+          <img src="images/action-60.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="60">
+        <picture>
+          <source srcset="images/action-61.webp" type="image/webp">
+          <img src="images/action-61.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="61">
+        <picture>
+          <source srcset="images/action-62.webp" type="image/webp">
+          <img src="images/action-62.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="62">
+        <picture>
+          <source srcset="images/action-63.webp" type="image/webp">
+          <img src="images/action-63.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="63">
+        <picture>
+          <source srcset="images/action-64.webp" type="image/webp">
+          <img src="images/action-64.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="64">
+        <picture>
+          <source srcset="images/action-65.webp" type="image/webp">
+          <img src="images/action-65.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="65">
+        <picture>
+          <source srcset="images/action-66.webp" type="image/webp">
+          <img src="images/action-66.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="66">
+        <picture>
+          <source srcset="images/action-67.webp" type="image/webp">
+          <img src="images/action-67.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="67">
+        <picture>
+          <source srcset="images/action-68.webp" type="image/webp">
+          <img src="images/action-68.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="68">
+        <picture>
+          <source srcset="images/action-69.webp" type="image/webp">
+          <img src="images/action-69.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="69">
+        <picture>
+          <source srcset="images/action-70.webp" type="image/webp">
+          <img src="images/action-70.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="70">
+        <picture>
+          <source srcset="images/action-71.webp" type="image/webp">
+          <img src="images/action-71.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="71">
+        <picture>
+          <source srcset="images/action-72.webp" type="image/webp">
+          <img src="images/action-72.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="72">
+        <picture>
+          <source srcset="images/action-73.webp" type="image/webp">
+          <img src="images/action-73.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="73">
+        <picture>
+          <source srcset="images/action-74.webp" type="image/webp">
+          <img src="images/action-74.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="74">
+        <picture>
+          <source srcset="images/action-75.webp" type="image/webp">
+          <img src="images/action-75.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="75">
+        <picture>
+          <source srcset="images/action-76.webp" type="image/webp">
+          <img src="images/action-76.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="76">
+        <picture>
+          <source srcset="images/action-77.webp" type="image/webp">
+          <img src="images/action-77.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="77">
+        <picture>
+          <source srcset="images/action-78.webp" type="image/webp">
+          <img src="images/action-78.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="78">
+        <picture>
+          <source srcset="images/action-79.webp" type="image/webp">
+          <img src="images/action-79.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="79">
+        <picture>
+          <source srcset="images/action-80.webp" type="image/webp">
+          <img src="images/action-80.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="80">
+        <picture>
+          <source srcset="images/action-81.webp" type="image/webp">
+          <img src="images/action-81.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="action-tile" data-index="81">
+        <picture>
+          <source srcset="images/action-82.webp" type="image/webp">
+          <img src="images/action-82.jpg" alt="ZAZHA in action " width="900" height="1125" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="action-lightbox" id="action-lightbox" role="dialog" aria-modal="true" aria-label="Bildspel" hidden>
+    <button type="button" class="action-lightbox-close" id="action-lightbox-close" aria-label="Stäng">✕</button>
+    <button type="button" class="action-lightbox-nav action-lightbox-prev" id="action-lightbox-prev" aria-label="Föregående bild">‹</button>
+    <img id="action-lightbox-img" src="" alt="ZAZHA in action">
+    <button type="button" class="action-lightbox-nav action-lightbox-next" id="action-lightbox-next" aria-label="Nästa bild">›</button>
+    <p class="action-lightbox-counter" id="action-lightbox-counter"></p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-wordmark">ZAZHA</div>
+    <p class="footer-loc">söderhallarna · södermalm · stockholm</p>
+    <div class="footer-social">
+      <a href="https://instagram.com/zazha.sthlm" target="_blank" rel="noopener">@zazha.sthlm</a>
+    </div>
+    <p class="footer-copy">© <span id="footer-year">2026</span> ZAZHA Asian Bistro &amp; Bar</p>
+  </footer>
+
+  <script>
+    const footerYear = document.getElementById('footer-year');
+    if (footerYear) footerYear.textContent = new Date().getFullYear();
+
+    const nav = document.getElementById('nav');
+    function updateNav() { nav.classList.toggle('scrolled', window.scrollY > 80); }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+
+    const hamburger  = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuClose  = document.getElementById('menu-close');
+    hamburger.addEventListener('click', () => { mobileMenu.classList.add('open'); hamburger.setAttribute('aria-expanded', 'true'); document.body.style.overflow = 'hidden'; });
+    menuClose.addEventListener('click',  () => { mobileMenu.classList.remove('open'); hamburger.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }));
+
+    // Slideshow / lightbox
+    const tiles = [...document.querySelectorAll('.action-tile')];
+    const lightbox = document.getElementById('action-lightbox');
+    const lightboxImg = document.getElementById('action-lightbox-img');
+    const lightboxCounter = document.getElementById('action-lightbox-counter');
+    const total = tiles.length;
+    let current = 0;
+
+    function showSlide(i) {
+      current = (i + total) % total;
+      const n = String(current + 1).padStart(2, '0');
+      lightboxImg.src = `images/action-${n}.jpg`;
+      lightboxCounter.textContent = `${current + 1} / ${total}`;
+    }
+    function openLightbox(i) {
+      showSlide(i);
+      lightbox.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lightbox.hidden = true;
+      document.body.style.overflow = '';
+    }
+    tiles.forEach((tile, i) => tile.addEventListener('click', () => openLightbox(i)));
+    document.getElementById('action-lightbox-close').addEventListener('click', closeLightbox);
+    document.getElementById('action-lightbox-prev').addEventListener('click', () => showSlide(current - 1));
+    document.getElementById('action-lightbox-next').addEventListener('click', () => showSlide(current + 1));
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.hidden) { if (e.key === 'Escape') { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; } return; }
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') showSlide(current + 1);
+      if (e.key === 'ArrowLeft') showSlide(current - 1);
+    });
+  </script>
+</body>
+</html>
