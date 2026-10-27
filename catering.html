@@ -6,7 +6,7 @@
   <title>Catering · ZAZHA Asian Bistro &amp; Bar · Södermalm</title>
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon.png">
-  <meta name="description" content="ZAZHA catering för kontor, event och fest — asiatisk comfort food levererat i Stockholm, för 10 till 200 personer. Få ett skräddarsytt förslag.">
+  <meta name="description" content="ZAZHA catering för kontor, event och fest — asiatisk comfort food levererat i Stockholm. Få ett skräddarsytt förslag.">
   <meta name="keywords" content="zazha catering, asiatisk catering stockholm, catering södermalm, kontorscatering stockholm, eventmat stockholm, asiatisk mat catering">
   <link rel="canonical" href="https://zazha.se/catering.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,7 @@
   <meta property="og:type"        content="website">
   <meta property="og:url"         content="https://zazha.se/catering.html">
   <meta property="og:title"       content="Catering · ZAZHA Södermalm">
-  <meta property="og:description" content="Asiatisk catering för kontor, event eller fest. Leverans i Stockholm, för 10 till 200 personer.">
+  <meta property="og:description" content="Asiatisk catering för kontor, event eller fest. Leverans i Stockholm.">
   <meta property="og:image"       content="https://zazha.se/images/og-image.png">
   <meta property="og:locale"      content="sv_SE">
 
@@ -62,6 +62,7 @@
     .nav-cta { background: var(--terracotta) !important; color: var(--cream) !important; padding: 10px 22px; font-size: 11px !important; letter-spacing: 0.16em !important; text-transform: uppercase; transition: background 0.2s !important; }
     .nav-cta:hover { background: var(--olive) !important; opacity: 1 !important; }
     .has-dropdown { position: relative; }
+    .has-dropdown::after { content: ''; position: absolute; top: 100%; left: 0; right: 0; height: 16px; }
     .nav-arrow { display: inline-block; font-size: 9px; margin-left: 3px; opacity: 0.55; transition: transform 0.22s ease; vertical-align: middle; }
     .has-dropdown:hover .nav-arrow { transform: rotate(180deg); }
     .dropdown { position: absolute; top: calc(100% + 16px); left: 50%; transform: translateX(-50%) translateY(-10px); background: var(--cream); border-top: 2px solid var(--terracotta); padding: 6px 0 14px; min-width: 175px; box-shadow: 0 16px 44px rgba(44,42,34,0.13); opacity: 0; pointer-events: none; transition: opacity 0.22s ease, transform 0.22s ease; z-index: 201; }
@@ -227,7 +228,7 @@
         <p class="cat-eyebrow">asian fusion catering</p>
         <h2 class="cat-heading">Mindre stress, mer smak</h2>
         <p class="cat-body">
-          Asiatisk catering för kontoret, eventet eller bara ett hungrigt gäng — vi fixar maten. Samma generösa bowls, ramen och crispy sides som i lokalen, packade snyggt och redo att ställas fram. Leverans i Stockholm, för 10 till 200 personer.
+          Asiatisk catering för kontoret, eventet eller bara ett hungrigt gäng — vi fixar maten. Samma generösa bowls, ramen och crispy sides som i lokalen, packade snyggt och redo att ställas fram. Leverans i Stockholm.
         </p>
         <ul class="cat-perks">
           <li>Färskt och noggrant tillagat</li>
@@ -250,7 +251,7 @@
         <div class="cat-form-grid">
           <div class="cat-field">
             <label for="cat-antal">Antal personer <span class="req">*</span></label>
-            <input type="number" id="cat-antal" name="antal" min="10" max="200" placeholder="T.ex. 20" required>
+            <input type="number" id="cat-antal" name="antal" min="1" placeholder="T.ex. 20" required>
           </div>
           <div class="cat-field">
             <label for="cat-typ">Typ av event</label>

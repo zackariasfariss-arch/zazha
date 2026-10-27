@@ -62,6 +62,7 @@
     .nav-cta { background: var(--terracotta) !important; color: var(--cream) !important; padding: 10px 22px; font-size: 11px !important; letter-spacing: 0.16em !important; text-transform: uppercase; transition: background 0.2s !important; }
     .nav-cta:hover { background: var(--olive) !important; opacity: 1 !important; }
     .has-dropdown { position: relative; }
+    .has-dropdown::after { content: ''; position: absolute; top: 100%; left: 0; right: 0; height: 16px; }
     .nav-arrow { display: inline-block; font-size: 9px; margin-left: 3px; opacity: 0.55; transition: transform 0.22s ease; vertical-align: middle; }
     .has-dropdown:hover .nav-arrow { transform: rotate(180deg); }
     .dropdown { position: absolute; top: calc(100% + 16px); left: 50%; transform: translateX(-50%) translateY(-10px); background: var(--cream); border-top: 2px solid var(--terracotta); padding: 6px 0 14px; min-width: 175px; box-shadow: 0 16px 44px rgba(44,42,34,0.13); opacity: 0; pointer-events: none; transition: opacity 0.22s ease, transform 0.22s ease; z-index: 201; }
@@ -219,7 +220,7 @@
         <div class="ta-body">
           <p>Sugen på bowls, ramen eller crispy sides men ingen tid att sitta ner? Vi packar ZAZHA precis lika noga som vi serverar det i lokalen — så det smakar exakt lika bra hemma i soffan.</p>
           <br>
-          <p>Beställ via <strong>Pong-appen</strong> för snabbast leverans direkt från oss, eller hitta oss på <strong>Foodora</strong>, <strong>Wolt</strong> och <strong>Uber Eats</strong>. Välj det som passar dig.</p>
+          <p>Beställ via <strong>Pong-appen</strong> för snabbast leverans direkt från oss, eller hitta oss på <strong>Foodora</strong>, <strong>Wolt</strong> och <strong>Uber Eats</strong> — både för hemkörning och upphämtning. Välj det som passar dig.</p>
         </div>
       </div>
     </div>
@@ -235,27 +236,27 @@
         <div class="ta-order-icon">猫</div>
         <p class="ta-order-name">Pong-appen</p>
         <p class="ta-order-desc">Direkt från ZAZHA, snabbast väg till din dörr.</p>
-        <a href="#" class="ta-order-link">Öppna app →</a>
+        <a href="https://www.pong.se/pong-app.html" target="_blank" rel="noopener" class="ta-order-link">Öppna app →</a>
       </div>
 
       <div class="ta-order-card">
         <div class="ta-order-icon">F</div>
         <p class="ta-order-name">Foodora</p>
-        <p class="ta-order-desc">Hemkörning via Foodora.</p>
+        <p class="ta-order-desc">Hemkörning eller upphämtning via Foodora.</p>
         <a href="https://www.foodora.se/restaurant/kghp/zazha-asian-bistro-and-bar" target="_blank" rel="noopener" class="ta-order-link">Beställ →</a>
       </div>
 
       <div class="ta-order-card">
         <div class="ta-order-icon">W</div>
         <p class="ta-order-name">Wolt</p>
-        <p class="ta-order-desc">Hemkörning via Wolt.</p>
+        <p class="ta-order-desc">Hemkörning eller upphämtning via Wolt.</p>
         <a href="https://wolt.com/sv/swe/stockholm/restaurant/zazha-asian-bistro-bar-1" target="_blank" rel="noopener" class="ta-order-link">Beställ →</a>
       </div>
 
       <div class="ta-order-card">
         <div class="ta-order-icon">U</div>
         <p class="ta-order-name">Uber Eats</p>
-        <p class="ta-order-desc">Hemkörning via Uber Eats.</p>
+        <p class="ta-order-desc">Hemkörning eller upphämtning via Uber Eats.</p>
         <a href="https://www.ubereats.com/se/store/zazha/8fIjsHxzWKCdJzda59zyYw" target="_blank" rel="noopener" class="ta-order-link">Beställ →</a>
       </div>
 

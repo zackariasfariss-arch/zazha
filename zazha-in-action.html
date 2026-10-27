@@ -61,6 +61,7 @@
     .nav-cta { background: var(--terracotta) !important; color: var(--cream) !important; padding: 10px 22px; font-size: 11px !important; letter-spacing: 0.16em !important; text-transform: uppercase; transition: background 0.2s !important; }
     .nav-cta:hover { background: var(--olive) !important; opacity: 1 !important; }
     .has-dropdown { position: relative; }
+    .has-dropdown::after { content: ''; position: absolute; top: 100%; left: 0; right: 0; height: 16px; }
     .nav-arrow { display: inline-block; font-size: 9px; margin-left: 3px; opacity: 0.55; transition: transform 0.22s ease; vertical-align: middle; }
     .has-dropdown:hover .nav-arrow { transform: rotate(180deg); }
     .dropdown { position: absolute; top: calc(100% + 16px); left: 50%; transform: translateX(-50%) translateY(-10px); background: var(--cream); border-top: 2px solid var(--terracotta); padding: 6px 0 14px; min-width: 175px; box-shadow: 0 16px 44px rgba(44,42,34,0.13); opacity: 0; pointer-events: none; transition: opacity 0.22s ease, transform 0.22s ease; z-index: 201; }

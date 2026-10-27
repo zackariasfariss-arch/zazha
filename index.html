@@ -276,6 +276,7 @@
 
     /* ---- Dropdown curtain (Mat & Dryck) ---- */
     .has-dropdown { position: relative; }
+    .has-dropdown::after { content: ''; position: absolute; top: 100%; left: 0; right: 0; height: 16px; }
 
     .nav-arrow {
       display: inline-block;
@@ -415,7 +416,7 @@
       height: 100%;
       object-fit: cover;
       opacity: 0;
-      transition: opacity 1.8s ease;
+      transition: opacity 1s ease;
     }
     .hero-slide.active { opacity: 1; }
 
@@ -1647,7 +1648,7 @@ något helt eget, är ZAZHA på Södermalm scenen för det.
 
 Ni bestämmer anledningen - vi fixar resten.</div>
 
-        <a href="#hitta-oss" class="events-contact-btn">Kontakta oss</a>
+        <a href="mailto:info@zazha.se" class="events-contact-btn">Kontakta oss</a>
       </div>
     </div>
   </section>
@@ -1734,7 +1735,7 @@ Ni bestämmer anledningen - vi fixar resten.</div>
         heroSlides[heroSlideIndex].classList.remove('active');
         heroSlideIndex = (heroSlideIndex + 1) % heroSlides.length;
         heroSlides[heroSlideIndex].classList.add('active');
-      }, 5000);
+      }, 2600);
     }
 
     // --- Scroll-aware nav ---
