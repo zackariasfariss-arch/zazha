@@ -534,10 +534,13 @@
        MENY PREVIEW — hela menyn, direkt efter hero
     ============================================================ */
     #meny-preview {
+      position: relative;
+      overflow: hidden;
       background: transparent;
       padding: 120px 80px 100px;
       text-align: center;
     }
+    #meny-preview > *:not(.hero-slideshow):not(.hero-backdrop) { position: relative; z-index: 1; }
 
     .meny-preview-eyebrow {
       font-family: var(--sans);
@@ -547,7 +550,7 @@
       text-transform: uppercase;
       color: var(--terracotta);
       margin-bottom: 14px;
-      text-shadow: 0 1px 10px rgba(0,0,0,0.4);
+      text-shadow: 0 2px 6px rgba(0,0,0,0.9), 0 0 16px rgba(0,0,0,0.9);
     }
 
     .meny-preview-heading {
@@ -722,9 +725,12 @@
        Cream bg, two-col: pull-quote + body text
     ============================================================ */
     #concept {
+      position: relative;
+      overflow: hidden;
       background: transparent;
       padding: 120px 80px;
     }
+    #concept > *:not(.hero-slideshow):not(.hero-backdrop) { position: relative; z-index: 1; }
 
     .concept-inner {
       max-width: 1160px;
@@ -813,9 +819,12 @@
        LOKAL — hero image + text
     ============================================================ */
     #lokal {
+      position: relative;
+      overflow: hidden;
       background: transparent;
       padding: 120px 80px;
     }
+    #lokal > *:not(.hero-slideshow):not(.hero-backdrop) { position: relative; z-index: 1; }
 
     .lokal-eyebrow {
       font-family: var(--sans);
@@ -824,9 +833,10 @@
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--terracotta);
-      opacity: 0.80;
+      opacity: 1;
       margin-bottom: 14px;
       text-align: center;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.9), 0 0 16px rgba(0,0,0,0.9);
     }
 
     .lokal-heading {
@@ -907,9 +917,12 @@
        FOOD GALLERI — riktiga foton av maten
     ============================================================ */
     #food-galleri {
+      position: relative;
+      overflow: hidden;
       background: transparent;
       padding: 120px 80px;
     }
+    #food-galleri > *:not(.hero-slideshow):not(.hero-backdrop) { position: relative; z-index: 1; }
     .food-galleri-eyebrow {
       font-family: var(--sans);
       font-weight: 300;
@@ -917,8 +930,9 @@
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--terracotta);
-      opacity: 0.80;
+      opacity: 1;
       margin-bottom: 14px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.9), 0 0 16px rgba(0,0,0,0.9);
       text-align: center;
     }
     .food-galleri-heading {
@@ -958,9 +972,11 @@
        GUINNESS
     ============================================================ */
     #guinness {
+      position: relative;
       background: transparent;
       overflow: hidden;
     }
+    #guinness > *:not(.hero-slideshow):not(.hero-backdrop) { position: relative; z-index: 1; }
 
     .guinness-inner {
       max-width: 1280px;
@@ -1131,10 +1147,13 @@
        Charcoal bg, two-col: info + map placeholder
     ============================================================ */
     #hitta-oss {
+      position: relative;
+      overflow: hidden;
       background: transparent;
       padding: 120px 80px;
       color: var(--cream);
     }
+    #hitta-oss > *:not(.hero-slideshow):not(.hero-backdrop) { position: relative; z-index: 1; }
 
     .hitta-inner {
       max-width: 980px;
@@ -1206,10 +1225,13 @@
        Cream bg, handle + 5-tile grid
     ============================================================ */
     #instagram {
+      position: relative;
+      overflow: hidden;
       background: transparent;
       padding: 120px 80px;
       text-align: center;
     }
+    #instagram > *:not(.hero-slideshow):not(.hero-backdrop) { position: relative; z-index: 1; }
 
     .insta-card {
       display: inline-block;
@@ -1242,10 +1264,13 @@
        BOKA BORD
     ============================================================ */
     #boka {
+      position: relative;
+      overflow: hidden;
       background: transparent;
       padding: 120px 80px;
       text-align: center;
     }
+    #boka > *:not(.hero-slideshow):not(.hero-backdrop) { position: relative; z-index: 1; }
     .boka-card {
       display: inline-block;
       max-width: 620px;
@@ -1312,10 +1337,13 @@
        Charcoal bg, centered wordmark
     ============================================================ */
     footer {
+      position: relative;
+      overflow: hidden;
       background: transparent;
       padding: 100px 40px 80px;
       text-align: center;
     }
+    footer > *:not(.hero-slideshow):not(.hero-backdrop) { position: relative; z-index: 1; }
 
     .footer-card {
       display: inline-block;
@@ -1476,11 +1504,13 @@
   <section id="hero" aria-label="Välkommen till ZAZHA">
     <div class="hero-slideshow" id="hero-slideshow" aria-hidden="true">
       <picture><source srcset="images/lokal-facade.webp" type="image/webp"><img src="images/lokal-facade.jpg" class="hero-slide active" alt="" fetchpriority="high"></picture>
-      <picture><source srcset="images/action-01.webp" type="image/webp"><img src="images/action-01.jpg" class="hero-slide" alt=""></picture>
-      <picture><source srcset="images/action-60.webp" type="image/webp"><img src="images/action-60.jpg" class="hero-slide" alt=""></picture>
-      <picture><source srcset="images/action-39.webp" type="image/webp"><img src="images/action-39.jpg" class="hero-slide" alt=""></picture>
-      <picture><source srcset="images/meny-mat-08.webp" type="image/webp"><img src="images/meny-mat-08.jpg" class="hero-slide" alt=""></picture>
-      <picture><source srcset="images/action-66.webp" type="image/webp"><img src="images/action-66.jpg" class="hero-slide" alt=""></picture>
+      <picture><source srcset="images/action-01.webp" type="image/webp"><img src="images/action-01.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-60.webp" type="image/webp"><img src="images/action-60.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-39.webp" type="image/webp"><img src="images/action-39.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/meny-mat-08.webp" type="image/webp"><img src="images/meny-mat-08.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-66.webp" type="image/webp"><img src="images/action-66.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-41.webp" type="image/webp"><img src="images/action-41.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-76.webp" type="image/webp"><img src="images/action-76.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
     </div>
     <div class="hero-backdrop"></div>
     <div class="hero-poster-wrap">
@@ -1503,6 +1533,13 @@
        MENY PREVIEW — hela menyn direkt efter hero
   ============================================================ -->
   <section id="meny-preview" aria-label="Meny">
+    <div class="hero-slideshow" aria-hidden="true">
+      <picture><source srcset="images/action-02.webp" type="image/webp"><img src="images/action-02.jpg" class="hero-slide active" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-43.webp" type="image/webp"><img src="images/action-43.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-47.webp" type="image/webp"><img src="images/action-47.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-78.webp" type="image/webp"><img src="images/action-78.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+    </div>
+    <div class="hero-backdrop"></div>
     <p class="meny-preview-eyebrow">öl · vin · skål</p>
     <h2 class="meny-preview-heading">MENY</h2>
     <button type="button" class="meny-preview-frame" id="meny-preview-open" aria-label="Förstora menyn">
@@ -1528,6 +1565,13 @@
        CONCEPT — öl, vin och skål
   ============================================================ -->
   <section id="concept">
+    <div class="hero-slideshow" aria-hidden="true">
+      <picture><source srcset="images/action-59.webp" type="image/webp"><img src="images/action-59.jpg" class="hero-slide active" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-31.webp" type="image/webp"><img src="images/action-31.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-54.webp" type="image/webp"><img src="images/action-54.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-40.webp" type="image/webp"><img src="images/action-40.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+    </div>
+    <div class="hero-backdrop"></div>
     <div class="concept-inner">
       <div class="poster-card concept-card">
         <p class="concept-eyebrow">asiatisk mat · södermalm</p>
@@ -1556,6 +1600,13 @@
        FOOD GALLERI
   ============================================================ -->
   <section id="food-galleri" aria-label="Bilder på maten">
+    <div class="hero-slideshow" aria-hidden="true">
+      <picture><source srcset="images/action-62.webp" type="image/webp"><img src="images/action-62.jpg" class="hero-slide active" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-67.webp" type="image/webp"><img src="images/action-67.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-74.webp" type="image/webp"><img src="images/action-74.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-45.webp" type="image/webp"><img src="images/action-45.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+    </div>
+    <div class="hero-backdrop"></div>
     <p class="food-galleri-eyebrow">på riktigt</p>
     <h2 class="food-galleri-heading">SÅ HÄR SER DET UT</h2>
     <div class="food-galleri-grid">
@@ -1574,6 +1625,13 @@
        GUINNESS
   ============================================================ -->
   <section id="guinness" aria-label="Guinness">
+    <div class="hero-slideshow" aria-hidden="true">
+      <picture><source srcset="images/action-68.webp" type="image/webp"><img src="images/action-68.jpg" class="hero-slide active" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-71.webp" type="image/webp"><img src="images/action-71.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-35.webp" type="image/webp"><img src="images/action-35.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-54.webp" type="image/webp"><img src="images/action-54.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+    </div>
+    <div class="hero-backdrop"></div>
     <div class="guinness-inner">
       <div class="guinness-img">
         <img src="images/guinness-team-01.jpg" alt="ZAZHA-teamet i köket" width="1120" height="1400" loading="lazy" decoding="async">
@@ -1598,6 +1656,13 @@
        LOKAL — hero image + text
   ============================================================ -->
   <section id="lokal" aria-label="Lokalen">
+    <div class="hero-slideshow" aria-hidden="true">
+      <picture><source srcset="images/action-33.webp" type="image/webp"><img src="images/action-33.jpg" class="hero-slide active" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-30.webp" type="image/webp"><img src="images/action-30.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-65.webp" type="image/webp"><img src="images/action-65.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-61.webp" type="image/webp"><img src="images/action-61.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+    </div>
+    <div class="hero-backdrop"></div>
     <p class="lokal-eyebrow">söderhallarna · södermalm</p>
     <h2 class="lokal-heading" data-edit-id="lokal-heading">MITT PÅ MEDIS</h2>
     <div class="lokal-hero">
@@ -1622,6 +1687,13 @@
        INSTAGRAM
   ============================================================ -->
   <section id="instagram">
+    <div class="hero-slideshow" aria-hidden="true">
+      <picture><source srcset="images/action-73.webp" type="image/webp"><img src="images/action-73.jpg" class="hero-slide active" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-66.webp" type="image/webp"><img src="images/action-66.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-77.webp" type="image/webp"><img src="images/action-77.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-56.webp" type="image/webp"><img src="images/action-56.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+    </div>
+    <div class="hero-backdrop"></div>
     <div class="poster-card insta-card">
       <p class="insta-eyebrow" data-edit-id="insta-eye">följ oss</p>
       <a href="https://instagram.com/zazha.sthlm" target="_blank" rel="noopener"
@@ -1657,6 +1729,13 @@ Ni bestämmer anledningen - vi fixar resten.</div>
        HITTA OSS
   ============================================================ -->
   <section id="hitta-oss">
+    <div class="hero-slideshow" aria-hidden="true">
+      <picture><source srcset="images/action-32.webp" type="image/webp"><img src="images/action-32.jpg" class="hero-slide active" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-57.webp" type="image/webp"><img src="images/action-57.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-82.webp" type="image/webp"><img src="images/action-82.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-34.webp" type="image/webp"><img src="images/action-34.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+    </div>
+    <div class="hero-backdrop"></div>
     <div class="hitta-inner">
       <div class="poster-card hitta-info">
         <div class="hitta-name">ZAZHA</div>
@@ -1694,6 +1773,13 @@ Ni bestämmer anledningen - vi fixar resten.</div>
        BOKA BORD
   ============================================================ -->
   <section id="boka" aria-label="Boka bord">
+    <div class="hero-slideshow" aria-hidden="true">
+      <picture><source srcset="images/action-50.webp" type="image/webp"><img src="images/action-50.jpg" class="hero-slide active" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-72.webp" type="image/webp"><img src="images/action-72.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-45.webp" type="image/webp"><img src="images/action-45.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-49.webp" type="image/webp"><img src="images/action-49.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+    </div>
+    <div class="hero-backdrop"></div>
     <div class="poster-card boka-card">
       <p class="boka-eyebrow">boka bord</p>
       <h2 class="boka-heading">Inga bokningar — bara låga trösklar</h2>
@@ -1709,6 +1795,13 @@ Ni bestämmer anledningen - vi fixar resten.</div>
        FOOTER
   ============================================================ -->
   <footer>
+    <div class="hero-slideshow" aria-hidden="true">
+      <picture><source srcset="images/action-69.webp" type="image/webp"><img src="images/action-69.jpg" class="hero-slide active" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-37.webp" type="image/webp"><img src="images/action-37.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-63.webp" type="image/webp"><img src="images/action-63.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-80.webp" type="image/webp"><img src="images/action-80.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+    </div>
+    <div class="hero-backdrop"></div>
     <div class="poster-card footer-card">
       <div class="footer-wordmark">ZAZHA</div>
       <p class="footer-loc" data-edit-id="footer-loc">söderhallarna · södermalm · stockholm</p>
@@ -1727,16 +1820,26 @@ Ni bestämmer anledningen - vi fixar resten.</div>
     const footerYear = document.getElementById('footer-year');
     if (footerYear) footerYear.textContent = new Date().getFullYear();
 
-    // --- Hero-bildspel ---
-    const heroSlides = document.querySelectorAll('.hero-slide');
-    if (heroSlides.length > 1) {
-      let heroSlideIndex = 0;
+    // --- Bakgrundsbildspel — ett per sektion, oberoende och osynkat ---
+    function initSlideshow(container, baseInterval, randomStart) {
+      const slides = container.querySelectorAll('.hero-slide');
+      if (slides.length < 2) return;
+      let idx = 0;
+      if (randomStart) {
+        idx = Math.floor(Math.random() * slides.length);
+        slides.forEach(s => s.classList.remove('active'));
+        slides[idx].classList.add('active');
+      }
+      const interval = baseInterval + Math.random() * 1800;
       setInterval(() => {
-        heroSlides[heroSlideIndex].classList.remove('active');
-        heroSlideIndex = (heroSlideIndex + 1) % heroSlides.length;
-        heroSlides[heroSlideIndex].classList.add('active');
-      }, 2600);
+        slides[idx].classList.remove('active');
+        idx = (idx + 1) % slides.length;
+        slides[idx].classList.add('active');
+      }, interval);
     }
+    document.querySelectorAll('.hero-slideshow').forEach(el => {
+      initSlideshow(el, 2600, el.id !== 'hero-slideshow');
+    });
 
     // --- Scroll-aware nav ---
     const nav  = document.getElementById('nav');
