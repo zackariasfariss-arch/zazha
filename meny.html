@@ -176,7 +176,7 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    #lunchmeny, #middagsmeny, #dryckesmeny, #meny-mat, #meny-dryck, #happy-hour, #catering { scroll-margin-top: 88px; }
+    #lunchmeny, #middagsmeny, #dryckesmeny, #meny-mat, #meny-dryck, #happy-hour, #catering, #dagens-bowl { scroll-margin-top: 88px; }
     body {
       font-family: var(--sans); font-weight: 300; color: var(--charcoal);
       background:
@@ -565,6 +565,24 @@
     }
     .meny-full-download:hover { background: var(--terracotta); border-color: var(--terracotta); color: var(--cream); }
 
+    /* ---- Dagens Bowl — klickbar bild som öppnar lightbox ---- */
+    .dagens-bowl-frame {
+      display: block;
+      width: 100%;
+      max-width: 900px;
+      margin: 40px auto 0;
+      padding: 0;
+      border: 6px solid #0a0a0a;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+      border-radius: 2px;
+      background: none;
+      cursor: zoom-in;
+      overflow: hidden;
+      transition: transform 0.25s ease;
+    }
+    .dagens-bowl-frame:hover { transform: scale(1.012); }
+    .dagens-bowl-frame img { width: 100%; height: auto; display: block; }
+
     /* ============================================================
        MENY-GALLERI — riktiga foton av maten
     ============================================================ */
@@ -705,6 +723,7 @@
         <div class="dropdown">
           <a href="#lunchmeny">Lunchmeny</a>
           <a href="#middagsmeny">Middagsmeny</a>
+          <a href="#dagens-bowl">Dagens Bowl</a>
           <a href="#dryckesmeny">Dryckesmeny</a>
           <a href="#meny-mat">Hela matmenyn</a>
           <a href="#meny-dryck">Hela dryckesmenyn</a>
@@ -755,7 +774,7 @@
         </div>
       </div>
       <div class="meny-section-text">
-        <p class="meny-lunch-deal" data-edit-id="lunch-deal">Välj bland 3 utvalda skålar för endast <span class="meny-lunch-deal-price">99 kr</span> på lunchen</p>
+        <p class="meny-lunch-deal" data-edit-id="lunch-deal">Dagens Bowl, varje dag — en för <span class="meny-lunch-deal-price">99 kr</span> och en för <span class="meny-lunch-deal-price">119 kr</span></p>
         <p class="meny-section-eyebrow" data-edit-id="lunch-eyebrow">dagligen 11–15</p>
         <h2 class="meny-section-heading" data-edit-id="lunch-heading">Lunch<span class="meny-heading-sub">Ramen &amp; Bowls</span></h2>
         <div class="meny-section-body" data-edit-id="lunch-body">
@@ -789,6 +808,21 @@
         <a href="#meny-mat" class="meny-section-link" data-edit-id="middag-link">Se middagsmenyn →</a>
       </div>
     </div>
+  </section>
+
+  <!-- ============================================================
+       DAGENS BOWL — lunch-deals, uppdateras varje vecka
+  ============================================================ -->
+  <section id="dagens-bowl" class="meny-full-section" aria-label="Dagens Bowl — lunch-deals">
+    <p class="meny-full-eyebrow">lunch-deals</p>
+    <h2 class="meny-full-heading">LUNCH-DEALS PÅ ZAZHA</h2>
+    <p class="meny-full-note">Två bowls varje dag — en för 99 kr och en för 119 kr. Samma rätt och innehåll som på ordinarie menyn.</p>
+    <button type="button" class="dagens-bowl-frame open-dagens-bowl" aria-label="Förstora Dagens Bowl-schemat">
+      <picture>
+        <source srcset="images/dagens-bowl.webp" type="image/webp">
+        <img src="images/dagens-bowl.jpg" alt="ZAZHA Dagens Bowl — två bowls varje dag, en för 99 kr och en för 119 kr" width="1800" height="1272" loading="lazy" decoding="async">
+      </picture>
+    </button>
   </section>
 
   <!-- ============================================================
@@ -1120,6 +1154,11 @@
     <img id="meny-lightbox-img" data-src="images/zazha-meny.webp" data-fallback="images/zazha-meny.jpg" alt="ZAZHA meny — bowls, ramen, sides, cocktails, öl, vin och cider" width="1800" height="1273">
   </div>
 
+  <div id="dagens-bowl-lightbox" class="meny-lightbox" role="dialog" aria-modal="true" aria-label="ZAZHA Dagens Bowl" hidden>
+    <button type="button" class="meny-lightbox-close" id="dagens-bowl-lightbox-close" aria-label="Stäng">✕</button>
+    <img id="dagens-bowl-lightbox-img" data-src="images/dagens-bowl.webp" data-fallback="images/dagens-bowl.jpg" alt="ZAZHA Dagens Bowl — två bowls varje dag, en för 99 kr och en för 119 kr" width="1800" height="1272">
+  </div>
+
   <script>
     // Footer copyright year
     const footerYear = document.getElementById('footer-year');
@@ -1161,6 +1200,26 @@
     menyCloseBtn.addEventListener('click', closeMenyLightbox);
     menyLightbox.addEventListener('click', e => { if (e.target === menyLightbox) closeMenyLightbox(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && !menyLightbox.hidden) closeMenyLightbox(); });
+
+    // Dagens Bowl-lightbox
+    const dagensLightbox = document.getElementById('dagens-bowl-lightbox');
+    const dagensLightboxImg = document.getElementById('dagens-bowl-lightbox-img');
+    const dagensCloseBtn = document.getElementById('dagens-bowl-lightbox-close');
+    function openDagensLightbox() {
+      if (dagensLightboxImg && !dagensLightboxImg.src) {
+        dagensLightboxImg.onerror = () => { dagensLightboxImg.onerror = null; dagensLightboxImg.src = dagensLightboxImg.dataset.fallback; };
+        dagensLightboxImg.src = dagensLightboxImg.dataset.src;
+      }
+      dagensLightbox.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDagensLightbox() { dagensLightbox.hidden = true; document.body.style.overflow = ''; }
+    document.querySelectorAll('.open-dagens-bowl').forEach(a => {
+      a.addEventListener('click', e => { e.preventDefault(); openDagensLightbox(); });
+    });
+    dagensCloseBtn.addEventListener('click', closeDagensLightbox);
+    dagensLightbox.addEventListener('click', e => { if (e.target === dagensLightbox) closeDagensLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && !dagensLightbox.hidden) closeDagensLightbox(); });
 
     // Mark images as empty only once we actually know they failed to load —
     // checking img.complete synchronously on page load is a race: on a real
