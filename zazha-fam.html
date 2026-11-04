@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAZHA FAM · Gå med i vårt lojalitetsprogram</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <meta name="description" content="Gå med i ZAZHA FAM och få alltid 10% rabatt på ditt köp samt tillgång till exklusiva erbjudanden.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Hanken+Grotesk:wght@300;400&display=swap">
+
+  <style>
+    :root {
+      --cream:      #F5F0E8;
+      --charcoal:   #2C2A22;
+      --olive:      #3A4E28;
+      --terracotta: #B85C38;
+      --sage:       #6B7D4A;
+      --sand:       #C4A882;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'Hanken Grotesk', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans); font-weight: 300; color: var(--charcoal);
+      background:
+        linear-gradient(rgba(16,14,10,0.64), rgba(16,14,10,0.64)),
+        url('images/meny-wallpaper.webp');
+      background-repeat: no-repeat, repeat;
+      background-size: auto, 900px auto;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    img  { display: block; max-width: 100%; }
+    picture { display: contents; }
+    :focus-visible { outline: 2px solid var(--terracotta); outline-offset: 3px; }
+    a    { text-decoration: none; color: inherit; }
+
+    /* PAGE HEADER */
+    #page-header { padding: 110px 80px 70px; text-align: center; }
+    .fam-logo { font-family: var(--serif); font-weight: 400; font-size: 20px; letter-spacing: 0.22em; color: var(--sand); margin-bottom: 26px; }
+    .page-sub { font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--terracotta); text-shadow: 0 1px 12px rgba(0,0,0,0.6); margin-bottom: 14px; }
+    .page-title { font-family: var(--serif); font-weight: 400; font-size: clamp(50px, 9vw, 100px); letter-spacing: 0.14em; color: var(--cream); text-shadow: 0 2px 24px rgba(0,0,0,0.55); line-height: 1; }
+
+    /* INTRO — image + text */
+    .fam-intro { padding: 0 80px 80px; }
+    .fam-intro-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1.25fr; align-items: stretch;
+      background: rgba(245, 240, 232, 0.05); border: 1px solid rgba(245, 240, 232, 0.12);
+      border-radius: 10px; overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,0.40);
+    }
+    .fam-intro-img { position: relative; overflow: hidden; min-height: 420px; }
+    .fam-intro-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .fam-intro-text { padding: 56px 60px; display: flex; flex-direction: column; justify-content: center; background: rgba(14, 12, 9, 0.62); }
+    .fam-eyebrow { font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 18px; }
+    .fam-heading { font-family: var(--serif); font-weight: 400; font-style: italic; font-size: clamp(26px, 2.8vw, 36px); color: var(--cream); margin-bottom: 20px; line-height: 1.3; }
+    .fam-body { font-family: var(--sans); font-weight: 400; font-size: 15px; line-height: 1.85; color: var(--cream); opacity: 0.88; margin-bottom: 26px; }
+    .fam-perks { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .fam-perks li { font-family: var(--sans); font-weight: 400; font-size: 14px; color: var(--cream); opacity: 0.92; padding-left: 24px; position: relative; }
+    .fam-perks li::before { content: '✓'; position: absolute; left: 0; color: var(--sage); font-weight: 700; }
+
+    /* FORM SECTION */
+    #fam-form-section { padding: 0 80px 130px; }
+    .fam-form-wrap {
+      max-width: 760px; margin: 0 auto;
+      background: rgba(10, 8, 6, 0.82); border: 1px solid rgba(245, 240, 232, 0.14);
+      border-radius: 10px; padding: 56px 60px; box-shadow: 0 30px 70px rgba(0,0,0,0.40);
+    }
+    .fam-form-heading { font-family: var(--serif); font-weight: 400; font-size: clamp(26px, 3vw, 34px); color: var(--cream); text-align: center; margin-bottom: 10px; }
+    .fam-form-sub { font-family: var(--sans); font-weight: 300; font-size: 13px; color: var(--sand); text-align: center; margin-bottom: 40px; }
+    .fam-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 28px; }
+    .fam-field { display: flex; flex-direction: column; gap: 8px; }
+    .fam-field.full { grid-column: 1 / -1; }
+    .fam-field label { font-family: var(--sans); font-weight: 400; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sand); }
+    .fam-field label .req { color: var(--terracotta); }
+    .fam-field input {
+      font-family: var(--sans); font-size: 14px; color: var(--cream);
+      background: rgba(245,240,232,0.06); border: 1px solid rgba(245,240,232,0.22);
+      border-radius: 4px; padding: 12px 14px; outline: none; transition: border-color 0.2s, background 0.2s;
+    }
+    .fam-field input::placeholder { color: rgba(245,240,232,0.38); }
+    .fam-field input:focus { border-color: var(--terracotta); background: rgba(245,240,232,0.1); }
+
+    .fam-consent { grid-column: 1 / -1; display: flex; align-items: flex-start; gap: 12px; margin-top: 4px; }
+    .fam-consent input[type="checkbox"] { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; accent-color: var(--terracotta); cursor: pointer; }
+    .fam-consent label { font-family: var(--sans); font-weight: 300; font-size: 12.5px; line-height: 1.6; color: var(--cream); opacity: 0.8; cursor: pointer; }
+    .fam-consent label .req { color: var(--terracotta); }
+
+    .fam-honeypot { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
+
+    .fam-submit-row { text-align: center; margin-top: 36px; }
+    .fam-submit {
+      display: inline-block; padding: 16px 48px; background: var(--terracotta);
+      border: 1.5px solid var(--terracotta); color: var(--cream);
+      font-family: var(--sans); font-weight: 500; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+      cursor: pointer; transition: background 0.22s, color 0.22s, opacity 0.22s;
+    }
+    .fam-submit:hover { background: transparent; color: var(--cream); }
+    .fam-submit:disabled { opacity: 0.55; cursor: not-allowed; }
+    .fam-form-note { margin-top: 18px; font-family: var(--sans); font-size: 12px; color: var(--sand); text-align: center; opacity: 0.8; }
+
+    .fam-form-message { margin-top: 10px; font-family: var(--sans); font-size: 15px; line-height: 1.7; text-align: center; padding: 18px 10px; }
+    .fam-form-message.is-success { color: var(--cream); }
+    .fam-form-message.is-success::before { content: '✓ '; color: var(--sage); }
+    .fam-form-message.is-error { color: var(--cream); }
+    .fam-form-message.is-error::before { content: '⚠ '; color: var(--terracotta); }
+
+    /* FOOTER */
+    footer { padding: 90px 40px 80px; text-align: center; }
+    .footer-wordmark { font-family: var(--serif); font-weight: 400; font-size: 36px; letter-spacing: 0.22em; color: var(--cream); margin-bottom: 12px; }
+    .footer-loc { font-family: var(--sans); font-weight: 300; font-size: 12px; letter-spacing: 0.10em; color: var(--sage); margin-bottom: 20px; }
+    .footer-social a { font-family: var(--sans); font-weight: 300; font-size: 12px; letter-spacing: 0.08em; color: var(--sand); transition: color 0.2s; }
+    .footer-social a:hover { color: var(--cream); }
+    .footer-copy { margin-top: 36px; font-family: var(--sans); font-weight: 300; font-size: 11px; color: var(--cream); opacity: 0.28; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      #page-header { padding: 80px 28px 56px; }
+      .fam-intro, #fam-form-section { padding-left: 20px; padding-right: 20px; }
+      .fam-intro-inner { grid-template-columns: 1fr; }
+      .fam-intro-img { min-height: 260px; }
+      .fam-intro-text { padding: 40px 32px; }
+      .fam-form-wrap { padding: 40px 26px; }
+      .fam-form-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .page-title { font-size: 44px; }
+      body { background-size: auto, 480px auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE HEADER -->
+  <section id="page-header">
+    <p class="fam-logo">ZAZHA</p>
+    <p class="page-sub">lojalitetsprogram</p>
+    <h1 class="page-title">ZAZHA FAM</h1>
+  </section>
+
+  <!-- INTRO -->
+  <section class="fam-intro">
+    <div class="fam-intro-inner">
+      <div class="fam-intro-img">
+        <picture>
+          <source srcset="images/lunch.webp" type="image/webp">
+          <img src="images/lunch.jpg" alt="ZAZHA lunch — bowl serverad på bistron" width="1170" height="1443" loading="lazy" decoding="async">
+        </picture>
+      </div>
+      <div class="fam-intro-text">
+        <p class="fam-eyebrow">bli medlem, gratis</p>
+        <h2 class="fam-heading">Alltid 10% rabatt — bara för dig i närheten</h2>
+        <p class="fam-body">
+          ZAZHA FAM är vårt sätt att säga tack till grannar och stammisar. Gå med och få alltid 10% rabatt på ditt köp, dessutom gäller rabatten även på våra erbjudanden. Fyll i formuläret så bjuder vi in dig personligen.
+        </p>
+        <ul class="fam-perks">
+          <li>Alltid 10% rabatt på ditt köp</li>
+          <li>Gäller även på erbjudanden och deals</li>
+          <li>Inbjudan skickas personligen från oss</li>
+          <li>Inget kort, inget krångel — bara visa upp dig i baren</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section id="fam-form-section">
+    <div class="fam-form-wrap">
+      <h2 class="fam-form-heading">Gå med i ZAZHA FAM</h2>
+      <p class="fam-form-sub">Fyll i dina uppgifter — vi hör av oss med en inbjudan inom kort.</p>
+
+      <form id="fam-form">
+        <!-- Web3Forms config -->
+        <input type="hidden" name="access_key" value="e60f95ee-d413-44b7-8ed6-bdee55bba73c">
+        <input type="hidden" name="subject" value="Ny anmälan till ZAZHA FAM">
+        <input type="hidden" name="from_name" value="ZAZHA FAM-formuläret">
+        <input type="checkbox" name="botcheck" class="fam-honeypot" tabindex="-1" autocomplete="off">
+
+        <div class="fam-form-grid">
+          <div class="fam-field">
+            <label for="fam-namn">Namn <span class="req">*</span></label>
+            <input type="text" id="fam-namn" name="Namn" placeholder="Förnamn och efternamn" required>
+          </div>
+          <div class="fam-field">
+            <label for="fam-tel">Telefonnummer <span class="req">*</span></label>
+            <input type="tel" id="fam-tel" name="Telefonnummer" placeholder="07XX XX XX XX" required>
+          </div>
+          <div class="fam-field">
+            <label for="fam-epost">E-post <span class="req">*</span></label>
+            <input type="email" id="fam-epost" name="email" placeholder="namn@exempel.se" required>
+          </div>
+          <div class="fam-field">
+            <label for="fam-jobb">Var jobbar du? <span class="req">*</span></label>
+            <input type="text" id="fam-jobb" name="Arbetsplats" placeholder="Företag / arbetsplats" required>
+          </div>
+          <div class="fam-field full">
+            <label for="fam-bostad">Bor eller jobbar du i närheten? (valfritt)</label>
+            <input type="text" id="fam-bostad" name="Omrade" placeholder="T.ex. Södermalm, Medborgarplatsen...">
+          </div>
+
+          <div class="fam-consent">
+            <input type="checkbox" id="fam-samtycke" name="Samtycke" value="Ja, godkänner" required>
+            <label for="fam-samtycke">Jag godkänner att ZAZHA sparar mina uppgifter för att hantera mitt medlemskap i ZAZHA FAM, och att ni kontaktar mig med min inbjudan samt erbjudanden. <span class="req">*</span></label>
+          </div>
+        </div>
+
+        <div class="fam-submit-row">
+          <button type="submit" class="fam-submit">Gå med i ZAZHA FAM</button>
+          <p class="fam-form-note">Du bjuds in manuellt av oss efter att du skickat in formuläret.</p>
+        </div>
+      </form>
+
+      <p class="fam-form-message" id="fam-form-message" hidden></p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-wordmark">ZAZHA</div>
+    <p class="footer-loc">söderhallarna · södermalm · stockholm</p>
+    <div class="footer-social">
+      <a href="https://instagram.com/zazha.sthlm" target="_blank" rel="noopener">@zazha.sthlm</a>
+    </div>
+    <p class="footer-copy">© <span id="footer-year">2026</span> ZAZHA Asian Bistro &amp; Bar</p>
+  </footer>
+
+  <script>
+    const footerYear = document.getElementById('footer-year');
+    if (footerYear) footerYear.textContent = new Date().getFullYear();
+
+    // ZAZHA FAM-formulär — skickas via Web3Forms (statisk sajt, inget eget backend)
+    const famForm = document.getElementById('fam-form');
+    const famMsg  = document.getElementById('fam-form-message');
+    const famBtn  = famForm.querySelector('.fam-submit');
+
+    famForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (famForm.botcheck && famForm.botcheck.checked) return;
+
+      famBtn.disabled = true;
+      famBtn.textContent = 'Skickar...';
+      famMsg.hidden = true;
+      famMsg.className = 'fam-form-message';
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(famForm)
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          famForm.hidden = true;
+          famMsg.textContent = 'Tack! Din ansökan till ZAZHA FAM är mottagen — vi hör av oss inom kort med din inbjudan.';
+          famMsg.classList.add('is-success');
+          famMsg.hidden = false;
+        } else {
+          throw new Error(data.message || 'Något gick fel');
+        }
+      } catch (err) {
+        famMsg.textContent = 'Något gick fel när formuläret skickades. Testa igen, eller mejla oss direkt på info@zazha.se.';
+        famMsg.classList.add('is-error');
+        famMsg.hidden = false;
+        famBtn.disabled = false;
+        famBtn.textContent = 'Gå med i ZAZHA FAM';
+      }
+    });
+  </script>
+</body>
+</html>
