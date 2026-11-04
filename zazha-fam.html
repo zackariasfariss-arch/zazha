@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSLDCRY60X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KSLDCRY60X');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ZAZHA FAM · Gå med i vårt lojalitetsprogram</title>
@@ -129,6 +138,9 @@
     .footer-social a { font-family: var(--sans); font-weight: 300; font-size: 12px; letter-spacing: 0.08em; color: var(--sand); transition: color 0.2s; }
     .footer-social a:hover { color: var(--cream); }
     .footer-copy { margin-top: 36px; font-family: var(--sans); font-weight: 300; font-size: 11px; color: var(--cream); opacity: 0.28; }
+    .footer-legal { margin-top: 10px; font-family: var(--sans); font-weight: 300; font-size: 11px; color: var(--sand); opacity: 0.7; }
+    .footer-legal a { text-decoration: underline; text-underline-offset: 3px; }
+    .footer-legal a:hover { color: var(--cream); }
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
@@ -233,7 +245,7 @@
 
           <div class="fam-consent">
             <input type="checkbox" id="fam-samtycke" name="Samtycke" value="Ja, godkänner" required>
-            <label for="fam-samtycke">Jag godkänner att ZAZHA sparar mina uppgifter för att hantera mitt medlemskap i ZAZHA FAM, och att ni kontaktar mig med min inbjudan samt erbjudanden. <span class="req">*</span></label>
+            <label for="fam-samtycke">Jag godkänner att ZAZHA sparar mina uppgifter för att hantera mitt medlemskap i ZAZHA FAM, och att ni kontaktar mig med min inbjudan samt erbjudanden. Läs vår <a href="integritetspolicy.html" target="_blank" rel="noopener" style="color:var(--cream);text-decoration:underline;">integritetspolicy</a>. <span class="req">*</span></label>
           </div>
         </div>
 
@@ -255,6 +267,7 @@
       <a href="https://instagram.com/zazha.sthlm" target="_blank" rel="noopener">@zazha.sthlm</a>
     </div>
     <p class="footer-copy">© <span id="footer-year">2026</span> ZAZHA Asian Bistro &amp; Bar</p>
+    <p class="footer-legal"><a href="integritetspolicy.html">Integritetspolicy</a></p>
   </footer>
 
   <script>
