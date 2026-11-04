@@ -42,10 +42,25 @@
     a    { text-decoration: none; color: inherit; }
 
     /* PAGE HEADER */
-    #page-header { padding: 110px 80px 70px; text-align: center; }
+    #page-header {
+      position: relative; overflow: hidden;
+      min-height: 92vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 140px 40px 70px; text-align: center;
+    }
+    #page-header > *:not(.hero-slideshow):not(.hero-backdrop) { position: relative; z-index: 1; }
+
+    /* Bakgrundsbildspel — korsar mellan foton från ZAZHA in Action */
+    .hero-slideshow { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+    .hero-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1s ease; }
+    .hero-slide.active { opacity: 1; }
+    .hero-backdrop { position: absolute; inset: 0; background: linear-gradient(rgba(10, 6, 3, 0.62), rgba(10, 6, 3, 0.52) 45%, rgba(10, 6, 3, 0.68)); z-index: 0; }
+
     .fam-logo { font-family: var(--serif); font-weight: 400; font-size: 20px; letter-spacing: 0.22em; color: var(--sand); margin-bottom: 26px; }
     .page-sub { font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--terracotta); text-shadow: 0 1px 12px rgba(0,0,0,0.6); margin-bottom: 14px; }
-    .page-title { font-family: var(--serif); font-weight: 400; font-size: clamp(50px, 9vw, 100px); letter-spacing: 0.14em; color: var(--cream); text-shadow: 0 2px 24px rgba(0,0,0,0.55); line-height: 1; }
+    .page-title { font-family: var(--serif); font-weight: 400; font-size: clamp(64px, 13vw, 160px); letter-spacing: 0.10em; color: var(--cream); text-shadow: 0 4px 40px rgba(0,0,0,0.65); line-height: 1; }
+    .fam-heart { display: block; font-size: clamp(60px, 14vw, 170px); line-height: 1; color: var(--terracotta); margin-top: 8px; text-shadow: 0 4px 40px rgba(0,0,0,0.65); animation: fam-heartbeat 1.8s ease-in-out infinite; }
+    @keyframes fam-heartbeat { 0%, 100% { transform: scale(1); } 14% { transform: scale(1.12); } 28% { transform: scale(1); } 42% { transform: scale(1.12); } 56% { transform: scale(1); } }
+    @media (prefers-reduced-motion: reduce) { .fam-heart { animation: none; } }
 
     /* INTRO — image + text */
     .fam-intro { padding: 0 80px 80px; }
@@ -139,9 +154,23 @@
 
   <!-- PAGE HEADER -->
   <section id="page-header">
+    <div class="hero-slideshow" aria-hidden="true">
+      <picture><source srcset="images/action-05.webp" type="image/webp"><img src="images/action-05.jpg" class="hero-slide active" alt="" fetchpriority="high"></picture>
+      <picture><source srcset="images/action-12.webp" type="image/webp"><img src="images/action-12.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-18.webp" type="image/webp"><img src="images/action-18.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-24.webp" type="image/webp"><img src="images/action-24.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-29.webp" type="image/webp"><img src="images/action-29.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-33.webp" type="image/webp"><img src="images/action-33.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-45.webp" type="image/webp"><img src="images/action-45.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-56.webp" type="image/webp"><img src="images/action-56.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-67.webp" type="image/webp"><img src="images/action-67.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="images/action-78.webp" type="image/webp"><img src="images/action-78.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+    </div>
+    <div class="hero-backdrop"></div>
     <p class="fam-logo">ZAZHA</p>
     <p class="page-sub">lojalitetsprogram</p>
     <h1 class="page-title">ZAZHA FAM</h1>
+    <span class="fam-heart" aria-hidden="true">♥</span>
   </section>
 
   <!-- INTRO -->
@@ -233,6 +262,20 @@
   <script>
     const footerYear = document.getElementById('footer-year');
     if (footerYear) footerYear.textContent = new Date().getFullYear();
+
+    // Bakgrundsbildspel — korsar mellan ZAZHA in Action-foton
+    function initSlideshow(container, baseInterval) {
+      const slides = container.querySelectorAll('.hero-slide');
+      if (slides.length < 2) return;
+      let idx = 0;
+      const interval = baseInterval + Math.random() * 1800;
+      setInterval(() => {
+        slides[idx].classList.remove('active');
+        idx = (idx + 1) % slides.length;
+        slides[idx].classList.add('active');
+      }, interval);
+    }
+    document.querySelectorAll('.hero-slideshow').forEach(el => initSlideshow(el, 2600));
 
     // ZAZHA FAM-formulär — skickas via Web3Forms (statisk sajt, inget eget backend)
     const famForm = document.getElementById('fam-form');
