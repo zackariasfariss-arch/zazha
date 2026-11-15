@@ -450,14 +450,14 @@
       height: 100%;
       object-fit: cover;
       opacity: 0;
-      transition: opacity 1s ease;
+      transition: opacity 0.55s ease;
     }
     .hero-slide.active { opacity: 1; }
 
     .hero-backdrop {
       position: absolute;
       inset: 0;
-      background: linear-gradient(rgba(10, 6, 3, 0.58), rgba(10, 6, 3, 0.5) 45%, rgba(10, 6, 3, 0.62));
+      background: linear-gradient(rgba(10, 6, 3, 0.44), rgba(10, 6, 3, 0.36) 45%, rgba(10, 6, 3, 0.5));
       z-index: 0;
     }
 
@@ -1900,7 +1900,7 @@ Ni bestämmer anledningen - vi fixar resten.</div>
         slides.forEach(s => s.classList.remove('active'));
         slides[idx].classList.add('active');
       }
-      const interval = baseInterval + Math.random() * 1800;
+      const interval = baseInterval + Math.random() * 900;
       setInterval(() => {
         slides[idx].classList.remove('active');
         idx = (idx + 1) % slides.length;
@@ -1908,7 +1908,7 @@ Ni bestämmer anledningen - vi fixar resten.</div>
       }, interval);
     }
     document.querySelectorAll('.hero-slideshow').forEach(el => {
-      initSlideshow(el, 2600, el.id !== 'hero-slideshow');
+      initSlideshow(el, 1500, el.id !== 'hero-slideshow');
     });
 
     // --- Scroll-aware nav ---
