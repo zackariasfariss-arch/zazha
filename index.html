@@ -225,7 +225,7 @@
       padding: 0 48px;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: space-between;
       color: var(--cream);
       background-color: #1c1a15;
       background-image:
@@ -248,6 +248,30 @@
       width: auto;
       display: block;
       border-radius: 2px;
+    }
+
+    /* Hours + address — left side of nav bar */
+    .nav-info {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.35;
+      white-space: nowrap;
+    }
+    .nav-info-hours {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+    }
+    .nav-info-address {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      color: var(--cream);
+      opacity: 0.7;
     }
 
     /* Desktop links */
@@ -1558,6 +1582,10 @@
        NAVIGATION
   ============================================================ -->
   <nav id="nav" role="navigation" aria-label="Huvudmeny">
+    <div class="nav-info">
+      <span class="nav-info-hours">Alla dagar 11–sent</span>
+      <span class="nav-info-address">Medborgarplatsen 3</span>
+    </div>
     <ul class="nav-links">
       <li class="has-dropdown">
         <a href="#concept">Om oss <span class="nav-arrow">▾</span></a>
