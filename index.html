@@ -18,7 +18,7 @@
   <link rel="canonical" href="https://zazha.se/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Hanken+Grotesk:wght@300;400&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Hanken+Grotesk:wght@300;400;700;800&display=swap">
   <meta name="description" content="Asiatisk bistro & bar på Medborgarplatsen, Södermalm. Ramen-inspirerade skålar, poke bowls och asiatisk gatumat till lunch, middag och after work. Stockholms billigaste Guinness. Öppet alla dagar.">
   <meta name="keywords" content="asiatisk mat södermalm, asiatisk restaurang södermalm, god mat södermalm, ramen södermalm, ramen stockholm, poke bowl södermalm, poke bowl stockholm, asiatisk gatumat stockholm, lunch södermalm, bra lunch södermalm, billig lunch södermalm, bästa lunchen södermalm, restaurang medborgarplatsen, bar medborgarplatsen, after work södermalm, bistro södermalm, guinness stockholm, billigaste guinness stockholm, ZAZHA">
 
@@ -221,19 +221,38 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 200;
-      height: 72px;
+      height: 76px;
       padding: 0 48px;
       display: flex;
       align-items: center;
       justify-content: flex-end;
       color: var(--cream);
-      transition: background 0.4s ease, box-shadow 0.4s ease, color 0.3s ease;
+      background-color: #1c1a15;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E"),
+        radial-gradient(ellipse at 94% 0%, rgba(184,92,56,0.28), transparent 60%);
+      background-blend-mode: overlay, normal;
+      border-bottom: 3px solid var(--terracotta);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      transition: box-shadow 0.3s ease;
     }
+    #nav::before, #nav::after {
+      content: '';
+      position: absolute;
+      top: -4px;
+      width: 64px;
+      height: 24px;
+      background: rgba(236, 224, 197, 0.78);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+      pointer-events: none;
+    }
+    #nav::before { left: 28px; transform: rotate(-8deg); }
+    #nav::after  { right: 28px; transform: rotate(6deg); }
 
     #nav.scrolled {
-      background: var(--cream);
-      color: var(--charcoal);
-      box-shadow: 0 1px 0 rgba(44,42,34,0.10);
+      background-color: #1c1a15;
+      color: var(--cream);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.5);
     }
 
     /* Logo — cream badge on hero, merges into nav bg on scroll */
@@ -254,25 +273,31 @@
 
     .nav-links a {
       font-family: var(--sans);
-      font-weight: 300;
+      font-weight: 700;
       font-size: 12px;
       letter-spacing: 0.10em;
+      text-transform: uppercase;
       color: inherit;
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--terracotta); }
 
-    /* Boka bord — always terracotta */
+    /* Boka bord — rubber-stamp button */
     .nav-cta {
       background: var(--terracotta) !important;
       color: var(--cream) !important;
-      padding: 10px 22px;
+      padding: 10px 24px;
       font-size: 11px !important;
-      letter-spacing: 0.16em !important;
+      font-weight: 800 !important;
+      letter-spacing: 0.14em !important;
       text-transform: uppercase;
-      transition: background 0.2s !important;
+      border: 2px solid var(--charcoal);
+      display: inline-block;
+      transform: rotate(-2deg);
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.4);
+      transition: background 0.2s !important, transform 0.2s !important;
     }
-    .nav-cta:hover { background: #a34e2f !important; opacity: 1 !important; }
+    .nav-cta:hover { background: #8f3a20 !important; opacity: 1 !important; transform: rotate(0deg) scale(1.04); }
 
     /* ---- Dropdown curtain (Mat & Dryck) ---- */
     .has-dropdown { position: relative; }
@@ -293,11 +318,11 @@
       top: calc(100% + 16px);
       left: 50%;
       transform: translateX(-50%) translateY(-10px);
-      background: var(--cream);
-      border-top: 2px solid var(--terracotta);
+      background: #1c1a15;
+      border-top: 3px solid var(--terracotta);
       padding: 6px 0 14px;
       min-width: 175px;
-      box-shadow: 0 16px 44px rgba(44,42,34,0.13);
+      box-shadow: 0 16px 44px rgba(0,0,0,0.5);
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.22s ease, transform 0.22s ease;
@@ -313,10 +338,11 @@
       display: block;
       padding: 9px 22px;
       font-family: var(--sans);
-      font-weight: 300;
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      color: var(--charcoal);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--cream);
       transition: color 0.15s, padding-left 0.18s;
     }
     .dropdown a:hover { color: var(--terracotta); padding-left: 30px; }
@@ -348,12 +374,18 @@
       position: fixed;
       inset: 0;
       z-index: 199;
-      background: var(--olive);
+      background-color: #1c1a15;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E"),
+        radial-gradient(ellipse at 85% 10%, rgba(184,92,56,0.3), transparent 55%),
+        radial-gradient(ellipse at 10% 90%, rgba(184,92,56,0.22), transparent 55%);
+      background-blend-mode: overlay, normal, normal;
+      border-top: 4px solid var(--terracotta);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 30px;
+      gap: 26px;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s ease;
@@ -363,13 +395,15 @@
     #mobile-menu.open { opacity: 1; pointer-events: all; }
 
     #mobile-menu a {
-      font-family: var(--serif);
-      font-size: 30px;
+      font-family: var(--sans);
+      font-weight: 800;
+      font-size: 26px;
+      text-transform: uppercase;
       color: var(--cream);
-      letter-spacing: 0.08em;
-      transition: opacity 0.2s;
+      letter-spacing: 0.04em;
+      transition: opacity 0.2s, color 0.2s;
     }
-    #mobile-menu a:hover { opacity: 0.6; }
+    #mobile-menu a:hover { color: var(--terracotta); opacity: 1; }
 
     #menu-close {
       position: absolute;
@@ -588,16 +622,18 @@
       display: inline-block;
       margin-top: 36px;
       padding: 14px 40px;
-      border: 1.5px solid var(--sand);
+      border: 3px solid var(--sand);
       color: var(--cream);
       font-family: var(--sans);
-      font-weight: 300;
+      font-weight: 800;
       font-size: 11px;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      transition: background 0.22s ease, color 0.22s ease;
+      transform: rotate(1.5deg);
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.4);
+      transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
     }
-    .meny-preview-link:hover { background: var(--terracotta); border-color: var(--terracotta); color: var(--cream); }
+    .meny-preview-link:hover { background: var(--terracotta); border-color: var(--terracotta); color: var(--cream); transform: rotate(0deg) scale(1.03); }
 
     .meny-preview-insta {
       margin: 56px auto 0;
@@ -1114,20 +1150,23 @@
     .events-contact-btn {
       display: inline-block;
       margin-bottom: 0;
-      padding: 14px 40px;
-      border: 1.5px solid var(--charcoal);
+      padding: 14px 38px;
+      border: 3px solid var(--charcoal);
       color: var(--charcoal);
       font-family: var(--sans);
-      font-weight: 300;
+      font-weight: 800;
       font-size: 11px;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      transition: background 0.22s ease, color 0.22s ease;
+      transform: rotate(-1.5deg);
+      box-shadow: 3px 3px 0 rgba(44,42,34,0.3);
+      transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease;
     }
     .events-contact-btn:hover {
       background: var(--terracotta);
       border-color: var(--terracotta);
       color: var(--cream);
+      transform: rotate(0deg) scale(1.03);
     }
 
     .insta-divider {
@@ -1141,19 +1180,20 @@
     .concept-meny-btn {
       display: inline-block;
       margin-top: 28px;
-      padding: 13px 36px;
-      border: 1.5px solid var(--charcoal);
+      padding: 12px 34px;
+      border: 3px solid var(--charcoal);
       color: var(--charcoal);
       font-family: var(--sans);
-      font-weight: 300;
+      font-weight: 800;
       font-size: 11px;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       text-decoration: none;
-      transition: background 0.22s ease, color 0.22s ease;
+      transform: rotate(1.5deg);
+      box-shadow: 3px 3px 0 rgba(44,42,34,0.3);
+      transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease;
     }
-    .concept-meny-btn:hover { background: var(--terracotta); border-color: var(--terracotta); color: var(--cream); }
-    .concept-meny-btn:active { background: var(--terracotta); border-color: var(--terracotta); color: var(--cream); }
+    .concept-meny-btn:hover, .concept-meny-btn:active { background: var(--terracotta); border-color: var(--terracotta); color: var(--cream); transform: rotate(0deg) scale(1.03); }
 
     /* ============================================================
        HITTA OSS
@@ -1325,16 +1365,18 @@
       width: fit-content;
       margin: 0 auto;
       padding: 14px 40px;
-      border: 1.5px solid var(--charcoal);
+      border: 3px solid var(--charcoal);
       color: var(--charcoal);
       font-family: var(--sans);
-      font-weight: 300;
+      font-weight: 800;
       font-size: 11px;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      transition: background 0.22s ease, color 0.22s ease;
+      transform: rotate(-1.5deg);
+      box-shadow: 3px 3px 0 rgba(44,42,34,0.3);
+      transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease;
     }
-    .boka-mail-btn:hover { background: var(--terracotta); border-color: var(--terracotta); color: var(--cream); }
+    .boka-mail-btn:hover { background: var(--terracotta); border-color: var(--terracotta); color: var(--cream); transform: rotate(0deg) scale(1.03); }
 
     .behold-wrap {
       max-width: 1200px;
