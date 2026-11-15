@@ -392,6 +392,57 @@
     }
     #mobile-menu a:hover { color: var(--terracotta); opacity: 1; }
 
+    .mobile-menu-info {
+      margin-top: 6px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(236,224,197,0.25);
+      width: 82%;
+      max-width: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .mobile-menu-hours {
+      display: inline-flex;
+      border: 1px solid rgba(236,224,197,0.35);
+    }
+    .mobile-menu-hours-item { padding: 10px 18px; text-align: center; }
+    .mobile-menu-hours-item + .mobile-menu-hours-item {
+      border-left: 1px solid rgba(236,224,197,0.35);
+    }
+    .mobile-menu-hours-label {
+      display: block;
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0.65;
+    }
+    .mobile-menu-hours-time {
+      display: block;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 17px;
+      color: var(--cream);
+      margin-top: 2px;
+    }
+    .mobile-menu-address {
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 14px;
+      text-transform: none;
+      letter-spacing: 0.02em;
+      color: var(--cream);
+      opacity: 0.75;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
     #menu-close {
       position: absolute;
       top: 28px; right: 40px;
@@ -1541,6 +1592,13 @@
     <a href="#events">Events</a>
     <a href="#hitta-oss">Kontakt</a>
     <a href="#boka">Boka bord</a>
+    <div class="mobile-menu-info">
+      <div class="mobile-menu-hours">
+        <span class="mobile-menu-hours-item"><span class="mobile-menu-hours-label">Sön–Tis</span><span class="mobile-menu-hours-time">11:00–23:00</span></span>
+        <span class="mobile-menu-hours-item"><span class="mobile-menu-hours-label">Ons–Lör</span><span class="mobile-menu-hours-time">11:00–01:00</span></span>
+      </div>
+      <p class="mobile-menu-address"><svg class="footer-map-icon" viewBox="0 0 64 64" width="16" height="16" fill="none" aria-hidden="true"><path d="M8 14 C8 10, 10 8, 14 8 L50 7 C54 7, 56 10, 56 14 L57 50 C57 54, 54 56, 50 56 L14 57 C10 57, 8 54, 8 50 Z" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 32 L57 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M32 8 L30 57" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M32 24 C28 24 26 27 26 30 C26 34 32 40 32 40 C32 40 38 34 38 30 C38 27 36 24 32 24 Z" fill="currentColor"/></svg> Medborgarplatsen 3, Södermalm</p>
+    </div>
   </div>
 
   <!-- ============================================================
