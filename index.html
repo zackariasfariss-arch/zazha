@@ -523,6 +523,35 @@
       z-index: 0;
     }
 
+    /* Mosaic hero slides — grid of photos, never cropped, always fills the frame */
+    .hero-mosaic {
+      display: grid;
+      width: 100%;
+      height: 100%;
+      gap: 0;
+      background-color: #1c1a15;
+    }
+    .mosaic-tile {
+      position: relative;
+      overflow: hidden;
+      background-color: #1c1a15;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    }
+    .mosaic-tile img { display: block; width: 100%; height: 100%; object-fit: contain; }
+
+    .mosaic-1 { grid-template-columns: 1.3fr 0.9fr 1.1fr 0.8fr; grid-template-rows: 1.15fr 0.85fr; }
+    .mosaic-2 { grid-template-columns: 0.9fr 1.2fr 0.85fr 1.25fr; grid-template-rows: 0.9fr 1.1fr; }
+    .mosaic-3 { grid-template-columns: 1fr 1fr 1fr 1fr; grid-template-rows: 1fr 1fr; }
+    .mosaic-4 { grid-template-columns: 1.4fr 0.8fr 1.3fr 0.9fr; grid-template-rows: 1.05fr 0.95fr; }
+    .mosaic-5 { grid-template-columns: 0.8fr 1.3fr 0.9fr 1.3fr; grid-template-rows: 0.95fr 1.05fr; }
+    .mosaic-6 { grid-template-columns: 1.1fr 1.1fr 0.8fr 1.3fr; grid-template-rows: 1.1fr 0.9fr; }
+    .mosaic-7 { grid-template-columns: 0.85fr 1.25fr 1.1fr 0.9fr; grid-template-rows: 0.9fr 1.1fr; }
+    .mosaic-8 { grid-template-columns: 1.2fr 0.9fr 1.3fr 0.75fr; grid-template-rows: 1fr 1fr; }
+
+    @media (max-width: 900px) {
+      .hero-mosaic { grid-template-columns: repeat(2, 1fr) !important; grid-template-rows: repeat(4, 1fr) !important; }
+    }
+
     /* Affischen — centrerad, i sin naturliga storlek ovanpå bakgrunden */
     .hero-poster-wrap {
       position: relative;
@@ -1640,14 +1669,86 @@
   ============================================================ -->
   <section id="hero" aria-label="Välkommen till ZAZHA">
     <div class="hero-slideshow" id="hero-slideshow" aria-hidden="true">
-      <picture><source srcset="images/lokal-facade.webp" type="image/webp"><img src="images/lokal-facade.jpg" class="hero-slide active" alt="" fetchpriority="high"></picture>
-      <picture><source srcset="images/action-01.webp" type="image/webp"><img src="images/action-01.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
-      <picture><source srcset="images/action-60.webp" type="image/webp"><img src="images/action-60.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
-      <picture><source srcset="images/action-39.webp" type="image/webp"><img src="images/action-39.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
-      <picture><source srcset="images/meny-mat-08.webp" type="image/webp"><img src="images/meny-mat-08.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
-      <picture><source srcset="images/action-66.webp" type="image/webp"><img src="images/action-66.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
-      <picture><source srcset="images/action-41.webp" type="image/webp"><img src="images/action-41.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
-      <picture><source srcset="images/action-76.webp" type="image/webp"><img src="images/action-76.jpg" class="hero-slide" alt="" loading="lazy" decoding="async"></picture>
+      <div class="hero-slide hero-mosaic mosaic-1 active">
+        <div class="mosaic-tile"><picture><source srcset="images/lokal-facade.webp" type="image/webp"><img src="images/lokal-facade.jpg" alt="" fetchpriority="high"></picture></div>
+        <div class="mosaic-tile"><picture><source srcset="images/action-01.webp" type="image/webp"><img src="images/action-01.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source srcset="images/action-60.webp" type="image/webp"><img src="images/action-60.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source srcset="images/action-39.webp" type="image/webp"><img src="images/action-39.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source srcset="images/meny-mat-08.webp" type="image/webp"><img src="images/meny-mat-08.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source srcset="images/action-66.webp" type="image/webp"><img src="images/action-66.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source srcset="images/action-41.webp" type="image/webp"><img src="images/action-41.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source srcset="images/action-76.webp" type="image/webp"><img src="images/action-76.jpg" alt="" decoding="async"></picture></div>
+      </div>
+      <div class="hero-slide hero-mosaic mosaic-2">
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-02.webp" type="image/webp"><img data-src="images/action-02.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-03.webp" type="image/webp"><img data-src="images/action-03.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-04.webp" type="image/webp"><img data-src="images/action-04.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-05.webp" type="image/webp"><img data-src="images/action-05.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-06.webp" type="image/webp"><img data-src="images/action-06.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-07.webp" type="image/webp"><img data-src="images/action-07.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-08.webp" type="image/webp"><img data-src="images/action-08.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-09.webp" type="image/webp"><img data-src="images/action-09.jpg" alt="" decoding="async"></picture></div>
+      </div>
+      <div class="hero-slide hero-mosaic mosaic-3">
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-10.webp" type="image/webp"><img data-src="images/action-10.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-11.webp" type="image/webp"><img data-src="images/action-11.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-12.webp" type="image/webp"><img data-src="images/action-12.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-13.webp" type="image/webp"><img data-src="images/action-13.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-14.webp" type="image/webp"><img data-src="images/action-14.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-15.webp" type="image/webp"><img data-src="images/action-15.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-16.webp" type="image/webp"><img data-src="images/action-16.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-17.webp" type="image/webp"><img data-src="images/action-17.jpg" alt="" decoding="async"></picture></div>
+      </div>
+      <div class="hero-slide hero-mosaic mosaic-4">
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-18.webp" type="image/webp"><img data-src="images/action-18.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-19.webp" type="image/webp"><img data-src="images/action-19.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-20.webp" type="image/webp"><img data-src="images/action-20.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-21.webp" type="image/webp"><img data-src="images/action-21.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-22.webp" type="image/webp"><img data-src="images/action-22.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-23.webp" type="image/webp"><img data-src="images/action-23.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-24.webp" type="image/webp"><img data-src="images/action-24.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-25.webp" type="image/webp"><img data-src="images/action-25.jpg" alt="" decoding="async"></picture></div>
+      </div>
+      <div class="hero-slide hero-mosaic mosaic-5">
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-26.webp" type="image/webp"><img data-src="images/action-26.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-27.webp" type="image/webp"><img data-src="images/action-27.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-28.webp" type="image/webp"><img data-src="images/action-28.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-29.webp" type="image/webp"><img data-src="images/action-29.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-30.webp" type="image/webp"><img data-src="images/action-30.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-31.webp" type="image/webp"><img data-src="images/action-31.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-32.webp" type="image/webp"><img data-src="images/action-32.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-33.webp" type="image/webp"><img data-src="images/action-33.jpg" alt="" decoding="async"></picture></div>
+      </div>
+      <div class="hero-slide hero-mosaic mosaic-6">
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-34.webp" type="image/webp"><img data-src="images/action-34.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-35.webp" type="image/webp"><img data-src="images/action-35.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-36.webp" type="image/webp"><img data-src="images/action-36.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-37.webp" type="image/webp"><img data-src="images/action-37.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-38.webp" type="image/webp"><img data-src="images/action-38.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-40.webp" type="image/webp"><img data-src="images/action-40.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-42.webp" type="image/webp"><img data-src="images/action-42.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-43.webp" type="image/webp"><img data-src="images/action-43.jpg" alt="" decoding="async"></picture></div>
+      </div>
+      <div class="hero-slide hero-mosaic mosaic-7">
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-44.webp" type="image/webp"><img data-src="images/action-44.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-45.webp" type="image/webp"><img data-src="images/action-45.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-46.webp" type="image/webp"><img data-src="images/action-46.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-47.webp" type="image/webp"><img data-src="images/action-47.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-48.webp" type="image/webp"><img data-src="images/action-48.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-49.webp" type="image/webp"><img data-src="images/action-49.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-50.webp" type="image/webp"><img data-src="images/action-50.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-51.webp" type="image/webp"><img data-src="images/action-51.jpg" alt="" decoding="async"></picture></div>
+      </div>
+      <div class="hero-slide hero-mosaic mosaic-8">
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-52.webp" type="image/webp"><img data-src="images/action-52.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-53.webp" type="image/webp"><img data-src="images/action-53.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-54.webp" type="image/webp"><img data-src="images/action-54.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-55.webp" type="image/webp"><img data-src="images/action-55.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-56.webp" type="image/webp"><img data-src="images/action-56.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-57.webp" type="image/webp"><img data-src="images/action-57.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-58.webp" type="image/webp"><img data-src="images/action-58.jpg" alt="" decoding="async"></picture></div>
+        <div class="mosaic-tile"><picture><source data-srcset="images/action-59.webp" type="image/webp"><img data-src="images/action-59.jpg" alt="" decoding="async"></picture></div>
+      </div>
     </div>
     <div class="hero-backdrop"></div>
     <div class="hero-poster-wrap">
@@ -1972,17 +2073,24 @@ Ni bestämmer anledningen - vi fixar resten.</div>
     function initSlideshow(container, baseInterval, randomStart) {
       const slides = container.querySelectorAll('.hero-slide');
       if (slides.length < 2) return;
+      function preload(slide) {
+        slide.querySelectorAll('img[data-src]').forEach(img => { img.src = img.dataset.src; delete img.dataset.src; });
+        slide.querySelectorAll('source[data-srcset]').forEach(s => { s.srcset = s.dataset.srcset; delete s.dataset.srcset; });
+      }
       let idx = 0;
       if (randomStart) {
         idx = Math.floor(Math.random() * slides.length);
         slides.forEach(s => s.classList.remove('active'));
         slides[idx].classList.add('active');
       }
+      preload(slides[idx]);
+      preload(slides[(idx + 1) % slides.length]);
       const interval = baseInterval + Math.random() * 900;
       setInterval(() => {
         slides[idx].classList.remove('active');
         idx = (idx + 1) % slides.length;
         slides[idx].classList.add('active');
+        preload(slides[(idx + 1) % slides.length]);
       }, interval);
     }
     document.querySelectorAll('.hero-slideshow').forEach(el => {
