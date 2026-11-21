@@ -21,7 +21,7 @@
   <link rel="canonical" href="https://zazha.se/takeaway.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Hanken+Grotesk:wght@300;400&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Hanken+Grotesk:wght@300;400;700;800&display=swap">
 
   <meta property="og:type"        content="website">
   <meta property="og:url"         content="https://zazha.se/takeaway.html">
@@ -166,11 +166,17 @@
       body { background-size: auto, 480px auto; }
     }
   </style>
+  <link rel="stylesheet" href="site-nav.css">
 </head>
 <body>
 
   <!-- NAVIGATION -->
   <nav id="nav" role="navigation" aria-label="Huvudmeny">
+    <div class="nav-info">
+      <span class="nav-info-hours">Sön–Tis 11:00–23:00</span>
+      <span class="nav-info-hours">Ons–Lör 11:00–01:00</span>
+      <span class="nav-info-address">Medborgarplatsen 3</span>
+    </div>
     <ul class="nav-links">
       <li class="has-dropdown">
         <a href="index.html#concept">Om oss <span class="nav-arrow">▾</span></a>
@@ -179,23 +185,14 @@
           <a href="zazha-in-action.html">ZAZHA in Action</a>
         </div>
       </li>
-      <li class="has-dropdown">
-        <a href="meny.html">Meny <span class="nav-arrow">▾</span></a>
-        <div class="dropdown">
-          <a href="meny.html#lunchmeny">Lunchmeny</a>
-          <a href="meny.html#middagsmeny">Middagsmeny</a>
-          <a href="meny.html#dryckesmeny">Dryckesmeny</a>
-          <a href="meny.html#meny-mat">Hela matmenyn</a>
-          <a href="meny.html#meny-dryck">Hela dryckesmenyn</a>
-          <a href="meny.html#happy-hour">After Work</a>
-        </div>
-      </li>
+      <li><a href="meny.html">Meny</a></li>
       <li><a href="takeaway.html">Takeaway</a></li>
       <li><a href="catering.html">Catering</a></li>
       <li><a href="index.html#events">Events</a></li>
       <li><a href="index.html#hitta-oss">Kontakt</a></li>
       <li><a href="index.html#boka" class="nav-cta">Boka bord</a></li>
     </ul>
+
     <button class="nav-hamburger" id="hamburger" aria-label="Öppna meny" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -211,6 +208,13 @@
     <a href="index.html#events">Events</a>
     <a href="index.html#hitta-oss">Kontakt</a>
     <a href="index.html#boka">Boka bord</a>
+    <div class="mobile-menu-info">
+      <div class="mobile-menu-hours">
+        <span class="mobile-menu-hours-item"><span class="mobile-menu-hours-label">Sön–Tis</span><span class="mobile-menu-hours-time">11:00–23:00</span></span>
+        <span class="mobile-menu-hours-item"><span class="mobile-menu-hours-label">Ons–Lör</span><span class="mobile-menu-hours-time">11:00–01:00</span></span>
+      </div>
+      <p class="mobile-menu-address"><svg class="footer-map-icon" viewBox="0 0 64 64" width="16" height="16" fill="none" aria-hidden="true"><path d="M8 14 C8 10, 10 8, 14 8 L50 7 C54 7, 56 10, 56 14 L57 50 C57 54, 54 56, 50 56 L14 57 C10 57, 8 54, 8 50 Z" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 32 L57 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M32 8 L30 57" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M32 24 C28 24 26 27 26 30 C26 34 32 40 32 40 C32 40 38 34 38 30 C38 27 36 24 32 24 Z" fill="currentColor"/></svg> Medborgarplatsen 3, Södermalm</p>
+    </div>
   </div>
 
   <!-- PAGE HEADER -->
