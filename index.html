@@ -2195,7 +2195,7 @@ Ni bestämmer anledningen - vi fixar resten.</div>
       hamburger.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
     }
-    hamburger.addEventListener('click', openMenu);
+    hamburger.addEventListener('click', () => mobileMenu.classList.contains('open') ? closeMenu() : openMenu());
     menuClose.addEventListener('click', closeMenu);
     mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
