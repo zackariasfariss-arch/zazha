@@ -538,7 +538,8 @@
     #hero .hero-backdrop {
       background: linear-gradient(rgba(10, 6, 3, 0.35), rgba(10, 6, 3, 0.05) 35%, rgba(10, 6, 3, 0.15) 60%, rgba(10, 6, 3, 0.7));
     }
-    #hero .hero-tagline { font-size: 18px; }
+    /* Rubriken syns inte men finns kvar för Google */
+    #hero .hero-tagline { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: 0; }
     @media (max-width: 900px) {
       #hero { padding-bottom: 40px; }
     }
@@ -1672,7 +1673,7 @@
   <section id="hero" aria-label="Välkommen till ZAZHA">
     <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="images/hero-video-poster.webp" aria-hidden="true">
       <source src="images/hero-video-720.mp4" type="video/mp4" media="(max-width: 900px)">
-      <source src="images/hero-video-1080.mp4" type="video/mp4">
+      <source src="images/hero-video-desktop.mp4" type="video/mp4">
     </video>
     <div class="hero-backdrop"></div>
     <div class="hero-content">
