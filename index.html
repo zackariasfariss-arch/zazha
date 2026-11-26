@@ -378,6 +378,32 @@
       transition: background 0.3s;
     }
 
+    /* Över videon: helt genomskinlig header — bara hamburgerknappen syns.
+       Efter videon (#nav.scrolled) kommer den vanliga headern tillbaka. */
+    #nav:not(.scrolled) {
+      background: transparent;
+      border-bottom-color: transparent;
+      box-shadow: none;
+      justify-content: flex-end;
+    }
+    #nav:not(.scrolled) .nav-info,
+    #nav:not(.scrolled) .nav-links { display: none; }
+    #nav:not(.scrolled) .nav-hamburger { display: flex; gap: 7px; padding: 10px; }
+    #nav:not(.scrolled) .nav-hamburger span {
+      width: 30px; height: 2px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.6);
+    }
+    #nav { transition: box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease; }
+
+    /* Hamburgerknappen blir ett kryss när menyn är öppen (ersätter Stäng-knappen) */
+    .nav-hamburger span { transition: transform 0.3s ease, opacity 0.2s ease, background 0.3s; }
+    .nav-hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    #menu-close { display: none; }
+    #nav:not(.scrolled) .nav-hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    #nav:not(.scrolled) .nav-hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
     /* ============================================================
        MOBILE MENU OVERLAY
        Olive background, large Cormorant links, centered
